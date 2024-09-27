@@ -96,7 +96,7 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
   const handleOpen = () => setOpen(!open); //dialog
 
   const handleClick = () => {
-    setOpen(!open);
+    //setOpen(!open);
 
     const validationErrors: { [key: string]: string } = {};
 

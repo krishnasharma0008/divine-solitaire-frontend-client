@@ -232,7 +232,7 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
               alt="Company Logo"
               width={869}
               height={567}
-              className="h-auto w-auto max-h-[71px] max-w-[164px] lg:max-h-[74px] lg:max-w-[184px] cursor-pointer py-1"
+              className="h-auto w-auto max-h-[51px] max-w-[164px] lg:max-h-[74px] lg:max-w-[184px] cursor-pointer py-1"
               layout="intrinsic"
             />
           </div>
