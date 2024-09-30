@@ -195,34 +195,6 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
         </div>
       </div>
 
-      {/* <div className="w-4/12 flex justify-center items-center">
-        <Link href="/">
-          <div className="flex flex-row justify-center items-center h-[30px] lg:h-[74px] my-2 lg:py-0">
-            <Image
-              src="/logo-white.png"
-              height={71}
-              width={164}
-              alt="logo"
-              className="h-[39px] w-[90px] lg:h-[71px] lg:w-[164px] cursor-pointer"
-            />
-            <Image
-              src="/logo/new_logo.png"
-              alt="Company Logo"
-              width={869}
-              height={567}
-              className="h-auto w-auto max-h-[71px] max-w-[164px] lg:max-h-[74px] lg:max-w-[184px] cursor-pointer"
-              layout="intrinsic" // Adjusts the image based on the provided width and height
-            />
-            
-            <img
-              src="/logo/proudly2.png"
-              alt="logo-2"
-              className="h-[25.5px] w-[60px] lg:h-[37px] lg:w-[87px] align-bottom inline-block lg:mb-2 lg:-ml-2 cursor-pointer"
-            />
-          </div>
-        </Link>
-      </div> */}
-
       {/* Centered logo */}
       <div className="flex-grow flex justify-center items-center">
         <Link href="/">
@@ -244,8 +216,8 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
         <div className="hidden relative w-24 h-10 rounded">
           <Dropdown
             options={Object.values(Currency)}
-            value={currency} // Correctly bind the selected value
-            onChange={handleDropdownChange} // Pass the change handler
+            value={currency}
+            onChange={handleDropdownChange}
             disabled={false}
             //className="w-52"
           />
@@ -257,10 +229,7 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
               classes="h-10 text-xs font-light leading-5 max-w-[12rem] tracking-widest hover:bg-white hover:text-black [&:hover>span>svg]:fill-white [&:hover>span>svg>g>path]:stroke-black hover:border-none"
             >
               STORE LOCATOR
-              <span className="inline-block align-middle float-right">
-                {/* <StoreLocatorIcon className="h-5 w-5 ml-1" /> */}
-                {/* <StoreLocatorIcon className="h-5 w-5 ml-1 hover:bg-black [&:hover>g>path]:text-black" /> */}
-              </span>
+              <span className="inline-block align-middle float-right"></span>
             </Button>
           </Link>
           <Link
@@ -274,12 +243,6 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
             >
               <span className="hidden md:inline">SHOP NOW</span>
             </Button>
-            {/* <Button
-              themeType="light"
-              classes="h-10 w-40 text-xs font-light leading-5 tracking-widest border-solid border-black hover:text-white hover:bg-black hover:border-white"
-            >
-              <span className="hidden md:inline">SHOP NOW</span>
-            </Button> */}
           </Link>
         </div>
         <div className="flex lg:hidden w-11/12 gap-2 justify-end">
@@ -290,12 +253,6 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
             <StoreLocatorIcon />
           </Link>
         </div>
-        {/* <Link
-          className="mr-5 relative w-1/12 hidden xl:block  cursor-pointer"
-          href={"/login"}
-        >
-          <UserIcon />
-        </Link> */}
 
         {isLoggedIn ? (
           // User is logged in, show dropdown menu
