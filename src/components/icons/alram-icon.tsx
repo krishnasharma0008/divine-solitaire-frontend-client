@@ -1,6 +1,6 @@
 import { SvgIconProps } from "./icon-props";
 
-const AlaramIcon: React.FC<SvgIconProps> = (props) => (
+const AlramIcon: React.FC<SvgIconProps> = (props) => (
   <svg
     width="19"
     height="17"
@@ -33,4 +33,4 @@ const AlaramIcon: React.FC<SvgIconProps> = (props) => (
   </svg>
 );
 
-export default AlaramIcon;
+export default AlramIcon;

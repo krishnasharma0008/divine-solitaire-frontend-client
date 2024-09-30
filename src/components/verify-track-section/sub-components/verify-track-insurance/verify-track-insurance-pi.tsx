@@ -1,16 +1,14 @@
-import {
-  Dialog,
-  DialogHeader,
-  DialogBody,
-  DialogFooter,
-  Typography,
-} from "@material-tailwind/react";
-import { useContext, useReducer, useState } from "react";
+import { useContext, useEffect, useReducer, useState } from "react";
 import React from "react";
 
 import { createVerifyTrackInsurance } from "@/api/verify-track-insurance";
-import { Button, InputFile } from "@/components";
-import { InsuranceIcon, AlaramIcon } from "@/components";
+import {
+  Button,
+  InputFile,
+  XMarkIcon,
+  InsuranceIcon,
+  AlramIcon,
+} from "@/components";
 import InputText from "@/components/common/input-text";
 import { VerifyTrackInsuranceForm } from "@/interface";
 
@@ -67,9 +65,14 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
     initialState
   );
 
+  useEffect(() => {
+    handleDialogOpen();
+  }, []);
+
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
-  const [open, setOpen] = React.useState(false); //dialogbox
+  const [isDialogOpen, setIsDialogOpen] = useState(false); // State for dialog visibility
+  const [isRDialogOpen, setIsRDialogOpen] = useState(false); //reminder Dialog
 
   const { productDetails, setInsuranceReceiptNumber } =
     useContext(VerifyTrackContext);
@@ -93,10 +96,8 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
     };
   };
 
-  const handleOpen = () => setOpen(!open); //dialog
-
   const handleClick = () => {
-    //setOpen(!open);
+    handleRDialogOpen();
 
     const validationErrors: { [key: string]: string } = {};
 
@@ -177,6 +178,22 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
         setCurrentStep(STEPS.THREE);
       })
       .catch((err) => console.log("Error", err));
+  };
+
+  const handleDialogOpen = () => {
+    setIsDialogOpen(true); // Open dialog
+  };
+
+  const handleDialogClose = () => {
+    setIsDialogOpen(false); // Close dialog
+  };
+
+  const handleRDialogOpen = () => {
+    setIsRDialogOpen(true); // Open dialog
+  };
+
+  const handleRDialogClose = () => {
+    setIsRDialogOpen(false); // Close dialog
   };
 
   return (
@@ -364,30 +381,95 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
           SUBMIT
         </Button>
       </div>
-      <>
-        <Dialog open={open} handler={handleClick}>
-          <DialogHeader>
-            <Typography variant="h5" color="blue-gray">
-              <AlaramIcon />
+
+      {/* Dialog Structure */}
+      {isDialogOpen && (
+        <div className="pointer-events-auto fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60">
+          <div className="relative max-w-[311px]  lg:max-w-[40%] sm:max-w-[90%] rounded-3xl bg-white shadow-sm">
+            <div className="flex shrink-0 rounded-t-3xl bg-[#F4F4F4] font-[Montserrat] font-bold text-base justify-center align-middle items-center py-4 text-[#000000]">
+              Heads Up!
+              <XMarkIcon
+                className="h-5 w-5 absolute top-4 right-4"
+                onClick={handleDialogClose}
+              />
+            </div>
+
+            <div className="w-full relative border-t border-slate-200 p-4 ">
+              <div className="flex justify-center items-center font-[Montserrat] text-sm leading-6">
+                <p className="font-medium">Apply Insurance within&nbsp;</p>
+                <p className="font-semibold">7 days&nbsp;</p>
+                <p className="font-medium">from the</p>
+              </div>
+              <p className="flex justify-center items-center font-[Montserrat] text-sm leading-6 font-medium">
+                invoice date to stay covered
+              </p>
+            </div>
+            <div className="flex shrink-0 flex-wrap items-center pb-4 justify-center">
+              <div className="w-24 ">
+                <Button
+                  onClick={handleDialogClose} // Close dialog on Cancel button
+                  className="rounded-md border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:bg-slate-100"
+                  themeType="dark"
+                >
+                  OKAY
+                </Button>
+              </div>
+              {/* <button
+                onClick={handleDialogClose} // Close dialog on Confirm button
+                className="rounded-md bg-green-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg"
+                type="button"
+              >
+                Confirm
+              </button> */}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Reminder Dialog Structure */}
+      {isRDialogOpen && (
+        <div className="pointer-events-auto fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60">
+          <div className="relative max-w-[311px]  lg:max-w-[40%] sm:max-w-[90%] rounded-3xl bg-white shadow-sm">
+            <div className="flex shrink-0 rounded-t-3xl bg-[#F4F4F4] font-[Montserrat] font-bold text-base justify-center align-middle items-center py-4 text-[#000000]">
+              <AlramIcon className="h-5 w-5" />
               Reminder:
-            </Typography>
-          </DialogHeader>
-          <DialogBody divider className="grid place-items-center gap-4">
-            <Typography className="text-center font-normal">
-              Verify your Invoice Number, Date, and Amount. Please verify all
-              information before proceeding.
-            </Typography>
-          </DialogBody>
-          <DialogFooter className="space-x-2">
-            <Button themeType="light" variant="text" onClick={handleOpen}>
-              Edit
-            </Button>
-            <Button themeType="dark" variant="gradient" onClick={handleOpen}>
-              Okay
-            </Button>
-          </DialogFooter>
-        </Dialog>
-      </>
+            </div>
+
+            <div className="w-full relative border-t border-slate-200 p-4 ">
+              <div className="flex justify-center items-center font-[Montserrat] text-sm leading-6">
+                <p className="font-medium">Verify your&nbsp;</p>
+                <p className="font-semibold">Invoice Number, Date,&nbsp;</p>
+                <p className="font-medium">and</p>
+              </div>
+              <div className="flex justify-center items-center font-[Montserrat] text-sm leading-6">
+                <p className="font-semibold">Amount. &nbsp;</p>
+                <p className="font-medium">Please verify all information</p>
+              </div>
+              <p className="flex justify-center items-center font-[Montserrat] text-sm leading-6 font-medium">
+                before proceeding.
+              </p>
+            </div>
+            <div className="flex shrink-0 flex-wrap items-center pb-4 justify-center">
+              <div className="flex flex-row w-52 gap-2 ">
+                <Button
+                  onClick={handleRDialogClose} // Close dialog on Confirm button
+                  className="rounded-md bg-green-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg"
+                  themeType="light"
+                >
+                  Edit
+                </Button>
+                <Button
+                  onClick={handleRDialogClose} // Close dialog on Cancel button
+                  className="rounded-md border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:bg-slate-100"
+                  themeType="dark"
+                >
+                  OKAY
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

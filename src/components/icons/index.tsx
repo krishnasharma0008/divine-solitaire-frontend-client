@@ -5,7 +5,7 @@ export { default as ArrowIcon8 } from "./arrow-icon-8";
 export { default as ArrowRightIcon } from "./arrow-right-icon";
 export { default as ArrowUpIcon } from "./arrow-up-icon";
 export { default as ArrowDownIcon } from "./arrow-down-icon";
-export { default as AlaramIcon } from "./alaram-icon";
+export { default as AlramIcon } from "./alram-icon";
 export { default as BreadcrumbArrowRightIcon } from "./breadcrum-right-icon";
 export { default as CalendarIcon } from "./calendar-icon";
 export { default as CaratDownIcon } from "./carat-down-icon";
