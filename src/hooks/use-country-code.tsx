@@ -10,7 +10,8 @@ const useCountryCode = () => {
         const { ip } = await ipResponse.json();
         const locationResponse = await fetch(`https://ipapi.co/${ip}/json/`);
         const { country_code } = await locationResponse.json();
-        setCountryCode(country_code);
+        console.log("Country Code", country_code);
+        setCountryCode(country_code === "IN" ? "IN" : "US");
       } catch (error) {
         console.error("Error fetching country code:", error);
         setCountryCode(null); // Set country code to null in case of error
