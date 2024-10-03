@@ -5,13 +5,13 @@ import { useContext, useEffect, useState } from "react";
 import { getDiamondCoin } from "@/api/pricing";
 import { InsuranceIcon, BuybackIcon, Button } from "@/components";
 import { NOTIFICATION_MESSAGES } from "@/config";
-import { useCurrency } from "@/context/currency-context";
+//import { useCurrency } from "@/context/currency-context";
 import LoaderContext from "@/context/loader-context";
 import NotificationContext from "@/context/notification-context";
-//import useCountryCode from "@/hooks/use-country-code";
+import useCountryCode from "@/hooks/use-country-code";
 import DiamondCoin from "@/interface/diamond-coin";
 import { formatByCurrency } from "@/util";
-import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
+//import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
 
 interface Props {
   children?: React.ReactNode;
@@ -26,9 +26,9 @@ const DiamondCoinSolitares: React.FC<Props> = () => {
   const [currencylocale, setCurrencyLocale] = useState<string>("");
   const [currencycode, setCurrencyCode] = useState<string>("");
 
-  //const countryCode = useCountryCode();
-  const { currency } = useCurrency(); //for currency
-  const countryCode = reverseCountryCurrencyMap[currency];
+  const countryCode = useCountryCode();
+  //const { currency } = useCurrency(); //for currency
+  //const countryCode = reverseCountryCurrencyMap[currency];
 
   const fetchDiamondCoin = async (countryCode: string) => {
     showLoader();

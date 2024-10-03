@@ -6,15 +6,15 @@ import { ArrowUpIcon, TrashIcon, EyeIcon, Button } from "@/components";
 import LoginModal from "@/components/modals/login-modal";
 import ValidationModal from "@/components/modals/validation-modal";
 import { NOTIFICATION_MESSAGES } from "@/config";
-import { useCurrency } from "@/context/currency-context";
+//import { useCurrency } from "@/context/currency-context";
 import KnowYourDiamondContext from "@/context/know-your-diamond-context";
 import LoaderContext from "@/context/loader-context";
 import NotificationContext from "@/context/notification-context";
-//import useCountryCode from "@/hooks/use-country-code";
+import useCountryCode from "@/hooks/use-country-code";
 import StonePrice from "@/interface/stone-price";
 import { getToken, setRedirectionRoute } from "@/local-storage";
 import { formatByCurrency } from "@/util";
-import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
+//import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
 
 interface Props {
   children?: React.ReactNode;
@@ -30,9 +30,9 @@ const SavedSolitares: React.FC<Props> = () => {
   const [showValidationMessage, setShowValidationMessage] =
     useState<string>("");
 
-  //const countrycode = useCountryCode();
-  const { currency } = useCurrency(); //for currency
-  const countrycode = reverseCountryCurrencyMap[currency];
+  const countrycode = useCountryCode();
+  //const { currency } = useCurrency(); //for currency
+  //const countrycode = reverseCountryCurrencyMap[currency];
 
   const fetchPrices = useCallback(async () => {
     showLoader();

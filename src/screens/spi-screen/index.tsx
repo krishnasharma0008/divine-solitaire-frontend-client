@@ -16,10 +16,10 @@ import {
 } from "@/components";
 //import { ComparePrices } from "@/components/divine-components";
 //import { SolitairePriceIndex } from "@/interface";
-//import useCountryCode from "@/hooks/use-country-code";
-import { useCurrency } from "@/context/currency-context";
+import useCountryCode from "@/hooks/use-country-code";
+//import { useCurrency } from "@/context/currency-context";
 import { formatByCurrency } from "@/util";
-import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
+//import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
 
 interface SPIPrice {
   Month: string;
@@ -57,9 +57,9 @@ const SolitairePriceIndexScreen: React.FC = () => {
   const [isShowMore, setIsShowMore] = useState(false);
   const [isShowMore1, setIsShowMore1] = useState(false);
 
-  //const countrycode = useCountryCode();
-  const { currency } = useCurrency(); //for currency
-  const countrycode = reverseCountryCurrencyMap[currency];
+  const countrycode = useCountryCode();
+  //const { currency } = useCurrency(); //for currency
+  //const countrycode = reverseCountryCurrencyMap[currency];
 
   const toggleReadMoreLess = () => {
     setIsShowMore(!isShowMore);

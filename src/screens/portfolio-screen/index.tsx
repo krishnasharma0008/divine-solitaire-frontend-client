@@ -8,9 +8,9 @@ import { deletePortfolio, getPortfolioList } from "@/api";
 import { BreadcrumbArrowRightIcon, Button } from "@/components";
 import PortfolioDiv from "@/components/common/portfolio-cop";
 import { PortfolioStoreFront, PlusIcon } from "@/components/icons";
-import { useCurrency } from "@/context/currency-context";
+//import { useCurrency } from "@/context/currency-context";
 import LoaderContext from "@/context/loader-context";
-//import useCountryCode from "@/hooks/use-country-code";
+import useCountryCode from "@/hooks/use-country-code";
 import Portfolio from "@/interface/portfolio";
 import {
   getToken,
@@ -19,16 +19,16 @@ import {
   deletePortfoliouid,
 } from "@/local-storage";
 import { calculateGrowth } from "@/util";
-import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
+//import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
 
 const PortfolioScreen: React.FC = () => {
   const { showLoader, hideLoader } = useContext(LoaderContext);
 
   const [Portfolio, setPortfolio] = useState<Array<Portfolio>>([]);
 
-  //const countrycode = useCountryCode();
-  const { currency } = useCurrency(); //for currency
-  const countrycode = reverseCountryCurrencyMap[currency];
+  const countrycode = useCountryCode();
+  // const { currency } = useCurrency(); //for currency
+  // const countrycode = reverseCountryCurrencyMap[currency];
   const [currencylocale, setCurrencyLocale] = useState<string>("");
   const [currencycode, seyCurrencycode] = useState<string>("");
 

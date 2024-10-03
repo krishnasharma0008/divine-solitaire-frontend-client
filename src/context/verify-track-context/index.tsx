@@ -11,12 +11,12 @@ import getVerifyTrackByUid, {
   getProductPortfolioStatus,
   getProductWishlistStatus,
 } from "@/api/verify-track";
-//import useCountryCode from "@/hooks/use-country-code";
+import useCountryCode from "@/hooks/use-country-code";
 import { VerifyTrackByUid } from "@/interface";
 import { getToken } from "@/local-storage";
-import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";//
+//import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map"; //
 
-import { useCurrency } from "../currency-context";//
+//import { useCurrency } from "../currency-context";//
 import LoaderContext from "../loader-context";
 
 type VerifyTrackByUidType = VerifyTrackByUid | null;
@@ -65,9 +65,9 @@ const VerifyTrackContextWrapper: React.FC<VerifyTrackContextWrapperProps> = ({
 
   const { query } = useRouter();
 
-  //const countrycode = useCountryCode();
-  const { currency } = useCurrency(); //for currency
-  const countrycode = reverseCountryCurrencyMap[currency];
+  const countrycode = useCountryCode();
+  //const { currency } = useCurrency(); //for currency
+  //const countrycode = reverseCountryCurrencyMap[currency];
 
   const setProductDetailsInContext = useCallback(
     (productDetails: VerifyTrackByUid) => setProductDetails(productDetails),

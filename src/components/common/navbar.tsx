@@ -13,15 +13,15 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 import { URLs } from "@/constants";
-import { useCurrency } from "@/context/currency-context";
-import Currency from "@/enum/currency-enum";
+//import { useCurrency } from "@/context/currency-context";
+//import Currency from "@/enum/currency-enum";
 //import useCountryCode from "@/hooks/use-country-code";
 import { Breadcrumbs } from "@/interface/breadcrumbs";
 import { deleteToken, getToken } from "@/local-storage";
 //import { countryCurrencyMap } from "@/util/country-currency-map";
 
 import Button from "./button";
-import Dropdown from "./dropdown";
+//import Dropdown from "./dropdown";
 import Sidebar, { SidebarProps } from "./sidebar";
 import {
   //EmptySpaceIcon,
@@ -47,7 +47,7 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
   // const [dropValue, setDropValue] = useState<Currency>(
   //   countryCurrencyMap[countryCode || Currency.USD]
   // );
-  const { currency, setCurrency } = useCurrency();
+  //const { currency, setCurrency } = useCurrency();
 
   // useEffect(() => {
   //   console.log("selected currency", currency);
@@ -62,10 +62,10 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
   //   //console.log("selected currency", selectedValue);
   //   setDropValue(selectedValue as Currency); // Ensure the value is a valid Currency
   // };
-  const handleDropdownChange = (selectedValue: string) => {
-    console.log("selected currency", selectedValue);
-    setCurrency(selectedValue as Currency);
-  };
+  // const handleDropdownChange = (selectedValue: string) => {
+  //   console.log("selected currency", selectedValue);
+  //   setCurrency(selectedValue as Currency);
+  // };
 
   const logout = () => {
     deleteToken();
@@ -213,7 +213,7 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
 
       <div className="lg:w-4/12 flex justify-end gap-2 items-center">
         {/* <div className="hidden relative lg:block w-24 h-10 rounded"> */}
-        <div className="hidden relative w-24 h-10 rounded">
+        {/* <div className="hidden relative w-24 h-10 rounded">
           <Dropdown
             options={Object.values(Currency)}
             value={currency}
@@ -221,7 +221,7 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
             disabled={false}
             //className="w-52"
           />
-        </div>
+        </div> */}
         <div className="hidden relative lg:block lg:flex lg:w-auto w-full">
           <Link href="/store-locator" className="inline-block">
             <Button

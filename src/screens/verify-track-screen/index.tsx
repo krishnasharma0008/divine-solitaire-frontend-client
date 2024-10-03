@@ -7,14 +7,14 @@ import getVerifyTrackByUid from "@/api/verify-track";
 //import generateImage from "@/components/common/imagewriter";
 import InputText from "@/components/common/input-text";
 import { NOTIFICATION_MESSAGES } from "@/config";
-import { useCurrency } from "@/context/currency-context";
+//import { useCurrency } from "@/context/currency-context";
 import LoaderContext from "@/context/loader-context";
 import NotificationContext from "@/context/notification-context";
 import { VerifyTrackContext } from "@/context/verify-track-context";
-//import useCountryCode from "@/hooks/use-country-code";
+import useCountryCode from "@/hooks/use-country-code";
 import { deletePortfoliouid, getPortfoliouid } from "@/local-storage";
 //import { countryCurrencyMap } from "@/util/country-currency-map";
-import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
+//import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -26,10 +26,10 @@ export default function Track() {
   const { showLoader, hideLoader } = useContext(LoaderContext);
   const { notifyErr } = useContext(NotificationContext);
 
-  //const countrycode = useCountryCode();
+  const countrycode = useCountryCode();
 
-  const { currency } = useCurrency(); //for currency
-  const countrycode = reverseCountryCurrencyMap[currency];
+  // const { currency } = useCurrency(); //for currency
+  // const countrycode = reverseCountryCurrencyMap[currency];
   // const fetchImage = async (text: string): Promise<string | null> => {
   //   try {
   //     const imageUrl = await generateImage(text);
