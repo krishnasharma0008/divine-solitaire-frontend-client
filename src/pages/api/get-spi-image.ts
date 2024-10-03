@@ -97,17 +97,17 @@ const createImage = async (
 };
 
 // Fetch country code based on IP address
-const fetchCountryCode = async (req: NextApiRequest): Promise<string | null> => {
-  try {
-    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '';
-    const response = await fetch(`https://ipapi.co/${ip}/json/`);
-    const data = await response.json();
-    return data.country_code || null;
-  } catch (error) {
-    console.error("Error fetching country code:", error);
-    return null;
-  }
-};
+// const fetchCountryCode = async (req: NextApiRequest): Promise<string | null> => {
+//   try {
+//     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '';
+//     const response = await fetch(`https://ipapi.co/${ip}/json/`);
+//     const data = await response.json();
+//     return data.country_code || null;
+//   } catch (error) {
+//     console.error("Error fetching country code:", error);
+//     return null;
+//   }
+// };
 
 // Main API handler
 const getSpiImage = async (
