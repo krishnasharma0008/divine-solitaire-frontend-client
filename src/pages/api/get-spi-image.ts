@@ -120,7 +120,7 @@ const getSpiImage = async (
     const currentYear = currentDate.getFullYear();
     
     // Get country code based on IP
-    const countrycode = "US";//await fetchCountryCode(req);
+    const countrycode = "IN";//await fetchCountryCode(req);
 
     if (!countrycode) {
       return res.status(400).json("Unable to determine country code.");
