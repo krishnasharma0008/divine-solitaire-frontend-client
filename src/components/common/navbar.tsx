@@ -222,7 +222,7 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
             //className="w-52"
           />
         </div>
-        <div className="hidden relative lg:block">
+        <div className="hidden relative lg:block lg:flex lg:w-auto w-full">
           <Link href="/store-locator" className="inline-block">
             <Button
               themeType="dark"
@@ -260,7 +260,7 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
             <MenuHandler>
               <IconButton
                 variant="text"
-                className="mr-2 relative cursor-pointer"
+                className="min-w-[24px] mr-2 relative cursor-pointer"
               >
                 <UserIcon />
               </IconButton>
@@ -309,7 +309,10 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
           </Menu>
         ) : (
           // User is not logged in, show login link
-          <Link className="mr-2 relative cursor-pointer" href={"/login"}>
+          <Link
+            className="min-w-[24px] mr-2 relative cursor-pointer"
+            href={"/login"}
+          >
             <UserIcon />
           </Link>
         )}
