@@ -97,17 +97,17 @@ const createImage = async (
 };
 
 // Fetch country code based on IP address
-// const fetchCountryCode = async (req: NextApiRequest): Promise<string | null> => {
-//   try {
-//     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '';
-//     const response = await fetch(`https://ipapi.co/${ip}/json/`);
-//     const data = await response.json();
-//     return data.country_code || null;
-//   } catch (error) {
-//     console.error("Error fetching country code:", error);
-//     return null;
-//   }
-// };
+const fetchCountryCode = async (req: NextApiRequest): Promise<string | null> => {
+  try {
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '';
+    const response = await fetch(`https://ipapi.co/${ip}/json/`);
+    const data = await response.json();
+    return data.country_code || null;
+  } catch (error) {
+    console.error("Error fetching country code:", error);
+    return null;
+  }
+};
 
 // Main API handler
 const getSpiImage = async (
@@ -120,7 +120,7 @@ const getSpiImage = async (
     const currentYear = currentDate.getFullYear();
     
     // Get country code based on IP
-    const countrycode = "IN";//await fetchCountryCode(req);
+    const countrycode = await fetchCountryCode(req);
 
     if (!countrycode) {
       return res.status(400).json("Unable to determine country code.");
