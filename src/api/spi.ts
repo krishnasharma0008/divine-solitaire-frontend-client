@@ -11,20 +11,39 @@ export interface SolitairePriceIndexResponse {
   message: "Success" | "Failed";
 }
 
+// const getSolitairePriceIndex = (
+//   month: string,
+//   year: number,
+//   countrycode:string
+// ): Promise<AxiosResponse<SolitairePriceIndexResponse>> =>
+//   callWebService(getSolitairePriceIndexEndpoint.url, {
+//     method: getSolitairePriceIndexEndpoint.method,
+//     timeout: 60 * 1000,
+//     params: {
+//       shape: Shape.SPIROUND,
+//       month,
+//       year,
+//       countrycode
+//     },
+//   });
+
 const getSolitairePriceIndex = (
   month: string,
   year: number,
-  countrycode:string
-): Promise<AxiosResponse<SolitairePriceIndexResponse>> =>
-  callWebService(getSolitairePriceIndexEndpoint.url, {
+  countrycode: string
+): Promise<AxiosResponse<SolitairePriceIndexResponse>> => {
+  console.log(`Fetching Solitaire Price Index for country code: ${countrycode}`);
+
+  return callWebService(getSolitairePriceIndexEndpoint.url, {
     method: getSolitairePriceIndexEndpoint.method,
     timeout: 60 * 1000,
     params: {
       shape: Shape.SPIROUND,
       month,
       year,
-      countrycode
+      countrycode,
     },
   });
+};
 
 export default getSolitairePriceIndex;

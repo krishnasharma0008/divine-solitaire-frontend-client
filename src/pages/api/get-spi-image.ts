@@ -179,7 +179,6 @@ const getSpiImage = async (
       countrycode as string
     );
 
-    console.log("SPI Data",result.data.data);
     const hashValue = getHash(result.data.data);
 
     const existingFile = getFile(hashValue);
