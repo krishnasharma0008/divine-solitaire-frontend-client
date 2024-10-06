@@ -42,6 +42,7 @@ const getSolitairePriceIndex = (
       month,
       year,
       countrycode,
+      islocal :"0",
     },
   });
 };

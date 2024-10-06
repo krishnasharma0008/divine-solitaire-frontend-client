@@ -88,6 +88,26 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
         });
     }
 
+    // Handle pin code input
+    if (["phpincode"].includes(fieldname)) {
+      return (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+
+        // Check for negative value
+        if (parseFloat(value) < 0) {
+          alert("Pin Code cannot be negative.");
+          return; // Prevent setting negative value
+        }
+
+        // Dispatch the valid value
+        dispatch({
+          type: fieldname,
+          payload: value,
+        });
+      };
+    }
+
+    // Default handler for other inputs
     return (e: React.ChangeEvent<HTMLInputElement>) => {
       dispatch({
         type: fieldname,
@@ -268,6 +288,13 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
               className={`w-full ${errors.phpincode ? "border-red-500" : ""}`}
               containerClass="!mb-0"
               errorText={errors.phpincode}
+              onKeyDown={(e) => {
+                // Prevent the default action for arrow keys to avoid scrolling
+                if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+                  e.preventDefault();
+                }
+              }}
+              min={0}
             />
 
             <InputText

@@ -23,12 +23,7 @@ import { deleteToken, getToken } from "@/local-storage";
 import Button from "./button";
 //import Dropdown from "./dropdown";
 import Sidebar, { SidebarProps } from "./sidebar";
-import {
-  //EmptySpaceIcon,
-  ShoppingCartIcon,
-  StoreLocatorIcon,
-  UserIcon,
-} from "../icons";
+import { ShoppingCartIcon, StoreLocatorIcon, UserIcon } from "../icons";
 
 const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -105,14 +100,12 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
       {
         title: "Solitaire Price Index",
         url: URLs.SOLITAIRE_PRICE_INDEX,
-        //icon: EmptySpaceIcon,
         icon: "yes",
         name: URLs.SOLITAIRE_PRICE_INDEX,
       },
       {
         title: "My Portfolio",
         url: URLs.CREATE_PORTFOLIO,
-        //icon: EmptySpaceIcon,
         icon: "no",
         name: URLs.CREATE_PORTFOLIO,
       },
@@ -168,20 +161,9 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
       {
         title: "Blogs",
         url: URLs.BLOGS,
-        //icon: EmptySpaceIcon,
         icon: "no",
         name: URLs.BLOGS,
       },
-      // {
-      //   title: "Log Out",
-      //   url: URLs.DASHBOARD,
-      //   //icon: SignOutIcon,
-      //   icon: "no",
-      //   onClick: () => {
-      //     deleteToken();
-      //   },
-      //   name: URLs.DASHBOARD,
-      // },
     ],
     isSidebarOpen: isSidebarOpen,
     setSidebarOpen: setSidebarOpen,
@@ -226,7 +208,8 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
           <Link href="/store-locator" className="inline-block">
             <Button
               themeType="dark"
-              classes="h-10 text-xs font-light leading-5 max-w-[12rem] tracking-widest hover:bg-white hover:text-black [&:hover>span>svg]:fill-white [&:hover>span>svg>g>path]:stroke-black hover:border-none"
+              //classes="h-10 text-xs font-light leading-5 max-w-[12rem] tracking-widest hover:bg-white hover:text-black [&:hover>span>svg]:fill-white [&:hover>span>svg>g>path]:stroke-black hover:border-none"
+              classes="h-10 text-xs font-light leading-5 max-w-[12rem] tracking-widest hover:bg-white hover:text-black shadow-none whitespace-nowrap"
             >
               STORE LOCATOR
               <span className="inline-block align-middle float-right"></span>
@@ -239,7 +222,7 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
           >
             <Button
               themeType="light"
-              classes="h-10 basis-40 text-xs font-light leading-5 tracking-widest border-solid border-black hover:text-white hover:bg-black hover:!border-white hover:border-solid"
+              classes="h-10 basis-40 text-xs font-light leading-5 tracking-widest border-solid border-black hover:text-white hover:bg-black hover:!border-white hover:border-solid whitespace-nowrap"
             >
               <span className="hidden md:inline">SHOP NOW</span>
             </Button>

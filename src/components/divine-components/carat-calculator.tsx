@@ -1,5 +1,5 @@
 import { Slider, Typography } from "@material-tailwind/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import React from "react";
 
 import PricingDialog from "@/components/common/pricing-dialog";
@@ -42,6 +42,8 @@ const CaratCalculator: React.FC<CaratCalculator> = ({
   const setSliderValueCalculated = (value: number) => {
     setSliderValue((value * 100) / MAX);
   };
+
+  const nextInputRef = useRef<HTMLInputElement>(null); // Reference for the next input
 
   useEffect(() => {
     setSliderValueCalculated(defaultValue);
@@ -88,6 +90,11 @@ const CaratCalculator: React.FC<CaratCalculator> = ({
     if (e.key === "Enter" && onChange) {
       const value = parseFloat(caratValue);
       setCaratValue(onChange(value).toString());
+
+      // Focus the next input after pressing Enter
+      if (nextInputRef.current) {
+        nextInputRef.current.focus();
+      }
     }
 
     // Prevent default action for arrow keys

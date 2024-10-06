@@ -48,6 +48,10 @@ const InputText: React.FC<InputTextProps> = ({
         placeholder={placeholder}
         onBlur={onBlur}
         onKeyDown={onKeyDown}
+        onWheel={(e) => {
+          // Prevent mouse scrolling for the input field
+          e.preventDefault();
+        }}
       />
     </div>
   );
