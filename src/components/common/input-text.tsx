@@ -25,6 +25,7 @@ const InputText: React.FC<InputTextProps> = ({
   placeholder,
   onBlur,
   onKeyDown,
+  onKeyPress,
 }) => {
   return (
     <div
@@ -52,6 +53,7 @@ const InputText: React.FC<InputTextProps> = ({
           // Prevent mouse scrolling for the input field
           e.preventDefault();
         }}
+        onKeyPress={onKeyPress}
       />
     </div>
   );

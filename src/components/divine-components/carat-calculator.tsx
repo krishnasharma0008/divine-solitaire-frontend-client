@@ -1,5 +1,5 @@
 import { Slider, Typography } from "@material-tailwind/react";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 
 import PricingDialog from "@/components/common/pricing-dialog";
@@ -43,7 +43,7 @@ const CaratCalculator: React.FC<CaratCalculator> = ({
     setSliderValue((value * 100) / MAX);
   };
 
-  const nextInputRef = useRef<HTMLInputElement>(null); // Reference for the next input
+  //const nextInputRef = useRef<HTMLInputElement>(null); // Reference for the next input
 
   useEffect(() => {
     setSliderValueCalculated(defaultValue);
@@ -89,11 +89,14 @@ const CaratCalculator: React.FC<CaratCalculator> = ({
   const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && onChange) {
       const value = parseFloat(caratValue);
-      setCaratValue(onChange(value).toString());
+      //setCaratValue(onChange(value).toString());
 
-      // Focus the next input after pressing Enter
-      if (nextInputRef.current) {
-        nextInputRef.current.focus();
+      if (!isNaN(value)) {
+        // Call the onChange handler and update caratValue
+        setCaratValue(onChange(value).toString());
+
+        // Remove focus after Enter key is pressed
+        (e.target as HTMLInputElement).blur();
       }
     }
 
@@ -129,7 +132,6 @@ const CaratCalculator: React.FC<CaratCalculator> = ({
             className="max-w-[4rem] float-right number-button mr-[0.5px]"
             onBlur={onBlurChangeHandler}
             onKeyDown={onKeyDownHandler}
-            autoFocus
           />
         </div>
 
