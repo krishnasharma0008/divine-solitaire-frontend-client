@@ -89,7 +89,7 @@ const SelectYourSolitaire: React.FC = () => {
       setSelectedKyd(null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedKyd]);
+  }, [selectedKyd, state]);
 
   return (
     <>

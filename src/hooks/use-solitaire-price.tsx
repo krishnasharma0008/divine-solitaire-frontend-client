@@ -6,7 +6,7 @@ import { comparePastPrices, getStonePrice } from "@/api/pricing";
 import { saveSolitairePrice } from "@/api/pricing";
 import { NOTIFICATION_MESSAGES } from "@/config";
 //import LoaderContext from "@/context/loader-context";
-//import { useCurrency } from "@/context/currency-context";//
+import { useCurrency } from "@/context/currency-context"; //
 import NotificationContext from "@/context/notification-context";
 import { Clarity, Colour, Shape } from "@/enum";
 import { ClarityRound, ClarityRoundcarat } from "@/enum/clarity-enum";
@@ -16,7 +16,7 @@ import { ComparePrice } from "@/interface";
 import { getToken, setRedirectionRoute } from "@/local-storage";
 //import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
 
-import useCountryCode from "./use-country-code";
+//import useCountryCode from "./use-country-code";
 
 //const fshapes = Object.values(FancyShape);
 
@@ -25,6 +25,9 @@ const colors = ["D", "E", "F", "G", "H", "I", "J", "K", "VDF", "INY"]; //"DEFGHI
 const otherRoundColors = ["EF", "GH", "IJ", "VDF", "INY"];
 
 const otherRoundColorsCarat = ["EF", "GH", "VDF", "INY"];
+
+// const VividColors = ["VDF"];
+// const IntenseColors = ["INY"];
 
 const clarities = Object.values(Clarity);
 
@@ -142,100 +145,121 @@ const useSolitairePrice = () => {
     []
   );
 
+  // const getValidFancyShapeValue = (): Shape | FancyShape => {
+  //   if (shapeType === "VDF" || shapeType === "INY") {
+  //     if (!fshapes.includes(state.shape as unknown as FancyShape)) {
+  //       return fshapes[0];
+  //     }
+  //   }
+  //   //console.log("Shape Change function ", state.shape);
+  //   return state.shape;
+
+  // }
+
   const getValidColourValue = (value: number): Colour => {
-    console.log("check", value);
-
-    if (shapeType === "regular") {
-      if (isRound) {
-        if (value < 0.18) {
-          return otherRoundColors[0] as Colour;
-        } else {
-          return colors[0] as Colour;
-        }
-      } else {
-        if (value >= 0.1 && value <= 0.17) {
-          return otherRoundColorsCarat[0] as Colour;
-        } else {
-          return colors.filter(
-            (color) => color !== "I" && color !== "J" && color !== "K"
-          )[0] as Colour;
-        }
-      }
-    }
-
+    // console.log("check color");
     // if (shapeType === "regular") {
-    //   const otherShapeColors = colors.slice(0, 5);
-    //   if (state.shape === Shape.ROUND) {
+    //   if (isRound) {
     //     if (value < 0.18) {
-    //       if (!otherRoundColors.includes(state.colour)) {
-    //         return otherRoundColors[0] as Colour;
-    //       } else if (!colors.includes(state.colour)) {
-    //         return colors[0] as Colour;
-    //       }
+    //       return otherRoundColors[0] as Colour;
+    //     } else {
+    //       return colors[0] as Colour;
     //     }
-    //   } else if (
-    //     state.shape === Shape.PRINCESS ||
-    //     state.shape === Shape.OVAL ||
-    //     state.shape === Shape.PEAR
-    //   ) {
-    //     // Handle specific shapes that are not 'Shape.ROUND'
-
+    //   } else {
     //     if (value >= 0.1 && value <= 0.17) {
-    //       console.log("3", value);
     //       return otherRoundColorsCarat[0] as Colour;
     //     } else {
-    //       console.log("3");
-    //       return otherShapeColors[0] as Colour;
+    //       return colors.filter(
+    //         (color) => color !== "I" && color !== "J" && color !== "K"
+    //       )[0] as Colour;
     //     }
     //   }
-    //   // else if (!otherShapeColors.includes(state.colour)) {
-    //   //   return otherShapeColors[0] as Colour;
-    //   // }
     // }
-    // // else if (shapeType === "VDF" || shapeType === "INY") {
-    // //   return colors[0] as Colour;
-    // // }
+    console.log("state.shape : ", state.shape);
+    if (shapeType === "regular") {
+      const otherShapeColors = colors.slice(0, 5);
+      if (state.shape === Shape.ROUND) {
+        if (value < 0.18) {
+          if (!otherRoundColors.includes(state.colour)) {
+            return otherRoundColors[0] as Colour;
+          } else if (!colors.includes(state.colour)) {
+            return colors[0] as Colour;
+          }
+        }
+      } else if (
+        state.shape === Shape.PRINCESS ||
+        state.shape === Shape.OVAL ||
+        state.shape === Shape.PEAR
+      ) {
+        // Handle specific shapes that are not 'Shape.ROUND'
+        console.log("1");
+        if (value >= 0.1 && value <= 0.17) {
+          console.log("2");
+          return otherRoundColorsCarat[0] as Colour;
+        } else {
+          console.log("3");
+          return otherShapeColors[0] as Colour;
+        }
+      }
+      // else if (!otherShapeColors.includes(state.colour)) {
+      //   return otherShapeColors[0] as Colour;
+      // }
+    }
+    // else if (shapeType === "VDF" || shapeType === "INY") {
+    //   return colors[0] as Colour;
+    // }
     return state.colour;
   };
 
   const getValidClarityValue = (
     value: number
   ): Clarity | ClarityRound | ClarityRoundcarat => {
+    //console.log("check Clarity");
     if (shapeType === "regular") {
-      if (isRound) {
+      const otherShapeClarity = clarities.slice(0, 5);
+
+      if (state.shape === Shape.ROUND) {
         if (value < 0.18) {
-          return claritiesRound[0];
-        } else {
-          return clarities[0];
+          if (!claritiesRound.includes(state.clarity as ClarityRound)) {
+            return claritiesRound[0];
+          } else if (!clarities.includes(state.clarity as Clarity)) {
+            return clarities[0];
+          }
         }
-      } else {
-        if (value >= 0.1 && value <= 0.17) {
-          return claritiesRoundCarat[0];
-        } else {
-          return clarities.slice(0, 5)[0];
-        }
+      } else if (value >= 0.1 && value <= 0.17) {
+        return claritiesRoundCarat[0];
+      } //if (!otherShapeClarity.includes(state.clarity as Clarity)) {
+      else {
+        return otherShapeClarity[0];
       }
-    } else {
-      return claritiesRoundCarat[0];
+    } else if (shapeType === "VDF" || shapeType === "INY") {
+      //return claritiesRoundCarat[0];
+      if (!claritiesRoundCarat.includes(state.clarity as ClarityRoundcarat)) {
+        return claritiesRoundCarat[0];
+      }
     }
-
     // if (shapeType === "regular") {
-    //   const otherShapeClarity = clarities.slice(0, 5);
-
-    //   if (state.shape === Shape.ROUND) {
+    //   if (isRound) {
     //     if (value < 0.18) {
-    //       if (!claritiesRound.includes(state.clarity as ClarityRound)) {
-    //         return claritiesRound[0];
-    //       } else if (!clarities.includes(state.clarity as Clarity)) {
-    //         return clarities[0];
-    //       }
+    //       return claritiesRound[0];
+    //     } else {
+    //       return clarities[0];
     //     }
-    //   } else if (value >= 0.1 && value <= 0.17) {
-    //     return claritiesRoundCarat[0];
-    //   } //if (!otherShapeClarity.includes(state.clarity as Clarity)) {
-    //   else {
-    //     return otherShapeClarity[0];
+    //   } else {
+    //     if (value >= 0.1 && value <= 0.17) {
+    //       console.log("C1");
+    //       return claritiesRoundCarat[0];
+    //     } else {
+    //       console.log("C2");
+
+    //       const otherShapeClarity = clarities.slice(0, 5);
+    //       console.log("Sliced Clarities: ", otherShapeClarity[0]);
+    //       return otherShapeClarity[0];
+    //     }
     //   }
+    //   //} else {
+    //   //  return claritiesRoundCarat[0];
+    //   //}
     // } else if (shapeType === "VDF" || shapeType === "INY") {
     //   //return claritiesRoundCarat[0];
     //   if (!claritiesRoundCarat.includes(state.clarity as ClarityRoundcarat)) {
@@ -245,9 +269,9 @@ const useSolitairePrice = () => {
     return state.clarity;
   };
 
-  const countrycode = useCountryCode();
-  //const { currency } = useCurrency(); //for currency
-  //const countrycode = reverseCountryCurrencyMap[currency];
+  //const countrycode = useCountryCode();
+  const { currency } = useCurrency(); //for currency
+  const countrycode = currency; //reverseCountryCurrencyMap[currency];
 
   // useEffect(() => {
   //   console.log("State Shape :", state.shape);
@@ -379,7 +403,7 @@ const useSolitairePrice = () => {
   };
 
   const changeHandler = (type: string) => (value: number | string) => {
-    console.log("Type : ", type, "Value :", value);
+    //console.log("Type : ", type, "Value :", value);
 
     if (type === "colour") {
       const stype = value === "VDF" || value === "INY" ? value : "regular";
@@ -389,7 +413,8 @@ const useSolitairePrice = () => {
         dispatch({
           type: "ALL",
           payload: {
-            shape: stype === "regular" ? Shape.ROUND : FancyShape.RADIANT,
+            //shape: stype === "regular" ? Shape.ROUND : FancyShape.RADIANT,
+            shape: stype === "regular" ? state.shape : FancyShape.RADIANT,
             colour: value,
             //clarity: getValidClarityValue(state.cts),
             clarity:
@@ -440,7 +465,6 @@ const useSolitairePrice = () => {
         setShowValidationMessage(
           "The size should be between 0.10 and 2.99 carat"
         );
-        console.log("Chk", value);
         return value < 0.1 ? 0.1 : value < 0.18 ? 0.18 : 2.99;
       } else if (!isRound && (value < 0.1 || value > 1.23)) {
         setShowValidationMessage(
@@ -459,7 +483,7 @@ const useSolitairePrice = () => {
   };
 
   const caratChangeHandler = (value: number): number => {
-    console.log("value", value);
+    //console.log("value", value);
     const newVal = calculateValueAndChangeHandler(value);
     dispatch({
       type: "roundChange",
