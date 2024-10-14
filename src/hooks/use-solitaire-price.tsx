@@ -338,7 +338,7 @@ const useSolitairePrice = () => {
   };
 
   useEffect(() => {
-    console.log("State changed:", JSON.stringify(state));
+    //console.log("State changed:", JSON.stringify(state));
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state, countrycode]);
@@ -428,13 +428,13 @@ const useSolitairePrice = () => {
             //shape: stype === "regular" ? Shape.ROUND : FancyShape.RADIANT,
             shape: stype === "regular" ? state.shape : FancyShape.RADIANT,
             colour: value,
-            //clarity: getValidClarityValue(state.cts),
-            clarity:
-              stype === "regular"
-                ? state.shape === Shape.ROUND
-                  ? getValidClarityValue(state.cts)
-                  : "IF"
-                : "VVS",
+            clarity: getValidClarityValue(state.cts),
+            // clarity:
+            //   stype === "regular"
+            //     ? state.shape === Shape.ROUND
+            //       ? getValidClarityValue(state.cts)
+            //       : "IF"
+            //     : "VVS",
             cts: 0.18,
           } as unknown as ComparePrice,
         });
