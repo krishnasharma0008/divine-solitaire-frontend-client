@@ -288,6 +288,9 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
               className={`w-full ${errors.phpincode ? "border-red-500" : ""}`}
               containerClass="!mb-0"
               errorText={errors.phpincode}
+              onWheel={(e) => {
+                e.preventDefault();
+              }}
               onKeyDown={(e) => {
                 // Prevent the default action for arrow keys to avoid scrolling
                 if (e.key === "ArrowUp" || e.key === "ArrowDown") {

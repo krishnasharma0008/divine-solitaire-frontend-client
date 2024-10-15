@@ -6,7 +6,7 @@ import { comparePastPrices, getStonePrice } from "@/api/pricing";
 import { saveSolitairePrice } from "@/api/pricing";
 import { NOTIFICATION_MESSAGES } from "@/config";
 //import LoaderContext from "@/context/loader-context";
-import { useCurrency } from "@/context/currency-context"; //
+//import { useCurrency } from "@/context/currency-context"; //
 import NotificationContext from "@/context/notification-context";
 import { Clarity, Colour, Shape } from "@/enum";
 import { ClarityRound, ClarityRoundcarat } from "@/enum/clarity-enum";
@@ -16,7 +16,7 @@ import { ComparePrice } from "@/interface";
 import { getToken, setRedirectionRoute } from "@/local-storage";
 //import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
 
-//import useCountryCode from "./use-country-code";
+import useCountryCode from "./use-country-code";
 
 //const fshapes = Object.values(FancyShape);
 
@@ -281,9 +281,9 @@ const useSolitairePrice = () => {
     return state.clarity;
   };
 
-  //const countrycode = useCountryCode();
-  const { currency } = useCurrency(); //for currency
-  const countrycode = currency; //reverseCountryCurrencyMap[currency];
+  const countrycode = useCountryCode();
+  //const { currency } = useCurrency(); //for currency
+  //const countrycode = currency; //reverseCountryCurrencyMap[currency];
 
   // useEffect(() => {
   //   console.log("State Shape :", state.shape);
