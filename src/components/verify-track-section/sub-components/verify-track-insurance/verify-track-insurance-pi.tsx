@@ -118,7 +118,9 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
 
   const handleClick = () => {
     handleRDialogOpen();
+  };
 
+  const submitFormData = async () => {
     const validationErrors: { [key: string]: string } = {};
 
     if (!state.phname) {
@@ -165,10 +167,6 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
       validationErrors.invdate = "Invoice date is required";
     }
 
-    // if (!state.purstore) {
-    //   validationErrors.purstore = "Jeweller Name is required";
-    // }
-
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
@@ -198,6 +196,11 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
         setCurrentStep(STEPS.THREE);
       })
       .catch((err) => console.log("Error", err));
+  };
+
+  const handleDialogCloseAndSubmit = () => {
+    setIsRDialogOpen(false);
+    submitFormData(); // Submit the form after dialog is closed
   };
 
   const handleDialogOpen = () => {
@@ -489,7 +492,7 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
                   Edit
                 </Button>
                 <Button
-                  onClick={handleRDialogClose} // Close dialog on Cancel button
+                  onClick={handleDialogCloseAndSubmit} // Close dialog on Cancel button
                   className="rounded-md border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:bg-slate-100"
                   themeType="dark"
                 >
