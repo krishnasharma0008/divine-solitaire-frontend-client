@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 
 import { URLs, breadcrumbList } from "@/constants";
+import { AuthProvider } from "@/context/auth-context";
 import { CurrencyProvider } from "@/context/currency-context";
 import LoaderContext from "@/context/loader-context";
 import VerifyTrackContextWrapper from "@/context/verify-track-context";
@@ -16,6 +17,7 @@ import {
   NotificationWrapper,
 } from "@/wrapper";
 import LoaderWrapper from "@/wrapper/loader-wrapper";
+
 import "react-datepicker/dist/react-datepicker.css";
 import "swiper/css/bundle";
 
@@ -109,13 +111,15 @@ const WrappedApp: React.FC<AppProps> = (props) => (
   <ThemeProvider>
     <NotificationWrapper>
       <LoaderWrapper>
-        <CurrencyProvider>
-          <VerifyTrackContextWrapper>
-            <KnowYourDiamondContextWrapper>
-              <App {...props} />
-            </KnowYourDiamondContextWrapper>
-          </VerifyTrackContextWrapper>
-        </CurrencyProvider>
+        <AuthProvider>
+          <CurrencyProvider>
+            <VerifyTrackContextWrapper>
+              <KnowYourDiamondContextWrapper>
+                <App {...props} />
+              </KnowYourDiamondContextWrapper>
+            </VerifyTrackContextWrapper>
+          </CurrencyProvider>
+        </AuthProvider>
       </LoaderWrapper>
     </NotificationWrapper>
   </ThemeProvider>

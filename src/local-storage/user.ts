@@ -8,8 +8,14 @@ import {
   //SEL_CURRENCY,
 } from "./keys";
 
-export const setToken = (token: string): void =>
-  localStorage.setItem(TOKEN, token);
+// export const setToken = (token: string): void =>
+//   localStorage.setItem(TOKEN, token);
+// Function to set the Token in localStorage
+export const setToken = (token: string): void => {
+  if (typeof window !== "undefined") {
+      localStorage.setItem(TOKEN, token);
+  }
+};
 
 export const setMobileNumber = (contactno: string): void =>
   localStorage.setItem(CONTACTNO, contactno);
@@ -21,7 +27,11 @@ export const getMobileNumber = (): string | null =>
 
 export const getOTP = (): string | null => localStorage.getItem(OTP);
 
-export const getToken = (): string | null => localStorage.getItem(TOKEN);
+//export const getToken = (): string | null => localStorage.getItem(TOKEN);
+// Function to get the Token from localStorage
+export const getToken = (): string | null => {
+  return typeof window !== "undefined" ? localStorage.getItem(TOKEN) : null;
+};
 
 export const setRedirectionRoute = (url: string): void =>
   localStorage.setItem(REDIRECTION_ROUTE, url);
@@ -47,6 +57,7 @@ export const getWishListuid = (): string | null =>
   localStorage.getItem(WISHLIST_UID);
 export const deleteWishListuid = (): void =>
   localStorage.removeItem(PORTFOLIO_UID);
+
 
 //export const setSelCurrency = (SelCurrency: string): void =>
 //  localStorage.setItem(SEL_CURRENCY, SelCurrency);
