@@ -155,6 +155,10 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
       validationErrors.phcity = "City is required";
     }
 
+    if (!state.purstore) {
+      validationErrors.purstore = "Jeweller name is required";
+    }
+
     if (!state.invno) {
       validationErrors.invno = "Invoice number is required";
     }
@@ -353,7 +357,7 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
           <InputText
             label="Jeweller Name"
             type="text"
-            value={productDetails.purchase_from}
+            value={productDetails.purchase_from || state.purstore}
             onChange={onChangeHandlerCreator("purstore")}
             className={`w-full ${errors.purstore ? "border-red-500" : ""}`}
             containerClass="!mb-0"
