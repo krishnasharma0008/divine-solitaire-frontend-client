@@ -18,7 +18,9 @@ import { getToken, setRedirectionRoute } from "@/local-storage";
 
 import useCountryCode from "./use-country-code";
 
-//const fshapes = Object.values(FancyShape);
+// List of valid shapes for each category
+const regularShapes = Object.values(Shape);
+const fancyShapes = Object.values(FancyShape);
 
 const colors = ["D", "E", "F", "G", "H", "I", "J", "K", "VDF", "INY"]; //"DEFGHIJK".split("");
 
@@ -155,6 +157,20 @@ const useSolitairePrice = () => {
   //   return state.shape;
 
   // }
+  const getValidShapeValue = (stype: string): Shape | FancyShape => {
+    console.log(shapeType);
+    if (stype === "VDF" || stype === "INY") {
+      if (!fancyShapes.includes(state.shape as unknown as FancyShape)) {
+        return fancyShapes[0] as FancyShape;
+      }
+    }
+    if (stype === "regular") {
+      if (!regularShapes.includes(state.shape)) {
+        return regularShapes[0] as Shape;
+      }
+    }
+    return state.shape;
+  };
 
   const getValidColourValue = (value: number): Colour => {
     // console.log("check color");
@@ -218,10 +234,11 @@ const useSolitairePrice = () => {
   };
 
   const getValidClarityValue = (
-    value: number
+    value: number,
+    stype: string
   ): Clarity | ClarityRound | ClarityRoundcarat => {
     //console.log("check Clarity");
-    if (shapeType === "regular") {
+    if (stype === "regular") {
       const otherShapeClarity = clarities.slice(0, 5);
 
       if (state.shape === Shape.ROUND) {
@@ -244,7 +261,7 @@ const useSolitairePrice = () => {
           return otherShapeClarity[0];
         }
       }
-    } else if (shapeType === "VDF" || shapeType === "INY") {
+    } else if (stype === "VDF" || stype === "INY") {
       //return claritiesRoundCarat[0];
       if (!claritiesRoundCarat.includes(state.clarity as ClarityRoundcarat)) {
         return claritiesRoundCarat[0];
@@ -351,7 +368,7 @@ const useSolitairePrice = () => {
         type: "roundChange",
         payload: {
           colour: getValidColourValue(0.18),
-          clarity: getValidClarityValue(0.18),
+          clarity: getValidClarityValue(0.18, shapeType),
           cts: 0.18,
         } as ComparePrice,
       });
@@ -426,9 +443,9 @@ const useSolitairePrice = () => {
           type: "ALL",
           payload: {
             //shape: stype === "regular" ? Shape.ROUND : FancyShape.RADIANT,
-            shape: stype === "regular" ? state.shape : FancyShape.RADIANT,
+            shape: getValidShapeValue(stype),
             colour: value,
-            clarity: getValidClarityValue(state.cts),
+            clarity: getValidClarityValue(state.cts, stype),
             // clarity:
             //   stype === "regular"
             //     ? state.shape === Shape.ROUND
@@ -501,7 +518,7 @@ const useSolitairePrice = () => {
       type: "roundChange",
       payload: {
         colour: getValidColourValue(newVal),
-        clarity: getValidClarityValue(newVal),
+        clarity: getValidClarityValue(newVal, shapeType),
         cts: newVal,
       } as unknown as ComparePrice,
     });
