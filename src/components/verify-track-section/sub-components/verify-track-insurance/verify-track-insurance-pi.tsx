@@ -164,8 +164,14 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
       validationErrors.phdob = "Date of Birth cannot be in the future";
     }
 
+    // if (!state.purstore) {
+    //   validationErrors.purstore = "Jeweller name is required";
+    // }
     if (!state.purstore) {
       validationErrors.purstore = "Jeweller name is required";
+    } else if (!/^[A-Za-z\s]+$/.test(state.purstore)) {
+      validationErrors.purstore =
+        "Jeweller name should only contain alphabetic characters";
     }
 
     // if (!state.phcity) {
@@ -411,7 +417,7 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
           />
 
           <InputText
-            label="Invoice Value *"
+            label="Invoice Amount *"
             type="number"
             value={state.invval}
             onChange={onChangeHandlerCreator("invval")}
