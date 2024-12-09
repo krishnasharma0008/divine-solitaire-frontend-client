@@ -133,9 +133,9 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
     // if (!state.phemail) {
     //   validationErrors.phemail = "Email is ";
     // } else
-    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(state.phemail)) {
-      validationErrors.phemail = "Invalid email";
-    }
+    // if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(state.phemail)) {
+    //   validationErrors.phemail = "Invalid email";
+    // }
 
     // Mobile number validation
     if (!state.phcontactno) {
@@ -166,13 +166,14 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
     // if (!state.purstore) {
     //   validationErrors.purstore = "Jeweller name is required";
     // }
-    if (!state.purstore) {
+    if (!(state.purstore || productDetails.purchase_from)) {
       validationErrors.purstore = "Jeweller name is required";
-    } else if (!/^[A-Za-z\s]+$/.test(state.purstore)) {
+    } else if (
+      !/^[A-Za-z\s]+$/.test(state.purstore || productDetails.purchase_from)
+    ) {
       validationErrors.purstore =
         "Jeweller name should only contain alphabetic characters";
     }
-
     // if (!state.phcity) {
     //   validationErrors.phcity = "City is required";
     // }
@@ -199,9 +200,9 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
       validationErrors.invdate = "Invoice date must be within the last 7 days";
     }
 
-    if (!state.purstore) {
-      validationErrors.purstore = "Jeweller Name is required";
-    }
+    // if (!state.purstore) {
+    //   validationErrors.purstore = "Jeweller Name is required";
+    // }
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -219,12 +220,12 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
       //phanniv: new Date(state.phanniv || Date.now()).toISOString(),
       phpan: state.phpan,
       uid: productDetails.uid,
-      purstore: state.purstore,
+      purstore: state.purstore || productDetails.purchase_from,
       invno: state.invno,
       invdate: new Date(state.invdate || Date.now()).toISOString(),
       invval: state.invval,
     };
-    //console.log(payload);
+    console.log(payload);
     createVerifyTrackInsurance(payload)
       .then((res) => {
         console.log("It is successfully created", res);
@@ -349,26 +350,6 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
               containerClass="!mb-0"
               errorText={errors.phdob}
             />
-
-            {/* <InputText
-              label="Anniversary Date*"
-              type="date"
-              value={state.phanniv}
-              onChange={onChangeHandlerCreator("phanniv")}
-              className={`w-full ${errors.phanniv ? "border-red-500" : ""}`}
-              containerClass="!mb-0"
-              errorText={state.phanniv}
-            />
-
-            <InputText
-              label="Pan Number *"
-              type="text"
-              value={state.phpan}
-              onChange={onChangeHandlerCreator("phpan")}
-              className={`w-full ${errors.phpan ? "border-red-500" : ""}`}
-              containerClass="!mb-0"
-              errorText={errors.phpan}
-            /> */}
           </div>
         </div>
       </div>

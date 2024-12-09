@@ -96,6 +96,16 @@ const ImageGallery: React.FC<{ images: Image[] }> = ({ images }) => {
                 onError={handleVideoError}
               />
             </div>
+            // <video
+            //   poster="/Empty.jpg"
+            //   src={filteredImages[selectedImage].url}
+            //   // width={200}
+            //   // height={60}
+            //   autoPlay
+            //   //controls
+            //   //className="center md:w-auto w-60 max-h-52 md:max-h-auto md:h-full m-auto object-contain"
+            //   className="object-contain w-full h-full"
+            // />
           )}
           {filteredImages[selectedImage].url === "/vtdia/carousel_3.png" && (
             <div className="absolute md:right-[35%] md:top-[52.5%] right-[25%] top-[47%] text-[#303030] font-semibold text-lg md:text-xl md:ml-4 mt-4 md:mt-0">
