@@ -124,6 +124,7 @@ const VerifyTrackResaleForm: React.FC<VerifyTrackResaleFormProps> = ({
     const payload: VerifyTrackResaleForm = {
       ...state,
       etype: saletype,
+      product_category: productDetails.category,
       phname: state.phname,
       phemail: state.phemail,
       phcontactno: state.phcontactno,
@@ -143,8 +144,11 @@ const VerifyTrackResaleForm: React.FC<VerifyTrackResaleFormProps> = ({
         saletype === "upgrade"
           ? parseInt(parts.toString())
           : parseInt(parts[1]),
+      currentval: productDetails.current_price.toString(),
 
-      product_category: productDetails.category,
+      solitairval: 0,
+      mountval: 0,
+      charges: 0,
     };
     console.log(payload);
     createVerifyTrackResale(payload)
