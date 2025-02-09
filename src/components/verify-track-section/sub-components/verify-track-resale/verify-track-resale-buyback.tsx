@@ -73,7 +73,11 @@ const VerifyTrackResaleBuyback: React.FC<VerifyTrackResaleBuybackProps> = ({
             productDetails.current_price) *
           100
         ).toFixed(2),
-        amount: formatByCurrency(productDetails.buyback_same_store_price, productDetails.currency_locale, productDetails.currency_code),
+        amount: formatByCurrency(
+          productDetails.buyback_same_store_price,
+          productDetails.currency_locale,
+          productDetails.currency_code
+        ),
       },
       {
         txt: "Buyback through different store",
@@ -82,7 +86,11 @@ const VerifyTrackResaleBuyback: React.FC<VerifyTrackResaleBuybackProps> = ({
             productDetails.current_price) *
           100
         ).toFixed(2),
-        amount: formatByCurrency(productDetails.buyback_diffrent_store_price, productDetails.currency_locale, productDetails.currency_code),
+        amount: formatByCurrency(
+          productDetails.buyback_diffrent_store_price,
+          productDetails.currency_locale,
+          productDetails.currency_code
+        ),
       },
     ],
     render: (data, idx) => <OptionComponent {...data} key={idx} />,

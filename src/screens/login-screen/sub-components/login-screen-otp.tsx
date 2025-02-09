@@ -50,7 +50,7 @@ const LoginScreenOtp: React.FC = () => {
       deleteMobileNumber();
       notify(NOTIFICATION_MESSAGES.LOGIN_SUCCESS);
       push(getRedirectionRoute() || "/");
-      login(res.data.token);
+      login(res.data.token, res.data.fname, res.data.mno);
       deleteRedirectionRoute();
     } catch (err) {
       console.log("LoginScreenOtp", err);

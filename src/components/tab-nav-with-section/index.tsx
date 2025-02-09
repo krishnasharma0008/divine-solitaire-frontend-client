@@ -11,7 +11,7 @@ interface Tab {
 interface TabNavWithSectionProps {
   sections: Array<Tab>;
   initialTab: number;
-  orientation?: "horizontal" | "vertical";
+  orientation?: "horizontal" | "vertical" | "custom" | "Customhorizontal";
   className?: string;
   tabClass?: string;
   selectedTabClass?: string;
@@ -77,6 +77,41 @@ const TabNavWithSection: React.FC<TabNavWithSectionProps> = ({
   }, [currentTab, sections]);
 
   if (orientation === "horizontal")
+    return (
+      <>
+        <TabNav
+          className={className}
+          currentTab={currentTab}
+          initialTab={initialTab}
+          onTabSwitch={onTabSwitchHandler}
+          orientation={orientation}
+          tabClass={tabClass}
+          //tabs={sections.map(({ title }) => title)}
+          tabs={sections.map(({ label, icon }) => ({ label, icon }))}
+          selectedTabClass={selectedTabClass}
+        />
+        {currentSection}
+      </>
+    );
+
+  if (orientation === "custom")
+    return (
+      <>
+        <TabNav
+          className={className}
+          currentTab={currentTab}
+          initialTab={initialTab}
+          onTabSwitch={onTabSwitchHandler}
+          orientation={orientation}
+          tabClass={tabClass}
+          //tabs={sections.map(({ title }) => title)}
+          tabs={sections.map(({ label, icon }) => ({ label, icon }))}
+          selectedTabClass={selectedTabClass}
+        />
+        {currentSection}
+      </>
+    );
+  if (orientation === "Customhorizontal")
     return (
       <>
         <TabNav
