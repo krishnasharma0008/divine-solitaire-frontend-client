@@ -26,20 +26,16 @@ export default function Track() {
   const { showLoader, hideLoader } = useContext(LoaderContext);
   const { notifyErr } = useContext(NotificationContext);
 
-  const countrycode = useCountryCode();
+  const [countrycode, setCountrycode] = useState<string | null>(null); // Store countrycode in state
+  const fetchedCountryCode = useCountryCode(); // Call the hook outside of the promise
 
-  // const { currency } = useCurrency(); //for currency
-  // const countrycode = reverseCountryCurrencyMap[currency];
-  // const fetchImage = async (text: string): Promise<string | null> => {
-  //   try {
-  //     const imageUrl = await generateImage(text);
-  //     //setGeneratedImageUrl(imageUrl);
-  //     return imageUrl;
-  //   } catch (error) {
-  //     console.error("Error fetching image:", error);
-  //     return null;
-  //   }
-  // };
+  useEffect(() => {
+    // Wait until the country code is fetched and update state
+    if (fetchedCountryCode) {
+      setCountrycode(fetchedCountryCode);
+    }
+    console.log("fetchedCountryCode :", fetchedCountryCode);
+  }, [fetchedCountryCode]);
 
   const changeHandler = (fn: (str: string) => void) => (e: ChangeEvent) =>
     fn((e.target as HTMLInputElement).value);
@@ -47,10 +43,6 @@ export default function Track() {
   const onClickHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     e.stopPropagation();
-
-    //const imageUrl = "/api/add-text-image?text="+ uid +"&imagePath=/vtdia/carousel_3.png";
-    //console.log(imageUrl);
-    // SearchData(uid, "no", imageUrl || undefined);
     SearchData(uid, "no");
   };
 
@@ -61,25 +53,9 @@ export default function Track() {
   ) => {
     try {
       showLoader();
-      //console.log("currency", currency);
-      //console.log("countryCode", reverseCountryCurrencyMap[currency]);
-      const res = await getVerifyTrackByUid(UID, countrycode as string);
+      const res = await getVerifyTrackByUid(UID, countrycode || "");
       //console.log(res.data.data);
       if (res.data.data) {
-        // if (res.data.data.product_type === "Diamond") {
-        //   //   // if (!imageUrl) {
-        //   //   //   imageUrl = (await fetchImage(UID)) || ""; // Provide a default value
-        //   //   // }
-        //   res.data.data.images = [
-        //     "/vtdia/carousel_1.png",
-        //     "/vtdia/carousel_2.png",
-        //     "/api/add-text-image?text=" +
-        //       UID +
-        //       "&imagePath=/vtdia/carousel_3.png",
-        //     "/vtdia/carousel_4.png",
-        //   ];
-        // }
-        // console.log(res.data.data);
         setProductDetails(res.data.data);
         if (portfolio === "yes") {
           console.log(

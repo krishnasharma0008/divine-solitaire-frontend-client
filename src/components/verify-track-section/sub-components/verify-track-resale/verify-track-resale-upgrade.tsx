@@ -1,9 +1,11 @@
+import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 
 import { BorderBar, Button } from "@/components/common";
 import Checkbox from "@/components/common/checkbox";
 import InputText from "@/components/common/input-text";
 import { SaleType } from "@/enum/sale-type-enum";
+import { getToken, setRedirectionRoute } from "@/local-storage";
 import { formatByCurrency } from "@/util";
 
 import { RESALE_STEPS } from "./verify-track-resale-steps-enum";
@@ -24,6 +26,10 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
 }) => {
   const [tnc, setTnc] = useState<boolean>(false);
   const { productDetails } = useContext(VerifyTrackContext);
+
+  const [isDialogOpen, setIsDialogOpen] = useState(false); //Login dialog visibility
+
+  const { push } = useRouter();
 
   const minValue =
     (35 / 100) * (productDetails?.current_price || 1) < 20000
@@ -48,15 +54,33 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
       return;
     }
 
+    // Show the login modal when button is clicked
+    if (!getToken()) {
+      //setShowLogin(true);
+      handleDialogOpen();
+      //hideLoader();
+      return;
+    }
+
     setCurrentStep(RESALE_STEPS.TWO);
     setSaletype(SaleType.UPGRADE);
+  };
+
+  const handleDialogOpen = () => {
+    setIsDialogOpen(true); // Open dialog
+  };
+
+  const handleDialogClose = () => {
+    setRedirectionRoute(window.location.pathname);
+    push("/login");
+    setIsDialogOpen(false); // Close dialog
   };
 
   if (!productDetails) return null;
 
   return (
     <>
-      <div className="w-full font-Montserrat [&>div]:px-4">
+      <div className="w-full bg-white font-Montserrat [&>div]:px-4">
         <div className="flex justify-between mt-12 text-base leading-5 text-gray-900">
           Product ID:
           <span className="float-right">{`${productDetails.uid}`}</span>
@@ -151,6 +175,28 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
           PROCEED
         </Button>
       </div>
+      {isDialogOpen && (
+        <div className="pointer-events-auto fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60">
+          <div className="relative max-w-[311px]  lg:max-w-[40%] sm:max-w-[90%] bg-white shadow-sm">
+            <div className="w-full relative border-t border-slate-200 p-4 ">
+              <div className="flex justify-center items-center font-[Montserrat] text-sm leading-6">
+                <p className="font-medium">Please Login To Proceed</p>
+              </div>
+            </div>
+            <div className="flex shrink-0 flex-wrap items-center pb-4 justify-center">
+              <div className="w-24 ">
+                <Button
+                  onClick={handleDialogClose} // Close dialog on Cancel button
+                  className="rounded-md border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:bg-slate-100"
+                  themeType="dark"
+                >
+                  Login In
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

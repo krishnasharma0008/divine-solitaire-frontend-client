@@ -1,5 +1,6 @@
 import {
   TOKEN,
+  USER,
   CONTACTNO,
   OTP,
   REDIRECTION_ROUTE,
@@ -17,10 +18,16 @@ export const setToken = (token: string): void => {
   }
 };
 
+export const setUser = (user: string): void =>
+  localStorage.setItem(USER, user);
+
 export const setMobileNumber = (contactno: string): void =>
   localStorage.setItem(CONTACTNO, contactno);
 
 export const setOTP = (otp: string): void => localStorage.setItem(OTP, otp);
+
+export const getUser = (): string | null =>
+  localStorage.getItem(USER);
 
 export const getMobileNumber = (): string | null =>
   localStorage.getItem(CONTACTNO);
@@ -40,6 +47,7 @@ export const getRedirectionRoute = (): string | null =>
 export const deleteRedirectionRoute = (): void =>
   localStorage.removeItem(REDIRECTION_ROUTE);
 
+export const deleteUser = ()=> localStorage.setItem(USER,"");
 export const deleteMobileNumber = () => localStorage.setItem(CONTACTNO, "");
 export const deleteOTP = () => localStorage.setItem(OTP, "");
 export const deleteToken = () => localStorage.setItem(TOKEN, "");

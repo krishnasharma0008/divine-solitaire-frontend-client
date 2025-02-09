@@ -89,7 +89,11 @@ const VerifyTrackContextWrapper: React.FC<VerifyTrackContextWrapperProps> = ({
           );
           const isWishlist = data.data.uid_status === "UNSOLD";
           setProductDetails(data.data);
-
+          console.log(
+            "checking  context: ",
+            data.data.currency_locale,
+            data.data.currency_code
+          );
           setIsWishlist(isWishlist);
           if (getToken() && isWishlist) {
             const currentStatus = await getProductWishlistStatus(query.uid);
