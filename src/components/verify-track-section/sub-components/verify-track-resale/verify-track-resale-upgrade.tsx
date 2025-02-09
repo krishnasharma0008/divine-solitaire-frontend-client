@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 
 import { BorderBar, Button } from "@/components/common";
-import Checkbox from "@/components/common/checkbox";
+//import Checkbox from "@/components/common/checkbox";
 import InputText from "@/components/common/input-text";
 import { SaleType } from "@/enum/sale-type-enum";
 import { getToken, setRedirectionRoute } from "@/local-storage";
@@ -24,7 +24,7 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
   setProductAmt,
   setSaletype,
 }) => {
-  const [tnc, setTnc] = useState<boolean>(false);
+  //const [tnc, setTnc] = useState<boolean>(false);
   const { productDetails } = useContext(VerifyTrackContext);
 
   const [isDialogOpen, setIsDialogOpen] = useState(false); //Login dialog visibility
@@ -43,16 +43,16 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
     setShowErr(parseInt(e.target.value) < minValue);
   };
 
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const isChecked = (e.target as HTMLInputElement).checked;
-    setTnc(isChecked);
-  };
+  // const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const isChecked = (e.target as HTMLInputElement).checked;
+  //   setTnc(isChecked);
+  // };
 
   const handleClickProceed = () => {
-    if (!tnc) {
-      alert("Please accept Terms & Conditions");
-      return;
-    }
+    // if (!tnc) {
+    //   alert("Please accept Terms & Conditions");
+    //   return;
+    // }
 
     // Show the login modal when button is clicked
     if (!getToken()) {
@@ -149,7 +149,7 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
           </div>
         </div>
       </div>
-      <div className="px-4 w-full flex mt-6 ">
+      {/* <div className="px-4 w-full flex mt-6 ">
         <Checkbox
           id="remember_me"
           onChange={handleCheckboxChange}
@@ -158,7 +158,7 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
         >
           Accept Terms & Conditions
         </Checkbox>
-      </div>
+      </div> */}
       <div className="px-4 flex justify-between gap-4 mt-12">
         <Button
           themeType="light"
@@ -170,7 +170,7 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
           themeType="dark"
           classes="w-6/12 text-base leading-5 font-medium"
           onClick={handleClickProceed}
-          disabled={showErr || !productAmt.length || !tnc}
+          disabled={showErr || !productAmt.length} // || !tnc}
         >
           PROCEED
         </Button>

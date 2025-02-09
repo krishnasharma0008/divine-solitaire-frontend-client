@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 import { getUserStore } from "@/api/store-locator";
 import { Button } from "@/components/common";
@@ -39,6 +39,24 @@ const ExchangeAtOtherStore: React.FC<ExchangeAtOtherStoreProps> = ({
   const [isDialogOpen, setIsDialogOpen] = useState(false); //Login dialog visibility
 
   const { push } = useRouter();
+
+  const useClickOutside = (ref: React.RefObject<HTMLElement>, callback: () => void) => {
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (ref.current && !ref.current.contains(event.target as Node)) {
+          callback();
+        }
+      };
+  
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, [ref, callback]);
+  };
+  
+  
+  // Usage in component:
+  const wrapperRef = useRef(null);
+  useClickOutside(wrapperRef, () => setShowSuggestions(false));
 
   const handleClickProceed = () => {
     //if (!tnc) return;
@@ -107,70 +125,59 @@ const ExchangeAtOtherStore: React.FC<ExchangeAtOtherStoreProps> = ({
   return (
     <div className="px-3 bg-[#FAFAFA]">
       <div className="w-full flex flex-col gap-2 mt-[25px]">
-        <div className="relative w-full">
-          {/* <label htmlFor="search" className="block text-gray-700 mb-1">
-            Search Store
-          </label> */}
-          <div className="absolute left-4 top-1/2 -translate-y-1/2">
-            {/* Magnifying glass SVG */}
+        <div className="relative w-full" ref={wrapperRef}>
+          <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+            {/* Chevron down SVG */}
             <svg
-              width="35"
-              height="34"
-              viewBox="0 0 35 34"
+              className={`transition-transform ${
+                showSuggestions ? "rotate-180" : ""
+              }`}
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
             >
-              <rect
-                x="0.90918"
-                y="7.51172"
-                width="27.0468"
-                height="27.0468"
-                transform="rotate(-15 0.90918 7.51172)"
-                fill="url(#pattern0_166_1548)"
+              <path
+                d="M6 9L12 15L18 9"
+                stroke="#666"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
-              <defs>
-                <pattern
-                  id="pattern0_166_1548"
-                  patternContentUnits="objectBoundingBox"
-                  width="1"
-                  height="1"
-                >
-                  <use xlinkHref="#image0_166_1548" transform="scale(0.02)" />
-                </pattern>
-                <image
-                  id="image0_166_1548"
-                  width="50"
-                  height="50"
-                  xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADuElEQVR4nN2aTahVVRTH96uslJAmTcykLyoqGmiEZhgEfQyKIroQYt3eu/v/2/c+u+IVBKnBnViDJkEQNUiKPqy0UMSkiQ0iApOgkAYFVmbq84NSotQsja3P2F3vPu9xzj7Xd/rDGj3e+q//2Wutvc4615gcaLfblzjnHpb0kqTPgDHgKHAqsJOSfpG0A3gfWNpqta4yUwHtdnsmsNoH2BP0pEzS38AWa+288yKg2+1eACwDDuYR0Mf8aa211s4emIjR0dHLJG2cILC/gE+AFcBD/ok3m80bgUXAYuBlYHef/xtzzi0sXYRz7krg6wwBRyW9MDw8fMUk3A055+6VtL0n3Y5JeqI0EcAM4MsMEZ/mLN4hSSNhc5B0ArivBBmnydZniFhTq9UuLkLgnLsD2Bv4/NWnYzoJxhhr7VMZIt71QlPwNBqN2yT9FpzMtlS+TafTmS7pp0j73O7/bhLC30e+iwUcjydxDKyMtUzg9iQk53J+EAjZWTRtPYaA7yOnsdaUBGvtDcCfAd8jRR3Oj9VG2f0e2Bw8tPeKOnsmImTM3+7Jou7PbQO+g4WKfny46yfk7aRR9+ee08M5J7ez3ls3sOdNyajVaheOjzqnOa219+R2BnwbKfSnk0Yd598T1ORjuR1J+m6qCKFI54qllqTnzABSS2dmrrO8d+V2BqyLCHnLlAw/gPJf3utyO5P0bETIvrLbr3OuEfDtL9R+Jd2ZMSwuSBr5udybAiHrU7zS7ooIeceUhFardS1wPOCqFXYKrMpYHMxNEnn2RbwHmJbC6QxJP0fEbKvX65eahLDWPhiO8cDyUgqvj72ZkOdmSUeCB/VVt9u9KJX/s7WyISZG0itFj9+nabhZkfRHKfsuvwaaYIOydWRkZFbOd54lwO9h/RUaSSaCn0AlfZMhxgezul6vXz5Jf4skfd5zuid8KptBrEklfZQh5tR46/zY73ettfdba29xzl3t7x7gUUkvRt48DwMPmEGhdmbEXhWmQ1GT9GHO1CwOv6sd38AfyRm8v4s2SLrbTAV0Op3p/vYFXgW+kHSoJ+BjESEbTZUADEeEHCp7+EwKa+01sfRqNpu3mioB+DEiZqmpEoA3IkLWmSrBxhfhB5ItqgeBPnuqf80Pi6ZKkPRDREzLVAnA65E2XGy3O2gA9YiQYsuFQaPPiie0m0yVQPx7izNVArBm0B+OSoFz7slIau01VUIro078JzdTJUjaGREiUyVIeu18fQlLCv9bk/9FnVhrZ8fqpNFoXJ+C5B9KiNaRUnbwoAAAAABJRU5ErkJggg=="
-                />
-              </defs>
             </svg>
           </div>
           <input
             type="text"
-            placeholder="Search Store here..."
+            placeholder="Select a store"
             value={searchQuery}
             onChange={handleSearch}
-            className="w-full p-3 pl-14 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+            onClick={() => setShowSuggestions(true)}
+            className="w-full bg-[#F3F4F6] p-2 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 cursor-pointer appearance-none bg-white"
           />
+
           {loading && (
-            <div className="absolute top-1/2 right-3 transform -translate-y-1/2">
-              <div className="loader"></div>
+            <div className="absolute top-1/2 right-10 transform -translate-y-1/2">
+              <div className="loader small"></div>
             </div>
           )}
+
           {/* Dropdown suggestion box */}
-          {showSuggestions && storeList.length > 0 && (
-            <ul className="absolute left-0 top-full  w-full bg-white border border-gray-300 rounded-lg max-h-60 overflow-y-auto z-10">
-              {storeList.map((store) => (
-                <li
-                  key={store.id}
-                  onClick={() => handleSuggestionClick(String(store.name))}
-                  className="cursor-pointer px-4 py-2 hover:bg-gray-100"
-                >
-                  {store.name} {/*({customer.email}) */}
-                </li>
-              ))}
+          {showSuggestions && (
+            <ul className="absolute left-0 top-full mt-1 w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto z-10">
+              {storeList.length === 0 ? (
+                <li className="px-4 py-2 text-gray-500">No stores found</li>
+              ) : (
+                storeList.map((store) => (
+                  <li
+                    key={store.id}
+                    onClick={() => handleSuggestionClick(store.name)}
+                    className="cursor-pointer px-4 py-2 hover:bg-gray-100 transition-colors"
+                  >
+                    {store.name}
+                  </li>
+                ))
+              )}
             </ul>
           )}
         </div>
