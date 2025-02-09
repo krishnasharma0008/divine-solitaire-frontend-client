@@ -41,7 +41,9 @@ const TabNav: React.FC<TabNavProps> = ({
     const selectedClasses = `font-semibold text-gold border-b border-gold ${selectedTabClass}`;
     return (
       <ul
-        className={`mb-5 flex list-none justify-around ${className || ""}`}
+        className={`pl-0 mb-0 flex list-none justify-around truncate ${
+          className || ""
+        }`}
         role="tablist"
       >
         {tabs.map((tab, index) => (
@@ -56,7 +58,7 @@ const TabNav: React.FC<TabNavProps> = ({
             {/* {tab} */}
             {tab.icon && (
               <span
-                className={`icon inline-block align-middle	 ${
+                className={`icon inline-block align-middle ${
                   currentTab === index + 1 ? "text-white" : "" // Apply text-white class for the selected tab
                 }`}
               >
@@ -81,7 +83,7 @@ const TabNav: React.FC<TabNavProps> = ({
             {tabs.map((tab, index) => (
               <li key={tab.label} className="z-30 flex-auto text-center">
                 <button
-                  className={`z-30 flex items-center justify-center w-full px-0 py-2 text-sm mb-0 transition-all ease-in-out border-0 rounded-md cursor-pointer ${
+                  className={`z-30 flex items-center justify-center w-full px-0 py-2 text-sm mb-0 transition-all ease-in-out border-0 rounded-md cursor-pointer truncate ${
                     currentTab === index + 1
                       ? "font-semibold text-[#000000] bg-[#EDEDED]"
                       : "text-slate-600 bg-inherit"
@@ -128,7 +130,7 @@ const TabNav: React.FC<TabNavProps> = ({
                 ${
                   isSelected
                     ? `${selectedClasses} -mb-[2px] w-2/3`
-                    : "w-1/3 overflow-x-hidden"
+                    : "w-1/3 overflow-x-hidden truncate"
                 } 
                 ${isFirst ? "border-l-0 rounded-tl-none rounded-br-none" : ""} 
                 ${isLast ? "border-r-0 rounded-tr-none rounded-bl-none" : ""}
@@ -138,7 +140,7 @@ const TabNav: React.FC<TabNavProps> = ({
               {tab.icon && (
                 <span
                   className={`icon inline-block align-middle ${
-                    isSelected ? "text-white" : ""
+                    isSelected ? "text-white " : ""
                   }`}
                 >
                   {tab.icon}
@@ -156,7 +158,7 @@ const TabNav: React.FC<TabNavProps> = ({
 
   return (
     <div
-      className={`flex md:flex-wrap md:flex-col md:flex-row gap-4 md:overflow-hidden overflow-x-scroll md:overflow-auto scrollbar-hide ${className}`}
+      className={`flex md:flex-wrap md:flex-col md:flex-row gap-4 md:overflow-hidden overflow-x-scroll md:overflow-auto scrollbar-hide truncate ${className}`}
     >
       {tabs.map((tab, index) => (
         <Button
