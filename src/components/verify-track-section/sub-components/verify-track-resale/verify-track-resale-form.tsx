@@ -39,7 +39,8 @@ const errorKeys: Array<{
 ];
 
 const initialState: VerifyTrackResaleForm = {
-  etype: SaleType.UPGRADE, //"upgrade" | "buyback",
+  etype: SaleType.UPGRADE,
+
   //userid?:
   phname: "",
   phemail: "",
@@ -53,10 +54,14 @@ const initialState: VerifyTrackResaleForm = {
   invdate: "",
   invval: "",
   jewelname: "",
-  issamestore: true, //true|false,
-  currentval: "", //0
-  newval: 0, //0
-  docfile: "", //null
+  issamestore: true,
+  currentval: "",
+  newval: 0,
+  docfile: "",
+  solitairval: 0,
+  mountval: 0,
+  charges: 0,
+  product_category: "",
 };
 
 const VerifyTrackResaleReducer = (
@@ -138,6 +143,8 @@ const VerifyTrackResaleForm: React.FC<VerifyTrackResaleFormProps> = ({
         saletype === "upgrade"
           ? parseInt(parts.toString())
           : parseInt(parts[1]),
+
+      product_category: productDetails.category,
     };
     console.log(payload);
     createVerifyTrackResale(payload)
