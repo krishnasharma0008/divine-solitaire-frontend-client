@@ -159,7 +159,7 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
           Accept Terms & Conditions
         </Checkbox>
       </div> */}
-      <div className="px-4 flex justify-between gap-4 mt-12">
+      <div className="px-4 flex justify-between gap-4 mt-12 mb-[13px]">
         <Button
           themeType="light"
           classes="w-6/12 text-base leading-5 font-medium py-3"
