@@ -40,8 +40,7 @@ const errorKeys: Array<{
 
 const initialState: VerifyTrackResaleForm = {
   etype: SaleType.UPGRADE,
-
-  //userid?:
+  userid: undefined, // optional
   phname: "",
   phemail: "",
   phcontactno: "",
@@ -55,13 +54,13 @@ const initialState: VerifyTrackResaleForm = {
   invval: "",
   jewelname: "",
   issamestore: true,
-  currentval: "",
+  currentval: "0",
   newval: 0,
+  solitairval: 0, // Ensure this is included
+  mountval: 0, // Ensure this is included
+  charges: 0, // Ensure this is included
+  product_category: "", // Ensure this is included
   docfile: "",
-  solitairval: 0,
-  mountval: 0,
-  charges: 0,
-  product_category: "",
 };
 
 const VerifyTrackResaleReducer = (
@@ -72,6 +71,10 @@ const VerifyTrackResaleReducer = (
     return {
       ...state,
       ...(action.payload as unknown as VerifyTrackResaleForm),
+      solitairval: (action.payload as VerifyTrackResaleForm).solitairval ?? 0,
+      mountval: (action.payload as VerifyTrackResaleForm).mountval ?? 0,
+      charges: (action.payload as VerifyTrackResaleForm).charges ?? 0,
+      product_category: (action.payload as VerifyTrackResaleForm).product_category ?? "",
     };
   }
   return { ...state, [action.type]: action.payload };
