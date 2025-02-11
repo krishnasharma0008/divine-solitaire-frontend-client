@@ -228,6 +228,16 @@ const RequisitionForm: React.FC<RequisitionFormProps> = ({
           />
 
           <InputText
+            label="Product Category"
+            type="text"
+            //placeholder="Invoice Number ....."
+            value={`${productDetails.category}`}
+            className="w-full"
+            containerClass="!mb-0"
+            readOnly
+          />
+
+          <InputText
             label="Exchange Value"
             type="text"
             placeholder="Invoice Value ....."
