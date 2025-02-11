@@ -40,20 +40,23 @@ const ExchangeAtOtherStore: React.FC<ExchangeAtOtherStoreProps> = ({
 
   const { push } = useRouter();
 
-  const useClickOutside = (ref: React.RefObject<HTMLElement>, callback: () => void) => {
+  const useClickOutside = (
+    ref: React.RefObject<HTMLElement>,
+    callback: () => void
+  ) => {
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
         if (ref.current && !ref.current.contains(event.target as Node)) {
           callback();
         }
       };
-  
+
       document.addEventListener("mousedown", handleClickOutside);
-      return () => document.removeEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
     }, [ref, callback]);
   };
-  
-  
+
   // Usage in component:
   const wrapperRef = useRef(null);
   useClickOutside(wrapperRef, () => setShowSuggestions(false));
@@ -171,10 +174,12 @@ const ExchangeAtOtherStore: React.FC<ExchangeAtOtherStoreProps> = ({
                 storeList.map((store) => (
                   <li
                     key={store.id}
-                    onClick={() => handleSuggestionClick(store.name)}
+                    onClick={() =>
+                      handleSuggestionClick(`${store.name}, ${store.city}`)
+                    }
                     className="cursor-pointer px-4 py-2 hover:bg-gray-100 transition-colors"
                   >
-                    {store.name}
+                    {store.name}, {store.city}
                   </li>
                 ))
               )}

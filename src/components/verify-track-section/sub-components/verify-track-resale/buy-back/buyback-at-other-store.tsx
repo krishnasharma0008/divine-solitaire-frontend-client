@@ -175,10 +175,13 @@ const BuybackAtOtherStore: React.FC<BuybackAtOtherStoreProps> = ({
                 storeList.map((store) => (
                   <li
                     key={store.id}
-                    onClick={() => handleSuggestionClick(store.name)}
+                    //onClick={() => handleSuggestionClick(store.name)}
+                    onClick={() =>
+                      handleSuggestionClick(`${store.name}, ${store.city}`)
+                    }
                     className="cursor-pointer px-4 py-2 hover:bg-gray-100 transition-colors"
                   >
-                    {store.name}
+                    {store.name}, {store.city}
                   </li>
                 ))
               )}

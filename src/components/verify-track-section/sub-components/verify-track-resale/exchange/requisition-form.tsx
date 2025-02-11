@@ -90,7 +90,7 @@ const RequisitionForm: React.FC<RequisitionFormProps> = ({
   //console.log("productAmt : ", productAmt);
   console.log("Saletype : ", parts[0]);
   console.log("Amount : ", parts[1]);
-  console.log("Store", parts[2]);
+  console.log("Store", parts[2], ",", parts[3]);
 
   const User = getUser();
   const token = getToken() ?? "";
@@ -154,7 +154,7 @@ const RequisitionForm: React.FC<RequisitionFormProps> = ({
       newval: parseFloat(parts[1]),
       jewelname:
         parts[0] !== "exchange_at_purchased_store"
-          ? parts[2]
+          ? [parts[2], parts[3]].filter(Boolean).join(", ")
           : productDetails.purchase_from,
       currentval: productDetails.current_price.toString(),
 
@@ -251,7 +251,7 @@ const RequisitionForm: React.FC<RequisitionFormProps> = ({
               label="Exchange at Other Store"
               type="text"
               placeholder="Exchange Store"
-              value={parts[2]}
+              value={`${parts[2]}, ${parts[3]}`}
               className="w-full"
               containerClass="!mb-0"
               readOnly

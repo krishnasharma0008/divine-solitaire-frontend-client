@@ -89,7 +89,7 @@ const RequisitionForm: React.FC<RequisitionFormProps> = ({
   console.log("SaleType : ", saletype);
   console.log("productAmt : ", productAmt);
   console.log("Amount : ", parts[1]);
-  console.log("Store", parts[2]);
+  console.log("Store", parts[2], ",", parts[3]);
   console.log("User : ", getUser());
   //const user = getUser();
   const User = getUser();
@@ -153,7 +153,7 @@ const RequisitionForm: React.FC<RequisitionFormProps> = ({
 
       jewelname:
         parts[0] !== "buyback_at_purchased_store"
-          ? parts[2]
+          ? [parts[2], parts[3]].filter(Boolean).join(", ")
           : productDetails.purchase_from,
       currentval: productDetails.current_price.toString(),
 
@@ -246,7 +246,8 @@ const RequisitionForm: React.FC<RequisitionFormProps> = ({
               label="Buyback at other Store"
               type="text"
               placeholder="Exchange Store"
-              value={parts[2]}
+              //value={parts[2]}
+              value={`${parts[2]}, ${parts[3]}`}
               className="w-full"
               containerClass="!mb-0"
               readOnly
