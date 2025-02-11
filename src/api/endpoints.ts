@@ -149,3 +149,8 @@ export const getDiamondCoinEndpoint: Endpoint = {
   method: HTTP_METHOD.GET,
   url: "api/diamondcoin",
 };
+
+export const getUserStoreEndpoint: Endpoint = {
+  method: HTTP_METHOD.GET,
+  url: "api/storesearch",
+};

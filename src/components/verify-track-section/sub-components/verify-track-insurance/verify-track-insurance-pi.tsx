@@ -225,6 +225,7 @@ const VerifyTrackInsurancePi: React.FC<VerifyTrackInsurancePiProps> = ({
       invdate: new Date(state.invdate || Date.now()).toISOString(),
       invval: state.invval,
     };
+    
     console.log(payload);
     createVerifyTrackInsurance(payload)
       .then((res) => {

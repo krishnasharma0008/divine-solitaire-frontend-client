@@ -52,7 +52,7 @@ export type AddToPortfolioRequest = AddToWishlistRequest;
 const getVerifyTrackByUid = (
   uid: string,countrycode:string
 ): Promise<AxiosResponse<VerifyTrackByUidResponse>> =>{
-  console.log("Country Code : ",countrycode);
+  console.log("Country Code : ",`${verifyTrackEndpoint.url}/${uid}?countrycode=${countrycode}&islocal=0`);
   return callWebService(`${verifyTrackEndpoint.url}/${uid}?countrycode=${countrycode}&islocal=0`, {
     method: verifyTrackEndpoint.method,
     timeout: 60 * 1000,

@@ -56,16 +56,18 @@ const VerifyTrackSummaryAccordion: React.FC<
               )}
               {!title.isCoin && title.uid_status === "SOLD" && (
                 <div className="flex flex-row justify-between text-base font-normal">
-                  <div>
-                    <div>Purchase Price:</div>
+                  {title.currency_code === "INR" && (
                     <div>
-                      {formatByCurrency(
-                        title.purchasePrice,
-                        title.currency_locale,
-                        title.currency_code
-                      )}
+                      <div>Purchase Price:</div>
+                      <div>
+                        {formatByCurrency(
+                          title.purchasePrice,
+                          title.currency_locale,
+                          title.currency_code
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  )}
                   <div>
                     <div>Current Price:</div>
                     <div>
@@ -76,34 +78,30 @@ const VerifyTrackSummaryAccordion: React.FC<
                       )}
                     </div>
                   </div>
-                  {/* <div className="text-green"> */}
-                  <div
-                  // className={
-                  //   parseFloat(
-                  //     calculateGrowth(title.purchasePrice, title.currentPrice)
-                  //   ) < 0
-                  //     ? "text-red-500 bg-red-500"
-                  //     : "text-green-500"
-                  // }
-                  >
-                    <div>Growth :</div>
+                  {title.currency_code === "INR" && (
+                    <div>
+                      <div>Growth :</div>
 
-                    <div
-                      style={{
-                        color:
-                          parseFloat(
-                            calculateGrowth(
-                              title.purchasePrice,
-                              title.currentPrice
-                            )
-                          ) < 0
-                            ? "red"
-                            : "green",
-                      }}
-                    >
-                      {calculateGrowth(title.purchasePrice, title.currentPrice)}
+                      <div
+                        style={{
+                          color:
+                            parseFloat(
+                              calculateGrowth(
+                                title.purchasePrice,
+                                title.currentPrice
+                              )
+                            ) < 0
+                              ? "red"
+                              : "green",
+                        }}
+                      >
+                        {calculateGrowth(
+                          title.purchasePrice,
+                          title.currentPrice
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               )}
               {!title.isCoin && title.uid_status === "UNSOLD" && (
