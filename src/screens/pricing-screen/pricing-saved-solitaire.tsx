@@ -1,9 +1,10 @@
 import dayjs from "dayjs";
+import { useRouter } from "next/router";
 import { useCallback, useContext, useEffect, useState } from "react";
 
 import { deleteSolitairePrice, getSolitairePriceList } from "@/api/pricing";
 import { ArrowUpIcon, TrashIcon, EyeIcon, Button } from "@/components";
-import LoginModal from "@/components/modals/login-modal";
+//import LoginModal from "@/components/modals/login-modal";
 import ValidationModal from "@/components/modals/validation-modal";
 import { NOTIFICATION_MESSAGES } from "@/config";
 //import { useCurrency } from "@/context/currency-context";
@@ -26,10 +27,10 @@ const SavedSolitares: React.FC<Props> = () => {
   const { notifyErr } = useContext(NotificationContext);
   const { setSelectedKyd } = useContext(KnowYourDiamondContext);
 
-  const [showLogin, setShowLogin] = useState<boolean>(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false); //Login dialog visibility
   const [showValidationMessage, setShowValidationMessage] =
     useState<string>("");
-
+  const { push } = useRouter();
   const countrycode = useCountryCode();
   //const { currency } = useCurrency(); //for currency
   //const countrycode = reverseCountryCurrencyMap[currency];
@@ -59,13 +60,31 @@ const SavedSolitares: React.FC<Props> = () => {
 
   useEffect(() => {
     if (!getToken()) {
-      setRedirectionRoute("/pricing");
-      setShowLogin(true);
+      //setShowLogin(true);
+      handleDialogOpen();
+      hideLoader();
       return;
-    } else {
+    }
+
+    // if (!getToken()) {
+    //   setRedirectionRoute("/pricing");
+    //   setShowLogin(true);
+    //   return;
+    // }
+    else {
       fetchPrices();
     }
   }, [fetchPrices]);
+
+  const handleDialogOpen = () => {
+    setIsDialogOpen(true); // Open dialog
+  };
+
+  const handleDialogClose = () => {
+    setRedirectionRoute(window.location.pathname);
+    push("/login");
+    setIsDialogOpen(false); // Close dialog
+  };
 
   const openSelectedKyd = (data: StonePrice) => () => {
     setSelectedKyd(data);
@@ -174,7 +193,7 @@ const SavedSolitares: React.FC<Props> = () => {
 
   return (
     <div className="w-full items-start gap-x-[17px] font-montserrat">
-      <LoginModal setShowLogin={setShowLogin} showLogin={showLogin} />
+      {/* <LoginModal setShowLogin={setShowLogin} showLogin={showLogin} /> */}
       <ValidationModal
         setShow={() => setShowValidationMessage("")}
         show={!!showValidationMessage.length}
@@ -190,6 +209,29 @@ const SavedSolitares: React.FC<Props> = () => {
           <Card key={priceItem.id} {...priceItem} />
         ))}
       </div>
+
+      {isDialogOpen && (
+        <div className="pointer-events-auto fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60">
+          <div className="relative max-w-[311px]  lg:max-w-[40%] sm:max-w-[90%] bg-white shadow-sm">
+            <div className="w-full relative border-t border-slate-200 p-4 ">
+              <div className="flex justify-center items-center font-[Montserrat] text-sm leading-6">
+                <p className="font-medium">Please Login To Proceed</p>
+              </div>
+            </div>
+            <div className="flex shrink-0 flex-wrap items-center pb-4 justify-center">
+              <div className="w-24 ">
+                <Button
+                  onClick={handleDialogClose} // Close dialog on Cancel button
+                  className="rounded-md border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:bg-slate-100"
+                  themeType="dark"
+                >
+                  Login In
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

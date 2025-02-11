@@ -4,6 +4,7 @@ import { useContext, useEffect, useReducer, useState } from "react";
 import { createVerifyTrackResale } from "@/api/verify-track-resale";
 import { Button } from "@/components/common";
 import InputText from "@/components/common/input-text";
+import MessageModal from "@/components/common/message-modal";
 import { VerifyTrackContext } from "@/context/verify-track-context";
 import { SaleType } from "@/enum/sale-type-enum";
 import useContactNo from "@/hooks/use-contactno";
@@ -83,6 +84,7 @@ const RequisitionForm: React.FC<RequisitionFormProps> = ({
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const { productDetails } = useContext(VerifyTrackContext);
+  const [isOpen, setIsOpen] = useState(false);
 
   const parts = productAmt.split(",");
 
@@ -168,7 +170,8 @@ const RequisitionForm: React.FC<RequisitionFormProps> = ({
     createVerifyTrackResale(payload)
       .then((res) => {
         console.log("It is successfully created", res);
-        setCurrentStep(RESALE_STEPS.THREE);
+        //setCurrentStep(RESALE_STEPS.THREE);
+        setIsOpen(true); // Open modal on success
       })
       .catch((err) => console.log("Error", err));
   };
@@ -282,6 +285,8 @@ const RequisitionForm: React.FC<RequisitionFormProps> = ({
           SUBMIT
         </Button>
       </div>
+      {/* Success Modal */}
+      {isOpen && <MessageModal isOpen={isOpen} onClose={handleCancel} />}
     </div>
   );
 };
