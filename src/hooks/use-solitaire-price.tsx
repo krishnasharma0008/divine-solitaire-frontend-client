@@ -380,7 +380,14 @@ const useSolitairePrice = () => {
     // state.month = date.getMonth() + 1;
     // state.year = date.getFullYear();
     // Get the current date
+    const minDate = dayjs("2012-01-01");
     const currentDate = dayjs();
+
+    // Check if selected date is before January 1, 2012
+    if (dayjs(date).isBefore(minDate, "month")) {
+      notifyErr("Selected date cannot be before January 2012.");
+      return;
+    }
 
     // Check if selected date is after the current date
     if (dayjs(date).isAfter(currentDate, "month")) {
