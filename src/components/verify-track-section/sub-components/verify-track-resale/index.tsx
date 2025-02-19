@@ -72,7 +72,7 @@ const VerifyTrackResale: React.FC = () => {
     orientation: "custom",
     sections: [
       {
-        label: "Ugrade",
+        label: "Upgrade",
         component: <StepWrapper type="UPGRADE" />,
       },
       {
