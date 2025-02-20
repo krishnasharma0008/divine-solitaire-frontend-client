@@ -99,15 +99,32 @@ const createImage = async (
 // Fetch country code based on IP address
 const fetchCountryCode = async (req: NextApiRequest): Promise<string | null> => {
   try {
-    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '';
+    // Get the user’s IP address
+    const ip = 
+      (req.headers["x-forwarded-for"] as string)?.split(",")[0] || // Cloudflare, Vercel, Reverse Proxy
+      req.socket.remoteAddress || // Direct server request
+      "";
+
+    console.log("Detected IP:", ip); // Debugging
+
+    if (!ip) {
+      console.error("Could not determine IP address.");
+      return null;
+    }
+
+    // Fetch country code from IP
     const response = await fetch(`https://ipapi.co/${ip}/json/`);
     const data = await response.json();
-    return data.country_code || null;
+
+    console.log("Country API Response:", data); // Debugging
+
+    return data?.country_code || null;
   } catch (error) {
     console.error("Error fetching country code:", error);
     return null;
   }
 };
+
 
 // Main API handler
 const getSpiImage = async (
