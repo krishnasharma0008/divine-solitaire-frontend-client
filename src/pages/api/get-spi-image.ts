@@ -97,31 +97,41 @@ const createImage = async (
 };
 
 // Fetch country code based on IP address
-const fetchCountryCode = async (req: NextApiRequest): Promise<string | null> => {
+const fetchCountryCode = async (req: NextApiRequest): Promise<string> => {
   try {
-    // Get the user’s IP address
-    const ip = 
-      (req.headers["x-forwarded-for"] as string)?.split(",")[0] || // Cloudflare, Vercel, Reverse Proxy
-      req.socket.remoteAddress || // Direct server request
+    let ip =
+      (req.headers["x-forwarded-for"] as string)?.split(",")[0] || 
+      req.socket.remoteAddress || 
       "";
 
-    console.log("Detected IP:", ip); // Debugging
-
-    if (!ip) {
-      console.error("Could not determine IP address.");
-      return null;
+    if (!ip || ip === "127.0.0.1" || ip === "::1") {
+      console.warn("⚠️ Could not determine IP from request, trying external API...");
+      const res = await fetch("https://api64.ipify.org?format=json");
+      const data = await res.json();
+      ip = data.ip;
     }
 
-    // Fetch country code from IP
+    console.log("🔍 Final Detected IP:", ip);
+
+    if (!ip) return "IN"; // Default to India if no IP
+
     const response = await fetch(`https://ipapi.co/${ip}/json/`);
     const data = await response.json();
 
-    console.log("Country API Response:", data); // Debugging
+    console.log("🌍 Country API Response:", data);
 
-    return data?.country_code || null;
+    const countryCode = data?.country_code?.toUpperCase();
+
+    // Allow only "IN" or "US"
+    if (countryCode === "IN" || countryCode === "US") {
+      return countryCode;
+    } else {
+      console.warn(`⚠️ Country code "${countryCode}" not allowed. Defaulting to "IN".`);
+      return "IN"; // Default to India if outside IN/US
+    }
   } catch (error) {
-    console.error("Error fetching country code:", error);
-    return null;
+    console.error("❌ Error fetching country code:", error);
+    return "IN"; // Default to India on error
   }
 };
 
