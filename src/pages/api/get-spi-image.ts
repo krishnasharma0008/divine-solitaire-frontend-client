@@ -13,6 +13,12 @@ const decline =
 const growth =
   '<path xmlns="http://www.w3.org/2000/svg" id="XMLID_29_" d="M100.606,100.606L150,51.212V315c0,8.284,6.716,15,15,15c8.284,0,15-6.716,15-15V51.212l49.394,49.394  C232.322,103.535,236.161,105,240,105c3.839,0,7.678-1.465,10.606-4.394c5.858-5.857,5.858-15.355,0-21.213l-75-75  c-5.857-5.858-15.355-5.858-21.213,0l-75,75c-5.858,5.857-5.858,15.355,0,21.213C85.251,106.463,94.749,106.463,100.606,100.606z"/>';
 
+// const growth = `
+//     <path xmlns="http://www.w3.org/2000/svg" id="XMLID_29_" d="M100.606,100.606L150,51.212V315c0,8.284,6.716,15,15,15c8.284,0,15-6.716,15-15V51.212l49.394,49.394  
+//       C232.322,103.535,236.161,105,240,105c3.839,0,7.678-1.465,10.606-4.394c5.858-5.857,5.858-15.355,0-21.213l-75-75  
+//       c-5.857-5.858-15.355-5.858-21.213,0l-75,75c-5.858,5.857-5.858,15.355,0,21.213C85.251,106.463,94.749,106.463,100.606,100.606z"/>
+// `;
+
 // Utility function to generate a hash
 const getHash = (spi: SolitairePriceIndex): string => {
   const hash = crypto.createHash("sha256");
@@ -79,11 +85,11 @@ const createImage = async (
     <text x="19%" y="50%" text-anchor="middle" class="title">${Number(spi.Current_Month_SPI).toLocaleString(spi.currency_locale)}</text>
     <text x="39%" y="40%" text-anchor="middle" class="title-2">*</text>
     <text x="55%" y="23%" text-anchor="middle" class="percentage ${isMonthlyGrowth ? "green" : "red"}">${spi.Growth_Month_Percentage}%</text>
-    <svg x="63%" y="-4%" height="800px" width="500px" class="percentage ${isMonthlyGrowth ? "green" : "red"}">
+    <svg x="63%" y="8%" height="800px" width="500px" class="percentage ${isMonthlyGrowth ? "green" : "red"}">
       ${isMonthlyGrowth ? growth : decline}
     </svg>
     <text x="85%" y="23%" text-anchor="middle" class="percentage ${isYearlyGrowth ? "green" : "red"}">${spi.Growth_Year_Percentage}%</text>
-    <svg x="93%" y="-4%" height="800px" width="500px" class="percentage ${isYearlyGrowth ? "green" : "red"}">
+    <svg x="93%" y="8%" height="800px" width="500px" class="percentage ${isYearlyGrowth ? "green" : "red"}">
       ${isYearlyGrowth ? growth : decline}
     </svg>
   </svg>
@@ -148,7 +154,8 @@ const getSpiImage = async (
     
     // Get country code based on IP
     const countrycode = await fetchCountryCode(req);
-
+    //console.log("req.query.countrycode",req.query.countrycode);
+    //const countrycode = req.query.countrycode as string;
     if (!countrycode) {
       return res.status(400).json("Unable to determine country code.");
     }
