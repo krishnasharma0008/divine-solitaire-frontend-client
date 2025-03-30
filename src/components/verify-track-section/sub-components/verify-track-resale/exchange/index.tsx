@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { TabNavWithSection, TabNavWithSectionProps } from "@/components";
 import { VerifyTrackContext } from "@/context/verify-track-context";
 import { SaleType } from "@/enum/sale-type-enum";
+import useIsWithinOneYear from "@/hooks/use-withinayear";
 
 import ExchangeAtOtherStore from "./exchange-at-other-store";
 import ExchangeAtPurchasedStore from "./exchange-at-purchased-store";
@@ -63,6 +64,7 @@ const StepWrapper: React.FC<StepWrapperProps> = ({ type }) => {
 const ExchangeTabs: React.FC = () => {
   const { productDetails } = useContext(VerifyTrackContext);
   const [totcts, setTotcts] = useState(0);
+  const { isWithinOneYear } = useIsWithinOneYear();
 
   useEffect(() => {
     if (productDetails?.product_type === "Diamond") {
@@ -76,13 +78,21 @@ const ExchangeTabs: React.FC = () => {
     }
   }, [productDetails]);
 
+  // Ensure purchase_date exists before passing it to the function
+  const isRecentPurchase =
+    productDetails?.purchase_date &&
+    isWithinOneYear(productDetails.purchase_date);
+
+  const shouldHideTabs =
+    (Number(totcts) > 3 && productDetails?.uid_status === "SOLD") ||
+    isRecentPurchase ||
+    !productDetails?.purchase_date;
+
   const tabProps: TabNavWithSectionProps = {
     initialTab: 1,
     orientation: "Customhorizontal",
-    className:
-      Number(totcts) > 3 && productDetails?.uid_status === "SOLD"
-        ? " hidden"
-        : " ",
+    //className: Number(totcts) > 3 && productDetails?.uid_status === "SOLD" ? " hidden" : " ",
+    className: shouldHideTabs ? "hidden" : "",
     sections: [
       {
         label: "Exchange At Purchased Store",
