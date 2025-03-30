@@ -100,20 +100,20 @@ const RequisitionForm: React.FC<RequisitionFormProps> = ({
 
   const User = getUser();
   const token = getToken() ?? "";
-  const contactno = useContactNo(token);
-  console.log("contactno : ", contactno); // Expected Output: "Hello world"
+  const contactNo = useContactNo(token);
+  console.log("contactno : ", contactNo); // Expected Output: "Hello world"
   console.log(atob("SGVsbG8gd29ybGQ=")); // Expected Output: "Hello world"
 
   useEffect(() => {
     // Ensure invval is updated when productAmt changes
-    console.log("Inside useEffect - contactno:", contactno);
-    if (productAmt && productAmt !== state.invval && contactno && User) {
+    console.log("Inside useEffect - contactno:", contactNo);
+    if (productAmt && productAmt !== state.invval && contactNo && User) {
       const invval = productAmt; // Get first part of productAmt (or use another part based on your logic)
       dispatch({ type: "invval", payload: invval });
       dispatch({ type: "phname", payload: User ?? "" });
-      dispatch({ type: "phcontactno", payload: contactno ?? "" });
+      dispatch({ type: "phcontactno", payload: contactNo ?? "" });
     }
-  }, [productAmt, contactno, User]);
+  }, [productAmt, contactNo, User]);
 
   const onChangeHandlerCreator = (fieldname: string) => {
     return (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -284,7 +284,15 @@ const RequisitionForm: React.FC<RequisitionFormProps> = ({
         </Button>
       </div>
       {/* Success Modal */}
-      {isOpen && <MessageModal isOpen={isOpen} onClose={handleCancel} />}
+      {isOpen && (
+        <MessageModal
+          isOpen={isOpen}
+          onClose={handleCancel}
+          headmsg="Successfully Submitted"
+          bodymsg1="Our CRM team will reach out to you during"
+          bodymsg2="working days. Thank you for your patience."
+        />
+      )}
     </div>
   );
 };

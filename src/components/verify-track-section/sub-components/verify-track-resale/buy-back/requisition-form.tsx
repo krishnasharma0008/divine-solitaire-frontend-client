@@ -18,6 +18,7 @@ interface RequisitionFormProps {
   setCurrentStep: (currentStep: RESALE_STEPS) => void;
   productAmt: string;
   saletype: SaleType;
+  setIsStepTwoOpen?: (isOpen: boolean) => void; // Add this prop
 }
 
 interface RequisitionFormAction {
@@ -78,12 +79,13 @@ const RequisitionForm: React.FC<RequisitionFormProps> = ({
   setCurrentStep,
   productAmt,
   saletype,
+  setIsStepTwoOpen,
 }) => {
   const [state, dispatch] = useReducer(VerifyTrackResaleReducer, initialState);
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
-  const { productDetails } = useContext(VerifyTrackContext);
+  const { productDetails, setSwitchToSummary } = useContext(VerifyTrackContext);
   const [isOpen, setIsOpen] = useState(false);
 
   const parts = productAmt.split(",");
@@ -93,21 +95,21 @@ const RequisitionForm: React.FC<RequisitionFormProps> = ({
   console.log("Amount : ", parts[1]);
   console.log("Store", parts[2], ",", parts[3]);
   console.log("User : ", getUser());
-  //const user = getUser();
   const User = getUser();
+
   const token = getToken() ?? "";
-  const contactno = useContactNo(token);
+  const contactNo = useContactNo(token);
 
   useEffect(() => {
     // Ensure invval is updated when productAmt changes
-    if (parts[1] && parts[1] !== state.invval && contactno && User) {
+    if (parts[1] && parts[1] !== state.invval && contactNo && User) {
       const invval = parts[1]; // Get first part of productAmt (or use another part based on your logic)
 
       dispatch({ type: "invval", payload: invval });
       dispatch({ type: "phname", payload: User ?? "" });
-      dispatch({ type: "phcontactno", payload: contactno ?? "" });
+      dispatch({ type: "phcontactno", payload: contactNo ?? "" });
     }
-  }, [parts[1], contactno, User]);
+  }, [parts[1], contactNo, User]);
 
   const onChangeHandlerCreator = (fieldname: string) => {
     return (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -134,7 +136,7 @@ const RequisitionForm: React.FC<RequisitionFormProps> = ({
     }
     const payload: VerifyTrackResaleForm = {
       ...state,
-      etype: SaleType.BUYBACK,
+      etype: saletype,
       product_category: productDetails.category,
       phname: state.phname,
       phemail: state.phemail,
@@ -177,8 +179,15 @@ const RequisitionForm: React.FC<RequisitionFormProps> = ({
   };
 
   const handleCancel = () => {
-    const nextStep = RESALE_STEPS.ONE; // Default to Step ONE
-    setCurrentStep(nextStep);
+    // const nextStep = RESALE_STEPS.ONE; // Default to Step ONE
+    // setCurrentStep(nextStep);
+    if (saletype === SaleType.BUYBACK_REQUEST) {
+      setIsStepTwoOpen && setIsStepTwoOpen(false);
+      setSwitchToSummary(true);
+    } else {
+      const nextStep = RESALE_STEPS.ONE; // Default to Step ONE
+      setCurrentStep(nextStep);
+    }
   };
 
   return (
@@ -207,6 +216,18 @@ const RequisitionForm: React.FC<RequisitionFormProps> = ({
               className="w-full"
               containerClass="!mb-0"
             />
+
+            {saletype === SaleType.BUYBACK_REQUEST && (
+              <InputText
+                label="Email"
+                type="email"
+                placeholder="Email"
+                value={state.phemail}
+                onChange={onChangeHandlerCreator("phemail")}
+                className="w-full"
+                containerClass="!mb-0"
+              />
+            )}
           </div>
         </div>
       </div>
@@ -234,26 +255,29 @@ const RequisitionForm: React.FC<RequisitionFormProps> = ({
             containerClass="!mb-0"
             readOnly
           />
-
-          <InputText
-            label="Exchange Value"
-            type="text"
-            placeholder="Invoice Value ....."
-            value={parts[1]}
-            onChange={onChangeHandlerCreator("invval")}
-            className={`w-full ${errors.invval ? "border-red-500" : ""}`}
-            errorText={errors.invval}
-            containerClass="!mb-0"
-          />
-          <InputText
-            label="Purchase Store"
-            type="text"
-            placeholder="uyback at Purchase Store"
-            value={`${productDetails.purchase_from}`}
-            className="w-full"
-            containerClass="!mb-0"
-            readOnly
-          />
+          {saletype !== SaleType.BUYBACK_REQUEST && (
+            <>
+              <InputText
+                label="Exchange Value"
+                type="text"
+                placeholder="Invoice Value ....."
+                value={parts[1]}
+                onChange={onChangeHandlerCreator("invval")}
+                className={`w-full ${errors.invval ? "border-red-500" : ""}`}
+                errorText={errors.invval}
+                containerClass="!mb-0"
+              />
+              <InputText
+                label="Purchase Store"
+                type="text"
+                placeholder="uyback at Purchase Store"
+                value={`${productDetails.purchase_from}`}
+                className="w-full"
+                containerClass="!mb-0"
+                readOnly
+              />
+            </>
+          )}
           {parts[0] !== "buyback_at_purchased_store" && (
             <InputText
               label="Buyback at other Store"
@@ -269,7 +293,11 @@ const RequisitionForm: React.FC<RequisitionFormProps> = ({
         </div>
         <div className="flex mt-2.5"></div>
       </div>
-      <div className="flex justify-between gap-1 mt-14">
+      <div
+        className={`flex justify-between gap-1 ${
+          saletype === SaleType.BUYBACK_REQUEST ? "mt-2.5" : " mt-14"
+        }`}
+      >
         <Button
           themeType="light"
           classes="w-6/12 text-base leading-5 font-medium"
@@ -286,7 +314,23 @@ const RequisitionForm: React.FC<RequisitionFormProps> = ({
         </Button>
       </div>
       {/* Success Modal */}
-      {isOpen && <MessageModal isOpen={isOpen} onClose={handleCancel} />}
+      {isOpen && (
+        <MessageModal
+          isOpen={isOpen}
+          onClose={handleCancel}
+          headmsg="Successfully Submitted"
+          bodymsg1={
+            saletype === SaleType.BUYBACK_REQUEST
+              ? "Customer service team will revert to"
+              : "Our CRM team will reach out to you during"
+          }
+          bodymsg2={
+            saletype === SaleType.BUYBACK_REQUEST
+              ? "to you within 24 hours."
+              : "working days. Thank you for your patience."
+          }
+        />
+      )}
     </div>
   );
 };

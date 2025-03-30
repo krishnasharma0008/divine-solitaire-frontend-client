@@ -7,4 +7,6 @@ export const REDIRECTION_ROUTE = "redirection-route";
 export const PORTFOLIO_UID = "Portfoliouid";
 export const WISHLIST_UID = "WishListuid";
 
+export const TABNO = "tabno";
+
 //export const SEL_CURRENCY = "sel_currency";

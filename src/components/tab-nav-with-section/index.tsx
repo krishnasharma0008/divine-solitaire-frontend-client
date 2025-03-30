@@ -16,6 +16,7 @@ interface TabNavWithSectionProps {
   tabClass?: string;
   selectedTabClass?: string;
   currentTab?: number;
+  onChange?: (tabIndex: number) => void; // New prop
 }
 
 type TabNavContextData = {
@@ -38,6 +39,7 @@ const TabNavWithSection: React.FC<TabNavWithSectionProps> = ({
   className,
   selectedTabClass,
   currentTab: currentTabProp,
+  onChange,
 }) => {
   const [currentTab, setCurrentTabNum] = useState<number>(initialTab || 1);
   const [currentSection, setCurrentSection] = useState<React.ReactNode | null>(
@@ -47,6 +49,10 @@ const TabNavWithSection: React.FC<TabNavWithSectionProps> = ({
   const onTabSwitchHandler = (newTabIndex: number) => {
     setCurrentSection(sections[newTabIndex - 1].component);
     setCurrentTabNum(newTabIndex);
+    //to get current tab
+    if (onChange) {
+      onChange(newTabIndex); // Notify parent about the tab change
+    }
   };
 
   useEffect(() => {

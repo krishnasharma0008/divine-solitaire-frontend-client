@@ -13,6 +13,7 @@ import {
   VerifyTrackInsurance,
   VerifyTrackResale,
   VerifyTrackSummary,
+  //VerifyTrackSummaryIndex,
   VerifyTrackJourney,
 } from "./sub-components";
 import { Tab } from "../tab-nav-with-section";
@@ -96,7 +97,6 @@ const VerifyTrackSection: React.FC = () => {
 
   const currentTabVal = switchToInsurance ? 3 : undefined;
   const { query } = useRouter();
-  //console.log(query.portfoliouid);
 
   return (
     <div className="lg:m-auto md:px-2 lg:my-6 md:my-auto lg:max-w-screen-2xl">

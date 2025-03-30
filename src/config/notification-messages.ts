@@ -7,6 +7,8 @@ const NOTIFICATION_MESSAGES = {
   ADDED_TO_PORTFOLIO: "Successfully Added To Portfolio",
   ADDED_TO_WISHLIST: "Successfully Added To Wishlist",
   ERROR: "Something Went Wrong",
+  PROFILE_UPDATE_SUCESS: "Profile Updated Sucessfully",
+  REGISTERATION_COMPLETE:"User Registered Scuessfully",
 };
 
 export default NOTIFICATION_MESSAGES;

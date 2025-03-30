@@ -5,7 +5,7 @@ interface CheckboxProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   checked?: boolean;
   className?: string;
-  children: string;
+  children?: string;
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({

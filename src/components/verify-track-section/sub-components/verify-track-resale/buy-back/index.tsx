@@ -1,6 +1,8 @@
-import { useState } from "react";
+//import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { TabNavWithSection, TabNavWithSectionProps } from "@/components";
+import { VerifyTrackContext } from "@/context/verify-track-context";
 import { SaleType } from "@/enum/sale-type-enum";
 
 import BuybackAtOtherStore from "./buyback-at-other-store";
@@ -58,9 +60,28 @@ const StepWrapper: React.FC<StepWrapperProps> = ({ type }) => {
 };
 
 const BuybackTabs: React.FC = () => {
+  const { productDetails } = useContext(VerifyTrackContext);
+  const [totcts, setTotcts] = useState(0);
+
+  useEffect(() => {
+    if (productDetails?.product_type === "Diamond") {
+      const totalCarat = productDetails?.slt_details?.reduce(
+        (total, item) => total + item.carat,
+        0
+      );
+      setTotcts(totalCarat);
+    } else {
+      setTotcts(0);
+    }
+  }, [productDetails]);
+
   const tabProps: TabNavWithSectionProps = {
     initialTab: 1,
     orientation: "Customhorizontal",
+    className:
+      Number(totcts) > 3 && productDetails?.uid_status === "SOLD"
+        ? " hidden"
+        : " ",
     sections: [
       {
         label: "Buyback At Purchased Store",
@@ -74,7 +95,7 @@ const BuybackTabs: React.FC = () => {
   };
 
   return (
-    <div className="w-full mt-[18px]">
+    <div className={`w-full mt-[18px]`}>
       <TabNavWithSection {...tabProps} />
     </div>
   );

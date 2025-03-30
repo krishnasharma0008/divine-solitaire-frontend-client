@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { BorderBar, Button } from "@/components/common";
 //import Checkbox from "@/components/common/checkbox";
@@ -25,7 +25,11 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
   setSaletype,
 }) => {
   //const [tnc, setTnc] = useState<boolean>(false);
-  const { productDetails } = useContext(VerifyTrackContext);
+  useEffect(() => {
+    setSwitchToSummary(false);
+  }, []);
+
+  const { productDetails, setSwitchToSummary } = useContext(VerifyTrackContext);
 
   const [isDialogOpen, setIsDialogOpen] = useState(false); //Login dialog visibility
 
@@ -68,6 +72,10 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
 
   const handleDialogOpen = () => {
     setIsDialogOpen(true); // Open dialog
+  };
+
+  const handleLoginDialogClose = () => {
+    setIsDialogOpen(false); // Close dialog
   };
 
   const handleDialogClose = () => {
@@ -176,8 +184,14 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
         </Button>
       </div>
       {isDialogOpen && (
-        <div className="pointer-events-auto fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60">
-          <div className="relative max-w-[311px]  lg:max-w-[40%] sm:max-w-[90%] bg-white shadow-sm">
+        <div
+          className="pointer-events-auto fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60"
+          onClick={handleLoginDialogClose}
+        >
+          <div
+            className="relative max-w-[311px]  lg:max-w-[40%] sm:max-w-[90%] bg-white shadow-sm"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="w-full relative border-t border-slate-200 p-4 ">
               <div className="flex justify-center items-center font-[Montserrat] text-sm leading-6">
                 <p className="font-medium">Please Login To Proceed</p>
