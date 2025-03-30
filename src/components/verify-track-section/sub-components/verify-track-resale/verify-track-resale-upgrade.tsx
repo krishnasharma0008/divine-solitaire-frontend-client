@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { BorderBar, Button } from "@/components/common";
 //import Checkbox from "@/components/common/checkbox";
 import InputText from "@/components/common/input-text";
+import { XMarkIcon } from "@/components/icons";
 import { SaleType } from "@/enum/sale-type-enum";
 import { getToken, setRedirectionRoute } from "@/local-storage";
 import { formatByCurrency } from "@/util";
@@ -189,9 +190,15 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
           onClick={handleLoginDialogClose}
         >
           <div
-            className="relative max-w-[311px]  lg:max-w-[40%] sm:max-w-[90%] bg-white shadow-sm"
-            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-[311px]  lg:max-w-[40%] sm:max-w-[90%] rounded-md bg-white shadow-sm"
+            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
           >
+            <div className=" flex shrink-0 font-[Montserrat] font-bold text-base justify-around align-middle py-4 text-[#000000]">
+              <XMarkIcon
+                className="h-5 w-5 absolute top-1.5 right-1.5"
+                onClick={handleLoginDialogClose}
+              />
+            </div>
             <div className="w-full relative border-t border-slate-200 p-4 ">
               <div className="flex justify-center items-center font-[Montserrat] text-sm leading-6">
                 <p className="font-medium">Please Login To Proceed</p>

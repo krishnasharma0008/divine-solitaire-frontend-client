@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { Button } from "@/components/common";
 //import Checkbox from "@/components/common/checkbox";
 import RestrictionModal from "@/components/common/restriction-modal";
+import { XMarkIcon } from "@/components/icons";
 import LoaderContext from "@/context/loader-context";
 import { VerifyTrackContext } from "@/context/verify-track-context";
 import { SaleType } from "@/enum/sale-type-enum";
@@ -36,12 +37,18 @@ const ExchangeAtPurchasedStore: React.FC<ExchangeAtPurchasedStoreProps> = ({
   const [salestype, setSalestype] = useState<SaleType>(
     SaleType.EXCHANGE_REQUEST
   );
-  const [isMRDialogOpen, setIsMRDialogOpen] = useState(false); // restriction modal
-  const { isWithinOneYear } = useIsWithinOneYear();
+  const [isMRDialogOpen, setIsMRDialogOpen] = useState(false); // restriction modal date is null
+  const [isMRNDialogOpen, setIsMRNDialogOpen] = useState(false); // restriction modal
+  const { checkDate } = useIsWithinOneYear();
+
   const { push } = useRouter();
   if (!productDetails) return <div>Loading product details...</div>;
   // Move the useState hook to the top level
   //const [tnc, setTnc] = useState<boolean>(false);
+
+  const { isWithinOneYear, untilDate } = checkDate(
+    productDetails.purchase_date
+  );
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
@@ -57,9 +64,10 @@ const ExchangeAtPurchasedStore: React.FC<ExchangeAtPurchasedStoreProps> = ({
     //console.log(isWithinOneYear(productDetails.purchase_date));
     if (!productDetails.purchase_date) {
       handleMRDialogOpen(); // Trigger pop-up when purchase_date is missing
-    } else if (isWithinOneYear(productDetails.purchase_date)) {
+    } else if (isWithinOneYear) {
       console.log("2");
-      handleMRDialogOpen(); // Trigger pop-up if within one year
+      console.log("untilDate :", untilDate);
+      handleMRNDialogOpen(); // Trigger pop-up if within one year
     } else if (Number(totcts) >= 3 && productDetails.product_type === "Diamond")
       handleRDialogOpen();
   }, []);
@@ -127,15 +135,14 @@ const ExchangeAtPurchasedStore: React.FC<ExchangeAtPurchasedStoreProps> = ({
     setIsDialogOpen(false); // Close dialog
   };
 
+  // DATE IS NULL
   const handleMRDialogOpen = () => {
-    if (!getToken()) {
-      //setShowLogin(true);
-      handleDialogOpen();
-      hideLoader();
-      return;
-    } else {
-      setIsMRDialogOpen(true); // Open dialog
-    }
+    setIsMRDialogOpen(true); // Open dialog
+  };
+
+  // DATE IS NOTN NULL
+  const handleMRNDialogOpen = () => {
+    setIsMRNDialogOpen(true); // Open dialog
   };
 
   const handleRDialogOpen = () => {
@@ -172,7 +179,23 @@ const ExchangeAtPurchasedStore: React.FC<ExchangeAtPurchasedStoreProps> = ({
     setSalestype(SaleType.EXCHANGE_REQUEST);
   };
 
+  const handleMRDialogClose = () => {
+    setIsMRDialogOpen(false); // Close dialog
+    setSwitchToSummary(true);
+  };
+
   const handleMRDialogSubmit = () => {
+    setIsMRDialogOpen(false); // Close dialog
+    setSwitchToSummary(true);
+  };
+
+  const handleMRNDialogClose = () => {
+    setIsMRDialogOpen(false); // Close dialog
+    setSwitchToSummary(true);
+  };
+
+  const handleMRNDialogSubmit = () => {
+    //123
     setIsMRDialogOpen(false); // Close dialog
     setSwitchToSummary(true);
   };
@@ -231,9 +254,11 @@ const ExchangeAtPurchasedStore: React.FC<ExchangeAtPurchasedStoreProps> = ({
       <div
         className="px-3 bg-[#FAFAFA]"
         style={
-          totalPcs > 3 &&
-          productDetails?.uid_status === "SOLD" &&
-          productDetails.product_type === "Diamond"
+          (totalPcs > 3 &&
+            productDetails?.uid_status === "SOLD" &&
+            productDetails.product_type === "Diamond") ||
+          isWithinOneYear ||
+          !productDetails?.purchase_date
             ? { filter: "blur(4px)" }
             : {}
         }
@@ -383,9 +408,15 @@ const ExchangeAtPurchasedStore: React.FC<ExchangeAtPurchasedStoreProps> = ({
           onClick={handleLoginDialogClose}
         >
           <div
-            className="relative max-w-[311px]  lg:max-w-[40%] sm:max-w-[90%] bg-white shadow-sm"
-            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-[311px]  lg:max-w-[40%] sm:max-w-[90%] rounded-md bg-white shadow-sm"
+            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
           >
+            <div className=" flex shrink-0 font-[Montserrat] font-bold text-base justify-around align-middle py-4 text-[#000000]">
+              <XMarkIcon
+                className="h-5 w-5 absolute top-1.5 right-1.5"
+                onClick={handleLoginDialogClose}
+              />
+            </div>
             <div className="w-full relative border-t border-slate-200 p-4 ">
               <div className="flex justify-center items-center font-[Montserrat] text-sm leading-6">
                 <p className="font-medium">Please Login To Proceed</p>
@@ -406,6 +437,7 @@ const ExchangeAtPurchasedStore: React.FC<ExchangeAtPurchasedStoreProps> = ({
         </div>
       )}
 
+      {/* Dialog for sale Request 3 carat up */}
       {isRDialogOpen && (
         <RestrictionModal
           isOpen={isRDialogOpen}
@@ -415,19 +447,37 @@ const ExchangeAtPurchasedStore: React.FC<ExchangeAtPurchasedStoreProps> = ({
           bodymsg1={"Please click the button below to submit your request"}
           bodymsg2={"for Buyback. We will respond within 24 hours."}
           bodymsg3={""}
+          isIcon={"no"}
         />
       )}
 
-      {/* Dialog for sale Restriction */}
+      {/* Dialog for sale Restriction when date is null */}
       {isMRDialogOpen && (
         <RestrictionModal
           isOpen={isMRDialogOpen}
-          onClose={handleRDialogClose}
+          onClose={handleMRDialogClose}
           onSubmit={handleMRDialogSubmit}
           headmsg="Exchange Policy Restrictions"
           bodymsg1="Exchange for this product is temporarily restricted."
           bodymsg2="For assistance, please reach out to our customer"
           bodymsg3="service team."
+          isIcon={"yes"}
+        />
+      )}
+
+      {/* Dialog for sale Restriction when date is not null */}
+      {isMRNDialogOpen && (
+        <RestrictionModal
+          isOpen={isMRNDialogOpen}
+          onClose={handleMRNDialogClose}
+          onSubmit={handleMRNDialogSubmit}
+          headmsg="Exchange Policy Restrictions"
+          bodymsg1="The exchange for this product is restricted until"
+          bodymsg2={`${
+            untilDate ? untilDate.toISOString().split("T")[0] : "N/A"
+          } . For assistance, contact customer service.`}
+          bodymsg3={""}
+          isIcon={"yes"}
         />
       )}
 

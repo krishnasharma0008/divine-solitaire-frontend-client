@@ -1,19 +1,8 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 
 const useIsWithinOneYear = () => {
-  const isWithinOneYear = useCallback((purchaseDate: string): boolean => {
-    if (!purchaseDate) return false; // Handle empty values
-
-    // Parse the input format: "21/Mar/2023"
-    const dateParts = purchaseDate.split("/");
-    if (dateParts.length !== 3) return false; // Ensure valid format
-
-    const day = parseInt(dateParts[0], 10);
-    const monthStr = dateParts[1];
-    const year = parseInt(dateParts[2], 10);
-
-    // Month mapping for conversion
-    const months: Record<string, number> = {
+  const months: Record<string, number> = useMemo(
+    () => ({
       Jan: 0,
       Feb: 1,
       Mar: 2,
@@ -26,31 +15,55 @@ const useIsWithinOneYear = () => {
       Oct: 9,
       Nov: 10,
       Dec: 11,
-    };
+    }),
+    []
+  );
 
-    const month = months[monthStr]; // Convert month name to number
-    if (isNaN(day) || month === undefined || isNaN(year)) return false; // Ensure valid numbers
+  const checkDate = useCallback(
+    (purchaseDate: string) => {
+      if (!purchaseDate) return { isWithinOneYear: false, untilDate: null };
 
-    // Create a Date object for the purchase date
-    const purchaseDateObj = new Date(year, month, day);
-    purchaseDateObj.setHours(0, 0, 0, 0); // Normalize to midnight
+      const dateParts = purchaseDate.split("/");
+      if (dateParts.length !== 3)
+        return { isWithinOneYear: false, untilDate: null };
 
-    // Get today's date at midnight
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+      const day = parseInt(dateParts[0], 10);
+      const monthStr = dateParts[1];
+      const year = parseInt(dateParts[2], 10);
 
-    // Calculate the date one year ago from today
-    const oneYearAgo = new Date(today);
-    oneYearAgo.setFullYear(today.getFullYear() - 1);
+      const month = months[monthStr];
+      if (isNaN(day) || month === undefined || isNaN(year))
+        return { isWithinOneYear: false, untilDate: null };
 
-    console.log("📌 Purchase Date:", purchaseDateObj.toISOString());
-    console.log("📌 One Year Ago:", oneYearAgo.toISOString());
-    console.log("📌 Today:", today.toISOString());
+      // Create a Date object with UTC time
+      const purchaseDateObj = new Date(Date.UTC(year, month, day));
 
-    return purchaseDateObj.getTime() >= oneYearAgo.getTime();
-  }, []);
+      // Calculate one year from the purchase date
+      const untilDate = new Date(purchaseDateObj);
+      untilDate.setUTCFullYear(purchaseDateObj.getUTCFullYear() + 1);
 
-  return { isWithinOneYear };
+      // Get today's date for comparison
+      const today = new Date();
+      today.setUTCHours(0, 0, 0, 0);
+
+      const isWithinOneYear =
+        purchaseDateObj.getTime() >=
+        today.getTime() - 365 * 24 * 60 * 60 * 1000;
+
+      console.log("📌 Purchase Date:", purchaseDateObj.toISOString());
+      console.log("📌 Until Date:", untilDate.toISOString());
+      console.log(
+        "📌 One Year Ago:",
+        new Date(today.getTime() - 365 * 24 * 60 * 60 * 1000).toISOString()
+      );
+      console.log("📌 Today:", today.toISOString());
+
+      return { isWithinOneYear, untilDate };
+    },
+    [months]
+  );
+
+  return { checkDate };
 };
 
 export default useIsWithinOneYear;
