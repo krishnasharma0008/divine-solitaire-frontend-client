@@ -154,3 +154,9 @@ export const getUserStoreEndpoint: Endpoint = {
   method: HTTP_METHOD.GET,
   url: "api/storesearch",
 };
+
+// for nuew user registertaion
+export const registerUserEndpoint: Endpoint = {
+  method: HTTP_METHOD.POST,
+  url: "api/user/register",
+};

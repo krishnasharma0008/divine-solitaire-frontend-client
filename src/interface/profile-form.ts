@@ -8,4 +8,7 @@ export interface ProfileForm {
   id?: number;
   pincode: string;
   state: string;
+  gender:string;
+  //tncdat:string|null;
+  doanniv:string;
 }

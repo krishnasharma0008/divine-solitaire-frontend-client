@@ -49,7 +49,12 @@ const LoginScreenOtp: React.FC = () => {
       setToken(res.data.token);
       deleteMobileNumber();
       notify(NOTIFICATION_MESSAGES.LOGIN_SUCCESS);
-      push(getRedirectionRoute() || "/");
+      // Redirect to /profile if fname is null, otherwise go to the stored redirection route or home
+      const redirectPath = res.data.fname
+        ? getRedirectionRoute() || "/"
+        : "/profile";
+      push(redirectPath);
+      //push(getRedirectionRoute() || "/");
       login(res.data.token, res.data.fname, res.data.mno);
       deleteRedirectionRoute();
     } catch (err) {

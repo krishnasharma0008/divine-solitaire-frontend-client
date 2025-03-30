@@ -26,19 +26,51 @@ import {
   isCoinProduct,
 } from "@/util";
 
+import RequisitionForm from "./requisition-form";
 import { VerifyTrackSummaryDetailsAccordion } from "./verify-track-summary-accordion";
 import VerifyTrackSummaryMountAccordion from "./verify-track-summary-accordion/verify-track-summary-mount-accordion";
 import VerifyTrackSummarySltAccordion from "./verify-track-summary-accordion/verify-track-summary-slt-accordion";
 import VerifyTrackSummaryPopup from "./verify-track-summary-popup";
 import { VerifyTrackContext } from "../../../../context/verify-track-context";
+//import { STEPS } from "../verify-track-loan/verify-track-loan-steps-enum";
 
+// interface VerifyTrackSummaryProps {
+//   setCurrentStep: (step: STEPS) => void;
+// }
+
+// const VerifyTrackSummary: React.FC<VerifyTrackSummaryProps> = ({
+//   setCurrentStep,
+// }) => {
 const VerifyTrackSummary: React.FC = () => {
   // const [showLogin, setShowLogin] = useState(false);
 
   const [openInsureNow, setOpenInsureNow] = useState<boolean>(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false); //Login dialog visibility
+  const [isStepTwoOpen, setIsStepTwoOpen] = useState(false); // Step Two modal
+  const [totalTcs, setTotalTcs] = useState<number>(0); //for 3carat up
 
   const { push } = useRouter();
+
+  useEffect(() => {
+    const totcts =
+      productDetails?.product_type === "Diamond"
+        ? productDetails?.slt_details?.reduce(
+            (total, item) => total + item.carat,
+            0
+          )
+        : 0;
+    setTotalTcs(totcts);
+  }, []);
+
+  const handleClickProceed = () => {
+    if (!getToken()) {
+      handleDialogOpen();
+      hideLoader();
+      return;
+    }
+
+    setIsStepTwoOpen(true); //setCurrentStep(STEPS.TWO);
+  };
 
   const {
     productDetails,
@@ -187,6 +219,10 @@ const VerifyTrackSummary: React.FC = () => {
     setIsDialogOpen(true); // Open dialog
   };
 
+  const handleLoginDialogClose = () => {
+    setIsDialogOpen(false); // Close dialog
+  };
+
   const handleDialogClose = () => {
     setRedirectionRoute(window.location.pathname);
     push("/login");
@@ -224,6 +260,7 @@ const VerifyTrackSummary: React.FC = () => {
             <span className="font-montserrat text-sm leading-4 ml-2 font-body font-normal leading-none">
               Excl. GST
             </span>
+
             {!isCoinProduct(productDetails) &&
             isJewelleryProduct(productDetails) === false ? (
               // <Tooltip
@@ -259,12 +296,33 @@ const VerifyTrackSummary: React.FC = () => {
               ""
             )}
           </div>
+          {totalTcs > 3 && productDetails.uid_status === "SOLD" && (
+            <div className="bg-[#F8F8F8] pl-2 pr-[18px]">
+              <p className="pt-[10px] pb-[9px] font-montserrat font-light text-[8px] leading-[15px] tracking-[2%]">
+                (The price displayed is over a month old and may not reflect the
+                current value.&quot;)
+              </p>
+              <p className="font-montserrat font-medium text-[10px] text-[#646464] leading-[15px] tracking-[2%] pb-4">
+                please{" "}
+                <u
+                  className="underline decoration-solid decoration-[0%] decoration-0 cursor-pointer"
+                  onClick={handleClickProceed}
+                >
+                  click here
+                </u>{" "}
+                to submit your request, and we will get back to you within 24
+                hours.
+              </p>
+            </div>
+          )}
+
           {productDetails.category && (
             <div className="uppercase mt-2">
               {productDetails.category} - {productDetails.collection}
             </div>
           )}
         </div>
+
         <BorderBar className="my-3" />
 
         {isJewelleryProduct(productDetails) && (
@@ -371,8 +429,22 @@ const VerifyTrackSummary: React.FC = () => {
       </div>
       {/* Dialog Structure */}
       {isDialogOpen && (
-        <div className="pointer-events-auto fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60">
-          <div className="relative max-w-[311px]  lg:max-w-[40%] sm:max-w-[90%] bg-white shadow-sm">
+        <div
+          className="pointer-events-auto fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60"
+          onClick={handleLoginDialogClose}
+        >
+          <div
+            className="relative max-w-[311px]  lg:max-w-[40%] sm:max-w-[90%] bg-white shadow-sm"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={handleLoginDialogClose}
+              className="absolute top-2 right-2 text-gray-600 hover:text-gray-900 cursor-pointer"
+            >
+              ✕
+            </button>
+
             <div className="w-full relative border-t border-slate-200 p-4 ">
               <div className="flex justify-center items-center font-[Montserrat] text-sm leading-6">
                 <p className="font-medium">Please Login To Proceed</p>
@@ -385,10 +457,21 @@ const VerifyTrackSummary: React.FC = () => {
                   className="rounded-md border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:bg-slate-100"
                   themeType="dark"
                 >
-                  Login In
+                  Log In
                 </Button>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {isStepTwoOpen && (
+        <div className="fixed inset-0 z-[999] grid w-screen place-items-center bg-white">
+          <div className="relative w-full max-w-[500px] bg-white p-2 rounded-lg shadow-lg max-h-[calc(100vh-2rem)] overflow-y-auto">
+            <RequisitionForm
+              //setCurrentStep={setCurrentStep}
+              setIsStepTwoOpen={setIsStepTwoOpen}
+            />
           </div>
         </div>
       )}
@@ -397,3 +480,31 @@ const VerifyTrackSummary: React.FC = () => {
 };
 
 export default VerifyTrackSummary;
+
+//import { useState } from "react";
+
+//import { STEPS } from "./verify-track-loan-steps-enum";
+// import RequisitionForm from "./requisition-form";
+// import VerifyTrackSummary from "./verify-track-summary";
+// import { STEPS } from "../verify-track-loan/verify-track-loan-steps-enum";
+
+// const StepWrapper: React.FC = () => {
+//   const [currentStep, setCurrentStep] = useState<STEPS>(STEPS.ONE);
+//   switch (currentStep) {
+//     default:
+//     case STEPS.ONE:
+//       return <VerifyTrackSummary setCurrentStep={setCurrentStep} />;
+//     case STEPS.TWO:
+//       return <RequisitionForm setCurrentStep={setCurrentStep} />;
+//   }
+// };
+
+// const VerifyTrackSummaryIndex: React.FC = () => {
+//   return (
+//     <div>
+//       <StepWrapper />
+//     </div>
+//   );
+// };
+
+// export default VerifyTrackSummaryIndex;

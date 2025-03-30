@@ -6,6 +6,7 @@ import {
   REDIRECTION_ROUTE,
   PORTFOLIO_UID,
   WISHLIST_UID,
+  TABNO,
   //SEL_CURRENCY,
 } from "./keys";
 
@@ -66,6 +67,13 @@ export const getWishListuid = (): string | null =>
 export const deleteWishListuid = (): void =>
   localStorage.removeItem(PORTFOLIO_UID);
 
+
+export const setRedirectionTabno = (tabno: string): void =>
+  localStorage.setItem(TABNO, tabno);
+export const getRedirectionTabno = (): string | null =>
+  localStorage.getItem(TABNO);
+export const deleteRedirectionTabno = (): void =>
+  localStorage.removeItem(TABNO);
 
 //export const setSelCurrency = (SelCurrency: string): void =>
 //  localStorage.setItem(SEL_CURRENCY, SelCurrency);

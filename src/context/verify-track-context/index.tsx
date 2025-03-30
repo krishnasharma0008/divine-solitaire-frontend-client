@@ -31,6 +31,8 @@ type VerifyTrackContextData = {
   setSwitchToInsurance: (val: boolean) => void;
   switchToInsurance: boolean;
   updateProductDetails: (force: boolean) => void;
+  setSwitchToSummary: (val: boolean) => void;
+  switchToSummary: boolean;
 };
 
 const defaultState: VerifyTrackContextData = {
@@ -43,6 +45,9 @@ const defaultState: VerifyTrackContextData = {
   setSwitchToInsurance: () => null,
   switchToInsurance: false,
   updateProductDetails: () => null,
+
+  setSwitchToSummary: () => null,
+  switchToSummary: false,
 };
 
 const VerifyTrackContext = createContext<VerifyTrackContextData>(defaultState);
@@ -62,6 +67,8 @@ const VerifyTrackContextWrapper: React.FC<VerifyTrackContextWrapperProps> = ({
   const [isAdded, setIsAdded] = useState(false);
 
   const [switchToInsurance, setSwitchToInsurance] = useState<boolean>(false);
+
+  const [switchToSummary, setSwitchToSummary] = useState<boolean>(false);
 
   const { query } = useRouter();
 
@@ -132,6 +139,8 @@ const VerifyTrackContextWrapper: React.FC<VerifyTrackContextWrapperProps> = ({
         setSwitchToInsurance,
         switchToInsurance,
         updateProductDetails,
+        switchToSummary,
+        setSwitchToSummary,
       }}
     >
       {children}

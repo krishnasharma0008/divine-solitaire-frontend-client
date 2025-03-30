@@ -41,7 +41,7 @@ const TabNav: React.FC<TabNavProps> = ({
     const selectedClasses = `font-semibold text-gold border-b border-gold ${selectedTabClass}`;
     return (
       <ul
-        className={`pl-0 mb-0 flex list-none justify-around truncate ${
+        className={`pl-0 mb-0 flex list-none justify-around  truncate ${
           className || ""
         }`}
         role="tablist"

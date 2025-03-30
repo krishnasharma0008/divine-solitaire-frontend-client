@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { TabNavWithSection, TabNavWithSectionProps } from "@/components";
+import { VerifyTrackContext } from "@/context/verify-track-context";
 import { SaleType } from "@/enum/sale-type-enum";
 
 import BuybackTabs from "./buy-back";
@@ -36,24 +37,12 @@ const StepWrapper: React.FC<StepWrapperProps> = ({ type }) => {
         );
       }
       if (type === "BUYBACK") {
-        return (
-          <BuybackTabs />
-          // <VerifyTrackResaleBuyback
-          //   setCurrentStep={setCurrentStep}
-          //   setProductAmt={setProductAmt}
-          //   setSaletype={setSaletype}
-          // />
-        );
+        return <BuybackTabs />;
       }
       // Render ExchangeTabs for "EXCHANGE" flow
       return <ExchangeTabs />;
     case RESALE_STEPS.TWO:
       return (
-        // <VerifyTrackResaleForm
-        //   setCurrentStep={setCurrentStep}
-        //   productAmt={productAmt}
-        //   saletype={saletype}
-        // />
         <RequisitionForm
           setCurrentStep={setCurrentStep}
           productAmt={productAmt}
@@ -86,9 +75,13 @@ const VerifyTrackResale: React.FC = () => {
     ],
   };
 
+  const { switchToSummary } = useContext(VerifyTrackContext);
+  //switchToSummary is used to switch to upgrade tab
+  const currentTabVal = switchToSummary ? 1 : undefined;
+
   return (
-    <div className={tabProps.initialTab > 1 ? "bg-[#F0F0F0] mx-2" : ""}>
-      <TabNavWithSection {...tabProps} />
+    <div className={tabProps.initialTab > 1 ? "bg-[#F0F0F0] mx-2 " : ""}>
+      <TabNavWithSection {...tabProps} currentTab={currentTabVal} />
     </div>
   );
 };

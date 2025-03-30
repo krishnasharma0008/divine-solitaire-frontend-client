@@ -9,7 +9,10 @@ import { NOTIFICATION_MESSAGES } from "@/config";
 import LoaderContext from "@/context/loader-context";
 import NotificationContext from "@/context/notification-context";
 //import { CountryCode } from "@/interface/country-code";
-import { setMobileNumber as setMobileNumberInStorage } from "@/local-storage";
+import {
+  setMobileNumber as setMobileNumberInStorage,
+  setRedirectionRoute,
+} from "@/local-storage";
 
 const LoginScreenMobileInput: React.FC = ({}) => {
   const { showLoader, hideLoader } = useContext(LoaderContext);
@@ -25,17 +28,29 @@ const LoginScreenMobileInput: React.FC = ({}) => {
     showLoader();
     try {
       if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(loginType)) {
-        //console.log("It's an email", loginType);
+        setMobileNumberInStorage(loginType);
         // It's an email
-        await loginGetOTP(loginType);
-        setMobileNumberInStorage(loginType);
-        push({ pathname: "/login/verify" });
+        const res = await loginGetOTP(loginType);
+        console.log("Message :", res.data.sucess);
+        if (res.data.sucess) {
+          push({ pathname: "/login/verify" });
+        } else {
+          setRedirectionRoute(window.location.pathname);
+          push({ pathname: "/registration-form" });
+        }
+        //push({ pathname: "/login/verify" });
       } else if (/^\d+$/.test(loginType) && loginType.length === 10) {
-        //console.log("It's a Mobile No.", loginType);
-        // It's a phone number
-        await loginGetOTP(loginType);
         setMobileNumberInStorage(loginType);
-        push({ pathname: "/login/verify" });
+
+        const res = await loginGetOTP(loginType);
+        console.log("Sucess :", res.data.sucess);
+        if (res.data.sucess) {
+          push({ pathname: "/login/verify" });
+        } else {
+          setRedirectionRoute(window.location.pathname);
+          push({ pathname: "/registration-form" });
+        }
+        //push({ pathname: "/login/verify" });
       } else {
         // Invalid input, display an error message
         notifyErr("Invalid E-mail or Mobile Number");
