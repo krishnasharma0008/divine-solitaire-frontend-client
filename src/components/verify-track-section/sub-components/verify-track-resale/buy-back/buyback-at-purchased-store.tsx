@@ -7,6 +7,7 @@ import RestrictionModal from "@/components/common/restriction-modal";
 import LoaderContext from "@/context/loader-context";
 import { VerifyTrackContext } from "@/context/verify-track-context";
 import { SaleType } from "@/enum/sale-type-enum";
+import useIsWithinOneYear from "@/hooks/use-withinayear";
 import { getToken, setRedirectionRoute } from "@/local-storage";
 import { formatByCurrency } from "@/util";
 
@@ -36,6 +37,7 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
   const [isMRDialogOpen, setIsMRDialogOpen] = useState(false); // restriction modal
 
   const [totalTcs, setTotalTcs] = useState<number>(0);
+  const { isWithinOneYear } = useIsWithinOneYear();
   const { push } = useRouter();
 
   if (!productDetails) return <div>Loading product details...</div>;
@@ -52,9 +54,11 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
     setTotalTcs(totcts);
 
     //console.log(isWithinOneYear(productDetails.purchase_date));
-    if (isWithinOneYear(productDetails.purchase_date)) {
+    if (!productDetails.purchase_date) {
+      handleMRDialogOpen(); // Trigger pop-up when purchase_date is missing
+    } else if (isWithinOneYear(productDetails.purchase_date)) {
       console.log("2");
-      handleMRDialogOpen();
+      handleMRDialogOpen(); // Trigger pop-up if within one year
     } else if (
       Number(totcts) >= 3 &&
       productDetails.product_type === "Diamond"
@@ -98,6 +102,7 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
 
   const handleLoginDialogClose = () => {
     setIsDialogOpen(false); // Close dialog
+    setSwitchToSummary(true);
   };
 
   const handleDialogClose = () => {
@@ -139,73 +144,65 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
     setSaletype(SaleType.BUYBACK_REQUEST);
   };
 
-  const handleMRDialogSubmit = () => {
+  const handleMRDialogClose = () => {
     setIsMRDialogOpen(false); // Close dialog
     setSwitchToSummary(true);
-    // if (!getToken()) {
-    //   handleDialogOpen();
-    //   hideLoader();
-    //   return;
-    // }
+  };
 
-    // setIsStepTwoOpen(true);
-
-    // const newProductAmt =
-    //   "buyback_at_purchased_store," +
-    //   productDetails.buyback_same_store_price.toString();
-
-    // setProductAmount(newProductAmt); // Set the correct product amount
-    // setSaletype(SaleType.BUYBACK_RESTRICTION);
+  const handleMRDialogSubmit = () => {
+    //123
+    setIsMRDialogOpen(false); // Close dialog
+    setSwitchToSummary(true);
   };
 
   // for restriction message
-  const isWithinOneYear = (purchaseDate: string): boolean => {
-    if (!purchaseDate) return false; // Handle empty values
+  // const isWithinOneYear = (purchaseDate: string): boolean => {
+  //   if (!purchaseDate) return false; // Handle empty values
 
-    // Parse the input format: "21/Mar/2023"
-    const dateParts = purchaseDate.split("/");
-    if (dateParts.length !== 3) return false; // Ensure valid format
+  //   // Parse the input format: "21/Mar/2023"
+  //   const dateParts = purchaseDate.split("/");
+  //   if (dateParts.length !== 3) return false; // Ensure valid format
 
-    const day = parseInt(dateParts[0], 10);
-    const monthStr = dateParts[1];
-    const year = parseInt(dateParts[2], 10);
+  //   const day = parseInt(dateParts[0], 10);
+  //   const monthStr = dateParts[1];
+  //   const year = parseInt(dateParts[2], 10);
 
-    // Month mapping for conversion
-    const months: Record<string, number> = {
-      Jan: 0,
-      Feb: 1,
-      Mar: 2,
-      Apr: 3,
-      May: 4,
-      Jun: 5,
-      Jul: 6,
-      Aug: 7,
-      Sep: 8,
-      Oct: 9,
-      Nov: 10,
-      Dec: 11,
-    };
+  //   // Month mapping for conversion
+  //   const months: Record<string, number> = {
+  //     Jan: 0,
+  //     Feb: 1,
+  //     Mar: 2,
+  //     Apr: 3,
+  //     May: 4,
+  //     Jun: 5,
+  //     Jul: 6,
+  //     Aug: 7,
+  //     Sep: 8,
+  //     Oct: 9,
+  //     Nov: 10,
+  //     Dec: 11,
+  //   };
 
-    const month = months[monthStr]; // Convert month name to number
+  //   const month = months[monthStr]; // Convert month name to number
 
-    if (isNaN(day) || month === undefined || isNaN(year)) return false; // Ensure valid numbers
+  //   if (isNaN(day) || month === undefined || isNaN(year)) return false; // Ensure valid numbers
 
-    // Create a Date object with the parsed values
-    const purchaseDateObj = new Date(year, month, day);
-    purchaseDateObj.setHours(0, 0, 0, 0); // Normalize to midnight
+  //   // Create a Date object with the parsed values
+  //   const purchaseDateObj = new Date(year, month, day);
+  //   purchaseDateObj.setHours(0, 0, 0, 0); // Normalize to midnight
 
-    // Calculate one year ago from today
-    const today = new Date();
-    today.setHours(0, 0, 0, 0); // Normalize to midnight
-    const oneYearAgo = new Date(today);
-    oneYearAgo.setFullYear(today.getFullYear() - 1);
+  //   // Calculate one year ago from today
+  //   const today = new Date();
+  //   today.setHours(0, 0, 0, 0); // Normalize to midnight
+  //   const oneYearAgo = new Date(today);
+  //   oneYearAgo.setFullYear(today.getFullYear() - 1);
 
-    console.log("📌 Purchase Date:", purchaseDateObj.toISOString());
-    console.log("📌 One Year Ago:", oneYearAgo.toISOString());
-    console.log("📌 Today:", today.toISOString());
+  //   console.log("📌 Purchase Date:", purchaseDateObj.toISOString());
+  //   console.log("📌 One Year Ago:", oneYearAgo.toISOString());
+  //   console.log("📌 Today:", today.toISOString());
 
-    return purchaseDateObj >= oneYearAgo;
-  };
+  //   return purchaseDateObj >= oneYearAgo;
+  // };
 
   return (
     <>
@@ -403,7 +400,7 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
       {isMRDialogOpen && (
         <RestrictionModal
           isOpen={isMRDialogOpen}
-          onClose={handleRDialogClose}
+          onClose={handleMRDialogClose}
           onSubmit={handleMRDialogSubmit}
           headmsg="Exchange Policy Restrictions"
           bodymsg1="Exchange for this product is temporarily restricted."
