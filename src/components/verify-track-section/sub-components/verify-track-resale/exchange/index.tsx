@@ -64,7 +64,7 @@ const StepWrapper: React.FC<StepWrapperProps> = ({ type }) => {
 const ExchangeTabs: React.FC = () => {
   const { productDetails } = useContext(VerifyTrackContext);
   const [totcts, setTotcts] = useState(0);
-  const { isWithinOneYear } = useIsWithinOneYear();
+  const { checkDate } = useIsWithinOneYear();
 
   useEffect(() => {
     if (productDetails?.product_type === "Diamond") {
@@ -78,14 +78,15 @@ const ExchangeTabs: React.FC = () => {
     }
   }, [productDetails]);
 
-  // Ensure purchase_date exists before passing it to the function
-  const isRecentPurchase =
-    productDetails?.purchase_date &&
-    isWithinOneYear(productDetails.purchase_date);
+  const { isWithinOneYear, untilDate } = checkDate(
+    productDetails?.purchase_date || ""
+  );
+
+  console.log("📌 Until Date:", untilDate?.toISOString() || "Invalid Date");
 
   const shouldHideTabs =
     (Number(totcts) > 3 && productDetails?.uid_status === "SOLD") ||
-    isRecentPurchase ||
+    isWithinOneYear ||
     !productDetails?.purchase_date;
 
   const tabProps: TabNavWithSectionProps = {

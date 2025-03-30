@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { Button } from "@/components/common";
 //import Checkbox from "@/components/common/checkbox";
 import RestrictionModal from "@/components/common/restriction-modal";
+import { XMarkIcon } from "@/components/icons";
 import LoaderContext from "@/context/loader-context";
 import { VerifyTrackContext } from "@/context/verify-track-context";
 import { SaleType } from "@/enum/sale-type-enum";
@@ -34,14 +35,17 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
   const [isStepTwoOpen, setIsStepTwoOpen] = useState(false); // Step Two modal
   const [productAmount, setProductAmount] = useState(""); // Ensure this is in the parent
 
-  const [isMRDialogOpen, setIsMRDialogOpen] = useState(false); // restriction modal
+  const [isMRDialogOpen, setIsMRDialogOpen] = useState(false); // restriction modal dateis null
+  const [isMRNDialogOpen, setIsMRNDialogOpen] = useState(false); // restriction modal
 
   const [totalTcs, setTotalTcs] = useState<number>(0);
-  const { isWithinOneYear } = useIsWithinOneYear();
+  const { checkDate } = useIsWithinOneYear();
   const { push } = useRouter();
 
   if (!productDetails) return <div>Loading product details...</div>;
-
+  const { isWithinOneYear, untilDate } = checkDate(
+    productDetails.purchase_date
+  );
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     const totcts =
@@ -56,9 +60,10 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
     //console.log(isWithinOneYear(productDetails.purchase_date));
     if (!productDetails.purchase_date) {
       handleMRDialogOpen(); // Trigger pop-up when purchase_date is missing
-    } else if (isWithinOneYear(productDetails.purchase_date)) {
+    } else if (isWithinOneYear) {
       console.log("2");
-      handleMRDialogOpen(); // Trigger pop-up if within one year
+      console.log("untilDate :", untilDate);
+      handleMRNDialogOpen(); // Trigger pop-up if within one year
     } else if (
       Number(totcts) >= 3 &&
       productDetails.product_type === "Diamond"
@@ -115,9 +120,15 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
     setIsRDialogOpen(true); // Open dialog
   };
 
+  // DATE IS NULL
   const handleMRDialogOpen = () => {
     console.log("called from useeffect ");
     setIsMRDialogOpen(true); // Open dialog
+  };
+
+  // DATE IS NOTN NULL
+  const handleMRNDialogOpen = () => {
+    setIsMRNDialogOpen(true); // Open dialog
   };
 
   const handleRDialogClose = () => {
@@ -155,6 +166,16 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
     setSwitchToSummary(true);
   };
 
+  const handleMRNDialogClose = () => {
+    setIsMRDialogOpen(false); // Close dialog
+    setSwitchToSummary(true);
+  };
+
+  const handleMRNDialogSubmit = () => {
+    //123
+    setIsMRDialogOpen(false); // Close dialog
+    setSwitchToSummary(true);
+  };
   // for restriction message
   // const isWithinOneYear = (purchaseDate: string): boolean => {
   //   if (!purchaseDate) return false; // Handle empty values
@@ -209,9 +230,11 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
       <div
         className="px-3 bg-[#FAFAFA]"
         style={
-          totalTcs > 3 &&
-          productDetails?.uid_status === "SOLD" &&
-          productDetails.product_type === "Diamond"
+          (totalTcs > 3 &&
+            productDetails?.uid_status === "SOLD" &&
+            productDetails.product_type === "Diamond") ||
+          isWithinOneYear ||
+          !productDetails?.purchase_date
             ? { filter: "blur(4px)" }
             : {}
         }
@@ -360,9 +383,15 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
           onClick={handleLoginDialogClose}
         >
           <div
-            className="relative max-w-[311px]  lg:max-w-[40%] sm:max-w-[90%] bg-white shadow-sm"
-            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-[311px]  lg:max-w-[40%] sm:max-w-[90%] rounded-md bg-white shadow-sm"
+            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
           >
+            <div className=" flex shrink-0 font-[Montserrat] font-bold text-base justify-around align-middle py-4 text-[#000000]">
+              <XMarkIcon
+                className="h-5 w-5 absolute top-1.5 right-1.5"
+                onClick={handleLoginDialogClose}
+              />
+            </div>
             <div className="w-full relative border-t border-slate-200 p-4 ">
               <div className="flex justify-center items-center font-[Montserrat] text-sm leading-6">
                 <p className="font-medium">Please Login To Proceed</p>
@@ -383,7 +412,7 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
         </div>
       )}
 
-      {/* Dialog for sale Request */}
+      {/* Dialog for sale Request 3 carat up */}
       {isRDialogOpen && (
         <RestrictionModal
           isOpen={isRDialogOpen}
@@ -393,19 +422,37 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
           bodymsg1={"Please click the button below to submit your request"}
           bodymsg2={"for Buyback. We will respond within 24 hours."}
           bodymsg3={""}
+          isIcon={"no"}
         />
       )}
 
-      {/* Dialog for sale Restriction */}
+      {/* Dialog for sale Restriction when date is null */}
       {isMRDialogOpen && (
         <RestrictionModal
           isOpen={isMRDialogOpen}
           onClose={handleMRDialogClose}
           onSubmit={handleMRDialogSubmit}
-          headmsg="Exchange Policy Restrictions"
-          bodymsg1="Exchange for this product is temporarily restricted."
+          headmsg="Buyback Policy Restrictions"
+          bodymsg1="The buyback for this product is temporarily restricted."
           bodymsg2="For assistance, please reach out to our customer"
           bodymsg3="service team."
+          isIcon={"yes"}
+        />
+      )}
+
+      {/* Dialog for sale Restriction when date is not null */}
+      {isMRNDialogOpen && (
+        <RestrictionModal
+          isOpen={isMRNDialogOpen}
+          onClose={handleMRNDialogClose}
+          onSubmit={handleMRNDialogSubmit}
+          headmsg="Buyback Policy Restrictions"
+          bodymsg1="The buyback for this product is restricted until"
+          bodymsg2={`${
+            untilDate ? untilDate.toISOString().split("T")[0] : "N/A"
+          } . For assistance, contact customer service.`}
+          bodymsg3={""}
+          isIcon={"yes"}
         />
       )}
 

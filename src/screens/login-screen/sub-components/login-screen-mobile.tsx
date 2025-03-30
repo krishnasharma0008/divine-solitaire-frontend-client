@@ -1,4 +1,4 @@
-import Link from "next/link";
+//import Link from "next/link";
 import { useRouter } from "next/router";
 import { SetStateAction, useContext, useState } from "react";
 
@@ -87,7 +87,7 @@ const LoginScreenMobileInput: React.FC = ({}) => {
     <div className="w-full flex flex-col items-center p-6">
       <div className="w-full flex flex-col items-center justify-center">
         <h2 className="text-[23px] font-medium">
-          Login with E-Mail / Mobile Number
+          {/* Login with E-Mail / Mobile Number */}Login
         </h2>
         <p className="mt-3 text-base  ">
           To experience the best Solitaires in India
@@ -118,7 +118,7 @@ const LoginScreenMobileInput: React.FC = ({}) => {
       >
         GET VERIFICATION CODE
       </Button>
-      <div className="text-base md:text-lg font-normal leading-5 tracking-normal text-center py-8">
+      {/* <div className="text-base md:text-lg font-normal leading-5 tracking-normal text-center py-8">
         <p className="text-gray-500">
           By Continuing I agree,{" "}
           <strong
@@ -133,7 +133,7 @@ const LoginScreenMobileInput: React.FC = ({}) => {
             </Link>
           </strong>
         </p>
-      </div>
+      </div> */}
     </div>
   );
 };

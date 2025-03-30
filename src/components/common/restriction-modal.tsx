@@ -10,6 +10,7 @@ interface RestrictionModalProps {
   bodymsg1: string;
   bodymsg2: string;
   bodymsg3: string;
+  isIcon: string;
 }
 
 const RestrictionModal: React.FC<RestrictionModalProps> = ({
@@ -20,6 +21,7 @@ const RestrictionModal: React.FC<RestrictionModalProps> = ({
   bodymsg1,
   bodymsg2,
   bodymsg3,
+  isIcon,
 }) => {
   if (!isOpen) return null;
 
@@ -71,7 +73,7 @@ const RestrictionModal: React.FC<RestrictionModalProps> = ({
               onClick={onSubmit}
               className="flex items-center gap-2 rounded-md border border-transparent py-2 px-4 text-center font-medium text-[12px] leading-[100%] tracking-[0%] transition-all text-white bg-[#1D9619] whitespace-nowrap"
             >
-              {bodymsg3 !== "" && <HeadsetIcon className="w-4 h-4" />}
+              {isIcon === "yes" && <HeadsetIcon className="w-4 h-4" />}
               SUBMIT REQUEST
             </button>
           </div>

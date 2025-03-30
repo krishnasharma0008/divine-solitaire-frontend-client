@@ -7,7 +7,7 @@ import {
   addProductToPortfolio,
   addProductToWishlist,
 } from "@/api/verify-track";
-import { BorderBar, Button } from "@/components";
+import { BorderBar, Button, XMarkIcon } from "@/components";
 //import Carousel from "@/components/common/carousel";
 //import Checkbox from "@/components/common/checkbox";
 import DetailsTable from "@/components/common/details-table";
@@ -434,16 +434,15 @@ const VerifyTrackSummary: React.FC = () => {
           onClick={handleLoginDialogClose}
         >
           <div
-            className="relative max-w-[311px]  lg:max-w-[40%] sm:max-w-[90%] bg-white shadow-sm"
-            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-[311px]  lg:max-w-[40%] sm:max-w-[90%] rounded-md bg-white shadow-sm"
+            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
           >
-            {/* Close Button */}
-            <button
-              onClick={handleLoginDialogClose}
-              className="absolute top-2 right-2 text-gray-600 hover:text-gray-900 cursor-pointer"
-            >
-              ✕
-            </button>
+            <div className=" flex shrink-0 font-[Montserrat] font-bold text-base justify-around align-middle py-4 text-[#000000]">
+              <XMarkIcon
+                className="h-5 w-5 absolute top-1.5 right-1.5"
+                onClick={handleLoginDialogClose}
+              />
+            </div>
 
             <div className="w-full relative border-t border-slate-200 p-4 ">
               <div className="flex justify-center items-center font-[Montserrat] text-sm leading-6">
