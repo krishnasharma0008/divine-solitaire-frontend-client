@@ -99,6 +99,17 @@ const VerifyTrackSummary: React.FC = () => {
 
   useEffect(() => {
     const body = document.querySelector("body");
+    if (isStepTwoOpen) {
+      body?.classList.add("overflow-hidden");
+    } else {
+      body?.classList.remove("overflow-hidden");
+    }
+
+    return () => body?.classList.remove("overflow-hidden");
+  }, [isStepTwoOpen]);
+
+  useEffect(() => {
+    const body = document.querySelector("body");
     if (body) {
       if (openInsureNow) {
         body.className = document.querySelector("body")?.className + " hide";

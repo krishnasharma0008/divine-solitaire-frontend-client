@@ -73,9 +73,20 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
     }
   }, []);
 
+  // useEffect(() => {
+  //   console.log("isStepTwoOpen", isStepTwoOpen);
+  // }, [isStepTwoOpen]);
+
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    console.log("isStepTwoOpen", isStepTwoOpen);
+    const body = document.querySelector("body");
+    if (isStepTwoOpen) {
+      body?.classList.add("overflow-hidden");
+    } else {
+      body?.classList.remove("overflow-hidden");
+    }
+
+    return () => body?.classList.remove("overflow-hidden");
   }, [isStepTwoOpen]);
 
   const handleClickProceed = () => {
