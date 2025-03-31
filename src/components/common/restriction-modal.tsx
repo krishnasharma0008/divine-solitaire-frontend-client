@@ -45,14 +45,14 @@ const RestrictionModal: React.FC<RestrictionModalProps> = ({
         </div>
 
         {headmsg === "Feature Currently Unavailable" && (
-          <div className="w-full px-[10px] ">
+          <div className="w-full px-[4px] ">
             <p className="font-[Montserrat] font-light text-[10px] leading-[100%] tracking-[0%] text-center  pt-[10px]">
               (This feature is not accessible for your account at the moment.)
             </p>
           </div>
         )}
 
-        <div className="w-full relative pt-5 px-[18px] ">
+        <div className="w-full relative pt-5 px-[8px] ">
           <div className="flex justify-center">
             <p className="font-[Montserrat] font-medium text-[10px] leading-[15px] tracking-[0.02em] text-center">
               {bodymsg1} &nbsp;
