@@ -36,10 +36,20 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
 
   const { push } = useRouter();
 
+  // const minValue =
+  //   (35 / 100) * (productDetails?.current_price || 1) < 20000
+  //     ? (productDetails?.current_price || 0) + 20000
+  //     : (35 / 100) * (productDetails?.current_price || 1);
+
+  // const minValue =
+  //   (50 / 100) * (productDetails?.current_price || 0) < 50000
+  //     ? 50000
+  //     : (50 / 100) * (productDetails?.current_price || 0);
+
   const minValue =
-    (35 / 100) * (productDetails?.current_price || 1) < 20000
-      ? (productDetails?.current_price || 0) + 20000
-      : (35 / 100) * (productDetails?.current_price || 1);
+    50 * 0.01 * (productDetails?.current_price || 1) < 50000 //*  (productDetails?.currency_code != "INR" ? oneInrEqualUsd : 1)
+      ? (productDetails?.current_price || 0) + 50000
+      : 50 * 0.01 * (productDetails?.current_price || 1);
 
   const [showErr, setShowErr] = useState<boolean>(false);
 
@@ -92,7 +102,9 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
       <div className="w-full bg-white font-Montserrat [&>div]:px-4">
         <div className="flex justify-between mt-12 text-base leading-5 text-gray-900">
           Product ID:
-          <span className="float-right">{`${productDetails.uid}`}</span>
+          <span className="float-right">{`${productDetails.uid}`}</span>$
+          {productDetails.currency_locale} locale $
+          {productDetails.currency_code}code
         </div>
         <div className="flex justify-between mt-4 text-base leading-5 text-gray-900">
           Current Value
