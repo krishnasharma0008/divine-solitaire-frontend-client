@@ -41,7 +41,7 @@ const TabNav: React.FC<TabNavProps> = ({
     const selectedClasses = `font-semibold text-gold border-b border-gold ${selectedTabClass}`;
     return (
       <ul
-        className={`pl-0 mb-0 flex list-none justify-around  truncate ${
+        className={`pl-0 mb-0 flex list-none justify-around truncate ${
           className || ""
         }`}
         role="tablist"
@@ -158,7 +158,7 @@ const TabNav: React.FC<TabNavProps> = ({
 
   return (
     <div
-      className={`flex md:flex-wrap md:flex-col md:flex-row gap-4 md:overflow-hidden overflow-x-scroll md:overflow-auto scrollbar-hide truncate ${className}`}
+      className={`flex md:flex-wrap md:flex-col md:flex-row gap-4 md:overflow-hidden overflow-x-scroll md:overflow-auto scrollbar-hide ${className}`}
     >
       {tabs.map((tab, index) => (
         <Button
