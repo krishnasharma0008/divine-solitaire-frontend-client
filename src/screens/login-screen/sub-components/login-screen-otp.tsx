@@ -131,7 +131,7 @@ const LoginScreenOtp: React.FC = () => {
           style={{ width: "12rem", letterSpacing: "0.5rem" }} // Ensures spacing between digits
         />
       </div>
-      <p className="text-base md:text-lg font-normal leading-5 tracking-normal text-center">
+      <p className="text-base md:text-lg font-normal leading-5 tracking-normal text-center mt-4">
         Not received yet{" "}
         <button
           type="button"

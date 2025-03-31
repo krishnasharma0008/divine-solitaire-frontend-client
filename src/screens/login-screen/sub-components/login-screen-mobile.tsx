@@ -89,7 +89,7 @@ const LoginScreenMobileInput: React.FC = ({}) => {
         <h2 className="text-[23px] font-medium">
           {/* Login with E-Mail / Mobile Number */}Login
         </h2>
-        <p className="mt-3 text-base  ">
+        <p className="mt-3 text-sm ">
           To experience the best Solitaires in India
         </p>
       </div>
