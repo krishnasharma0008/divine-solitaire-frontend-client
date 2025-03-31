@@ -73,10 +73,22 @@ const ExchangeAtPurchasedStore: React.FC<ExchangeAtPurchasedStoreProps> = ({
   }, []);
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
+  //useEffect(() => {
+  // if (isStepTwoOpen) {
+  //   setCurrentStep(RESALE_STEPS.TWO);
+  // }
+  //}, [isStepTwoOpen]);
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    // if (isStepTwoOpen) {
-    //   setCurrentStep(RESALE_STEPS.TWO);
-    // }
+    const body = document.querySelector("body");
+    if (isStepTwoOpen) {
+      body?.classList.add("overflow-hidden");
+    } else {
+      body?.classList.remove("overflow-hidden");
+    }
+
+    return () => body?.classList.remove("overflow-hidden");
   }, [isStepTwoOpen]);
 
   // Conditional rendering after hooks
