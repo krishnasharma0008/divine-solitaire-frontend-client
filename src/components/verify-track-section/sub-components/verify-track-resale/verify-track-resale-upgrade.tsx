@@ -102,9 +102,7 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
       <div className="w-full bg-white font-Montserrat [&>div]:px-4">
         <div className="flex justify-between mt-12 text-base leading-5 text-gray-900">
           Product ID:
-          <span className="float-right">{`${productDetails.uid}`}</span>$
-          {productDetails.currency_locale} locale $
-          {productDetails.currency_code}code
+          <span className="float-right">{`${productDetails.uid}`}</span>
         </div>
         <div className="flex justify-between mt-4 text-base leading-5 text-gray-900">
           Current Value
