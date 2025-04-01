@@ -11,7 +11,7 @@ import InputText from "@/components/common/input-text";
 import { NOTIFICATION_MESSAGES } from "@/config";
 import LoaderContext from "@/context/loader-context";
 import NotificationContext from "@/context/notification-context";
-import { CUSTOMER_GENDER } from "@/enum";
+import { USER_GENDER } from "@/enum";
 //import useContactNo from "@/hooks/use-contactno";
 import { ProfileForm } from "@/interface";
 import { getRedirectionRoute, getMobileNumber } from "@/local-storage";
@@ -22,6 +22,7 @@ interface RegistrationFormAction {
 }
 
 const initialState: ProfileForm = {
+  vsource: "Website",
   fname: "",
   email: "",
   contactno: "",
@@ -30,7 +31,7 @@ const initialState: ProfileForm = {
   dob: "",
   city: "",
   state: "",
-  gender: "",
+  gender: USER_GENDER.MALE,
   //tncdat: "",
   doanniv: "",
 };
@@ -220,7 +221,7 @@ const RegistrationFormScreen: React.FC = () => {
             </div>
           </div>
           <div className="flex flex-wrap mb-3">
-            <div className="w-full px-3">
+            <div className="w-full justify-between px-3">
               <InputText
                 label="E-Mail Address"
                 type="email"
@@ -239,7 +240,7 @@ const RegistrationFormScreen: React.FC = () => {
           </div>
           <div className="flex fles-wrap mb-3">
             <div className="flex gap-2 justify-around px-3">
-              {Object.values(CUSTOMER_GENDER).map((gender) => (
+              {Object.values(USER_GENDER).map((gender) => (
                 <button
                   key={gender}
                   type="button"
