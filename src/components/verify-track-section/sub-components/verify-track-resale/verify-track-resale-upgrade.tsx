@@ -115,6 +115,7 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
           </span>
         </div>
         <BorderBar className="mt-10" />
+        {/* <div className="border-[#F4F4F4] border-4 my-3" /> */}
 
         <div className="mt-6 flex justify-between flex-col lg:flex-row items-center [&>div]:w-full [&>div>div>div>label]">
           <div className="hidden lg:block">Enter new product amount:</div>
