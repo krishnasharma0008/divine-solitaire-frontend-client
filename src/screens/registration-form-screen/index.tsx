@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useReducer, useRef, useState } from "react";
 
-import { registerUser } from "@/api";
+import { registerUser, termsConditionEndpoint } from "@/api";
 import { XIcon } from "@/components";
 import { Button } from "@/components/common";
 import Checkbox from "@/components/common/checkbox";
@@ -175,9 +175,7 @@ const RegistrationFormScreen: React.FC = () => {
 
   const fetchTerms = async () => {
     try {
-      const response = await axios.get(
-        "http://64.227.187.0:8088/api/user_registration_terms.html"
-      );
+      const response = await axios.get(termsConditionEndpoint.url);
       setTermsContent(response.data);
       termsDialogRef.current?.showModal(); // Open modal
     } catch (error) {
