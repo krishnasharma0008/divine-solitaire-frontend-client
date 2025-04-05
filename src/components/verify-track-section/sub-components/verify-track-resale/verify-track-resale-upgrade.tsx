@@ -46,10 +46,10 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
   //     ? 50000
   //     : (50 / 100) * (productDetails?.current_price || 0);
 
-  const minValue =
-    50 * 0.01 * (productDetails?.current_price || 1) < 50000 //*  (productDetails?.currency_code != "INR" ? oneInrEqualUsd : 1)
-      ? (productDetails?.current_price || 0) + 50000
-      : 50 * 0.01 * (productDetails?.current_price || 1);
+  const minValue = productDetails?.upgrade_minimum_price || 0;
+  // 50 * 0.01 * (productDetails?.current_price || 1) < 50000 //*  (productDetails?.currency_code != "INR" ? oneInrEqualUsd : 1)
+  //   ? (productDetails?.current_price || 0) + 50000
+  //   : 50 * 0.01 * (productDetails?.current_price || 1);
 
   const [showErr, setShowErr] = useState<boolean>(false);
 
@@ -129,7 +129,7 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
             <span className={`text-rose-600 ${!showErr ? "invisible" : ""}`}>
               Minimum amount to upgrade is{" "}
               {formatByCurrency(
-                minValue + productDetails.current_price,
+                minValue, // + productDetails.current_price,
                 productDetails.currency_locale,
                 productDetails.currency_code
               )}
@@ -145,7 +145,7 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
             <span className={`text-rose-600 ${!showErr ? "invisible" : ""}`}>
               Minimum amount to upgrade is{" "}
               {formatByCurrency(
-                minValue + productDetails.current_price,
+                minValue, // + productDetails.current_price,
                 productDetails.currency_locale,
                 productDetails.currency_code
               )}

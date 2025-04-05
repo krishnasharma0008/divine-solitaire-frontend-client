@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { TabNavWithSection, TabNavWithSectionProps } from "@/components";
 import { VerifyTrackContext } from "@/context/verify-track-context";
 import { SaleType } from "@/enum/sale-type-enum";
-import useIsWithinOneYear from "@/hooks/use-withinayear";
+//import useIsWithinOneYear from "@/hooks/use-withinayear";
 
 import BuybackAtOtherStore from "./buyback-at-other-store";
 import BuybackAtPurchasedStore from "./buyback-at-purchased-store";
@@ -63,7 +63,7 @@ const StepWrapper: React.FC<StepWrapperProps> = ({ type }) => {
 const BuybackTabs: React.FC = () => {
   const { productDetails } = useContext(VerifyTrackContext);
   const [totcts, setTotcts] = useState(0);
-  const { checkDate } = useIsWithinOneYear();
+  //const { checkDate } = useIsWithinOneYear();
 
   useEffect(() => {
     if (productDetails?.product_type === "Diamond") {
@@ -77,16 +77,15 @@ const BuybackTabs: React.FC = () => {
     }
   }, [productDetails]);
 
-  const { isWithinOneYear, untilDate } = checkDate(
-    productDetails?.purchase_date || ""
-  );
+  // const { isWithinOneYear, untilDate } = checkDate(
+  //   productDetails?.purchase_date || ""
+  // );
 
-  console.log("📌 Until Date:", untilDate?.toISOString() || "Invalid Date");
+  //console.log("📌 Until Date:", untilDate?.toISOString() || "Invalid Date");
 
   const shouldHideTabs =
-    (Number(totcts) > 3 && productDetails?.uid_status === "SOLD") ||
-    isWithinOneYear ||
-    !productDetails?.purchase_date;
+    (Number(totcts) > 3 && productDetails?.uid_status === "SOLD") ;
+    //|| isWithinOneYear || !productDetails?.purchase_date;
 
   const tabProps: TabNavWithSectionProps = {
     initialTab: 1,

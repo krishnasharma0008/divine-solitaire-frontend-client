@@ -8,7 +8,7 @@ import { XMarkIcon } from "@/components/icons";
 import LoaderContext from "@/context/loader-context";
 import { VerifyTrackContext } from "@/context/verify-track-context";
 import { SaleType } from "@/enum/sale-type-enum";
-import useIsWithinOneYear from "@/hooks/use-withinayear";
+//import useIsWithinOneYear from "@/hooks/use-withinayear";
 import { getToken, setRedirectionRoute } from "@/local-storage";
 import { formatByCurrency } from "@/util";
 
@@ -35,17 +35,17 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
   const [isStepTwoOpen, setIsStepTwoOpen] = useState(false); // Step Two modal
   const [productAmount, setProductAmount] = useState(""); // Ensure this is in the parent
 
-  const [isMRDialogOpen, setIsMRDialogOpen] = useState(false); // restriction modal dateis null
-  const [isMRNDialogOpen, setIsMRNDialogOpen] = useState(false); // restriction modal
+  //const [isMRDialogOpen, setIsMRDialogOpen] = useState(false); // restriction modal dateis null
+  //const [isMRNDialogOpen, setIsMRNDialogOpen] = useState(false); // restriction modal
 
   const [totalTcs, setTotalTcs] = useState<number>(0);
-  const { checkDate } = useIsWithinOneYear();
+  //const { checkDate } = useIsWithinOneYear();
   const { push } = useRouter();
 
   if (!productDetails) return <div>Loading product details...</div>;
-  const { isWithinOneYear, untilDate } = checkDate(
-    productDetails.purchase_date
-  );
+  // const { isWithinOneYear, untilDate } = checkDate(
+  //   productDetails.purchase_date
+  // );
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     const totcts =
@@ -57,17 +57,14 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
         : 0;
     setTotalTcs(totcts);
 
-    //console.log(isWithinOneYear(productDetails.purchase_date));
-    if (!productDetails.purchase_date) {
-      handleMRDialogOpen(); // Trigger pop-up when purchase_date is missing
-    } else if (isWithinOneYear) {
-      console.log("2");
-      console.log("untilDate :", untilDate);
-      handleMRNDialogOpen(); // Trigger pop-up if within one year
-    } else if (
-      Number(totcts) >= 3 &&
-      productDetails.product_type === "Diamond"
-    ) {
+    // if (!productDetails.purchase_date) {
+    //   handleMRDialogOpen(); // Trigger pop-up when purchase_date is missing
+    // } else if (isWithinOneYear) {
+    //   console.log("2");
+    //   console.log("untilDate :", untilDate);
+    //   handleMRNDialogOpen(); // Trigger pop-up if within one year
+    // } else
+    if (Number(totcts) >= 3 && productDetails.product_type === "Diamond") {
       console.log("3");
       handleRDialogOpen();
     }
@@ -132,15 +129,15 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
   };
 
   // DATE IS NULL
-  const handleMRDialogOpen = () => {
-    console.log("called from useeffect ");
-    setIsMRDialogOpen(true); // Open dialog
-  };
+  // const handleMRDialogOpen = () => {
+  //   console.log("called from useeffect ");
+  //   setIsMRDialogOpen(true); // Open dialog
+  // };
 
   // DATE IS NOTN NULL
-  const handleMRNDialogOpen = () => {
-    setIsMRNDialogOpen(true); // Open dialog
-  };
+  // const handleMRNDialogOpen = () => {
+  //   setIsMRNDialogOpen(true); // Open dialog
+  // };
 
   const handleRDialogClose = () => {
     setIsRDialogOpen(false); // Close dialog
@@ -166,74 +163,24 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
     setSaletype(SaleType.BUYBACK_REQUEST);
   };
 
-  const handleMRDialogClose = () => {
-    setIsMRDialogOpen(false); // Close dialog
-    setSwitchToSummary(true);
-  };
+  // const handleMRDialogClose = () => {
+  //   setIsMRDialogOpen(false); // Close dialog
+  //   setSwitchToSummary(true);
+  // };
 
-  const handleMRDialogSubmit = () => {
-    //123
-    setIsMRDialogOpen(false); // Close dialog
-    setSwitchToSummary(true);
-  };
+  // const handleMRDialogSubmit = () => {
+  //   setIsMRDialogOpen(false); // Close dialog
+  //   setSwitchToSummary(true);
+  // };
 
-  const handleMRNDialogClose = () => {
-    setIsMRDialogOpen(false); // Close dialog
-    setSwitchToSummary(true);
-  };
+  // const handleMRNDialogClose = () => {
+  //   setIsMRDialogOpen(false); // Close dialog
+  //   setSwitchToSummary(true);
+  // };
 
-  const handleMRNDialogSubmit = () => {
-    //123
-    setIsMRDialogOpen(false); // Close dialog
-    setSwitchToSummary(true);
-  };
-  // for restriction message
-  // const isWithinOneYear = (purchaseDate: string): boolean => {
-  //   if (!purchaseDate) return false; // Handle empty values
-
-  //   // Parse the input format: "21/Mar/2023"
-  //   const dateParts = purchaseDate.split("/");
-  //   if (dateParts.length !== 3) return false; // Ensure valid format
-
-  //   const day = parseInt(dateParts[0], 10);
-  //   const monthStr = dateParts[1];
-  //   const year = parseInt(dateParts[2], 10);
-
-  //   // Month mapping for conversion
-  //   const months: Record<string, number> = {
-  //     Jan: 0,
-  //     Feb: 1,
-  //     Mar: 2,
-  //     Apr: 3,
-  //     May: 4,
-  //     Jun: 5,
-  //     Jul: 6,
-  //     Aug: 7,
-  //     Sep: 8,
-  //     Oct: 9,
-  //     Nov: 10,
-  //     Dec: 11,
-  //   };
-
-  //   const month = months[monthStr]; // Convert month name to number
-
-  //   if (isNaN(day) || month === undefined || isNaN(year)) return false; // Ensure valid numbers
-
-  //   // Create a Date object with the parsed values
-  //   const purchaseDateObj = new Date(year, month, day);
-  //   purchaseDateObj.setHours(0, 0, 0, 0); // Normalize to midnight
-
-  //   // Calculate one year ago from today
-  //   const today = new Date();
-  //   today.setHours(0, 0, 0, 0); // Normalize to midnight
-  //   const oneYearAgo = new Date(today);
-  //   oneYearAgo.setFullYear(today.getFullYear() - 1);
-
-  //   console.log("📌 Purchase Date:", purchaseDateObj.toISOString());
-  //   console.log("📌 One Year Ago:", oneYearAgo.toISOString());
-  //   console.log("📌 Today:", today.toISOString());
-
-  //   return purchaseDateObj >= oneYearAgo;
+  // const handleMRNDialogSubmit = () => {
+  //   setIsMRDialogOpen(false); // Close dialog
+  //   setSwitchToSummary(true);
   // };
 
   return (
@@ -241,12 +188,11 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
       <div
         className="px-3 bg-[#FAFAFA]"
         style={
-          (totalTcs > 3 &&
-            productDetails?.uid_status === "SOLD" &&
-            productDetails.product_type === "Diamond") ||
-          isWithinOneYear ||
-          !productDetails?.purchase_date
-            ? { filter: "blur(4px)" }
+          totalTcs > 3 &&
+          productDetails?.uid_status === "SOLD" &&
+          productDetails.product_type === "Diamond"
+            ? // || isWithinOneYear || !productDetails?.purchase_date
+              { filter: "blur(4px)" }
             : {}
         }
       >
@@ -438,7 +384,7 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
       )}
 
       {/* Dialog for sale Restriction when date is null */}
-      {isMRDialogOpen && (
+      {/* {isMRDialogOpen && (
         <RestrictionModal
           isOpen={isMRDialogOpen}
           onClose={handleMRDialogClose}
@@ -449,10 +395,10 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
           bodymsg3="service team."
           isIcon={"yes"}
         />
-      )}
+      )} */}
 
       {/* Dialog for sale Restriction when date is not null */}
-      {isMRNDialogOpen && (
+      {/* {isMRNDialogOpen && (
         <RestrictionModal
           isOpen={isMRNDialogOpen}
           onClose={handleMRNDialogClose}
@@ -465,7 +411,7 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
           bodymsg3={""}
           isIcon={"yes"}
         />
-      )}
+      )} */}
 
       {isStepTwoOpen && (
         <div className="fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-white">

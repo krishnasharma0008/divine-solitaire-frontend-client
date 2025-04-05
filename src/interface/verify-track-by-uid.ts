@@ -45,6 +45,7 @@ export interface VerifyTrackByUid {
   uid_status: string;
   videos: string[];
 
+  upgrade_minimum_price:number;
   buyback_solitaire_price: number;
   buyback_mount_price: number;
   buyback_price: number;
