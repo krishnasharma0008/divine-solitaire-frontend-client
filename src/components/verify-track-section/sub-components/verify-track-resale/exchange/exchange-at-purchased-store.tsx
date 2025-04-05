@@ -8,7 +8,7 @@ import { XMarkIcon } from "@/components/icons";
 import LoaderContext from "@/context/loader-context";
 import { VerifyTrackContext } from "@/context/verify-track-context";
 import { SaleType } from "@/enum/sale-type-enum";
-import useIsWithinOneYear from "@/hooks/use-withinayear";
+//import useIsWithinOneYear from "@/hooks/use-withinayear";
 import { getToken, setRedirectionRoute } from "@/local-storage";
 import { formatByCurrency } from "@/util";
 
@@ -37,18 +37,18 @@ const ExchangeAtPurchasedStore: React.FC<ExchangeAtPurchasedStoreProps> = ({
   const [salestype, setSalestype] = useState<SaleType>(
     SaleType.EXCHANGE_REQUEST
   );
-  const [isMRDialogOpen, setIsMRDialogOpen] = useState(false); // restriction modal date is null
-  const [isMRNDialogOpen, setIsMRNDialogOpen] = useState(false); // restriction modal
-  const { checkDate } = useIsWithinOneYear();
+  //const [isMRDialogOpen, setIsMRDialogOpen] = useState(false); // restriction modal date is null
+  //const [isMRNDialogOpen, setIsMRNDialogOpen] = useState(false); // restriction modal
+  //const { checkDate } = useIsWithinOneYear();
 
   const { push } = useRouter();
   if (!productDetails) return <div>Loading product details...</div>;
   // Move the useState hook to the top level
   //const [tnc, setTnc] = useState<boolean>(false);
 
-  const { isWithinOneYear, untilDate } = checkDate(
-    productDetails.purchase_date
-  );
+  // const { isWithinOneYear, untilDate } = checkDate(
+  //   productDetails.purchase_date
+  // );
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
@@ -61,14 +61,14 @@ const ExchangeAtPurchasedStore: React.FC<ExchangeAtPurchasedStoreProps> = ({
         : 0;
     setTotalPcs(totcts);
 
-    //console.log(isWithinOneYear(productDetails.purchase_date));
-    if (!productDetails.purchase_date) {
-      handleMRDialogOpen(); // Trigger pop-up when purchase_date is missing
-    } else if (isWithinOneYear) {
-      console.log("2");
-      console.log("untilDate :", untilDate);
-      handleMRNDialogOpen(); // Trigger pop-up if within one year
-    } else if (Number(totcts) >= 3 && productDetails.product_type === "Diamond")
+    // if (!productDetails.purchase_date) {
+    //   handleMRDialogOpen(); // Trigger pop-up when purchase_date is missing
+    // } else if (isWithinOneYear) {
+    //   console.log("2");
+    //   console.log("untilDate :", untilDate);
+    //   handleMRNDialogOpen(); // Trigger pop-up if within one year
+    // } else
+    if (Number(totcts) >= 3 && productDetails.product_type === "Diamond")
       handleRDialogOpen();
   }, []);
 
@@ -148,14 +148,14 @@ const ExchangeAtPurchasedStore: React.FC<ExchangeAtPurchasedStoreProps> = ({
   };
 
   // DATE IS NULL
-  const handleMRDialogOpen = () => {
-    setIsMRDialogOpen(true); // Open dialog
-  };
+  // const handleMRDialogOpen = () => {
+  //   setIsMRDialogOpen(true); // Open dialog
+  // };
 
   // DATE IS NOTN NULL
-  const handleMRNDialogOpen = () => {
-    setIsMRNDialogOpen(true); // Open dialog
-  };
+  // const handleMRNDialogOpen = () => {
+  //   setIsMRNDialogOpen(true); // Open dialog
+  // };
 
   const handleRDialogOpen = () => {
     setIsRDialogOpen(true); // Open dialog
@@ -184,37 +184,36 @@ const ExchangeAtPurchasedStore: React.FC<ExchangeAtPurchasedStoreProps> = ({
     setSalestype(SaleType.EXCHANGE_REQUEST);
   };
 
-  const handleMRDialogClose = () => {
-    setIsMRDialogOpen(false); // Close dialog
-    setSwitchToSummary(true);
-  };
+  // const handleMRDialogClose = () => {
+  //   setIsMRDialogOpen(false); // Close dialog
+  //   setSwitchToSummary(true);
+  // };
 
-  const handleMRDialogSubmit = () => {
-    setIsMRDialogOpen(false); // Close dialog
-    setSwitchToSummary(true);
-  };
+  // const handleMRDialogSubmit = () => {
+  //   setIsMRDialogOpen(false); // Close dialog
+  //   setSwitchToSummary(true);
+  // };
 
-  const handleMRNDialogClose = () => {
-    setIsMRDialogOpen(false); // Close dialog
-    setSwitchToSummary(true);
-  };
+  // const handleMRNDialogClose = () => {
+  //   setIsMRDialogOpen(false); // Close dialog
+  //   setSwitchToSummary(true);
+  // };
 
-  const handleMRNDialogSubmit = () => {
-    setIsMRDialogOpen(false); // Close dialog
-    setSwitchToSummary(true);
-  };
+  // const handleMRNDialogSubmit = () => {
+  //   setIsMRDialogOpen(false); // Close dialog
+  //   setSwitchToSummary(true);
+  // };
 
   return (
     <>
       <div
         className="px-3 bg-[#FAFAFA]"
         style={
-          (totalPcs > 3 &&
-            productDetails?.uid_status === "SOLD" &&
-            productDetails.product_type === "Diamond") ||
-          isWithinOneYear ||
-          !productDetails?.purchase_date
-            ? { filter: "blur(4px)" }
+          totalPcs > 3 &&
+          productDetails?.uid_status === "SOLD" &&
+          productDetails.product_type === "Diamond"
+            ? //  || isWithinOneYear || !productDetails?.purchase_date
+              { filter: "blur(4px)" }
             : {}
         }
       >
@@ -407,7 +406,7 @@ const ExchangeAtPurchasedStore: React.FC<ExchangeAtPurchasedStoreProps> = ({
       )}
 
       {/* Dialog for sale Restriction when date is null */}
-      {isMRDialogOpen && (
+      {/* {isMRDialogOpen && (
         <RestrictionModal
           isOpen={isMRDialogOpen}
           onClose={handleMRDialogClose}
@@ -418,10 +417,10 @@ const ExchangeAtPurchasedStore: React.FC<ExchangeAtPurchasedStoreProps> = ({
           bodymsg3="service team."
           isIcon={"yes"}
         />
-      )}
+      )} */}
 
       {/* Dialog for sale Restriction when date is not null */}
-      {isMRNDialogOpen && (
+      {/* {isMRNDialogOpen && (
         <RestrictionModal
           isOpen={isMRNDialogOpen}
           onClose={handleMRNDialogClose}
@@ -434,7 +433,7 @@ const ExchangeAtPurchasedStore: React.FC<ExchangeAtPurchasedStoreProps> = ({
           bodymsg3={""}
           isIcon={"yes"}
         />
-      )}
+      )} */}
 
       {isStepTwoOpen && (
         <div className="fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-white">
