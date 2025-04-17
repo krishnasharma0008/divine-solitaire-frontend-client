@@ -35,8 +35,11 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
   const [isStepTwoOpen, setIsStepTwoOpen] = useState(false); // Step Two modal
   const [productAmount, setProductAmount] = useState(""); // Ensure this is in the parent
 
-  //const [isMRDialogOpen, setIsMRDialogOpen] = useState(false); // restriction modal dateis null
+  const [isMRDialogOpen, setIsMRDialogOpen] = useState(false); // restriction modal dateis null
   //const [isMRNDialogOpen, setIsMRNDialogOpen] = useState(false); // restriction modal
+  const [bodymsg1, setBodymsg1] = useState("");
+  const [bodymsg2, setBodymsg2] = useState("");
+  const [bodymsg3, setBodymsg3] = useState("");
 
   const [totalTcs, setTotalTcs] = useState<number>(0);
   //const { checkDate } = useIsWithinOneYear();
@@ -57,14 +60,25 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
         : 0;
     setTotalTcs(totcts);
 
-    // if (!productDetails.purchase_date) {
-    //   handleMRDialogOpen(); // Trigger pop-up when purchase_date is missing
-    // } else if (isWithinOneYear) {
+    if (productDetails.buyback_isblock === true) {
+      // Split message by periods
+      const messageParts = productDetails.buyback_block_message
+        .split(".")
+        .map((part) => part.trim())
+        .filter(Boolean);
+
+      setBodymsg1(messageParts[0] ? messageParts[0] + "." : "");
+      setBodymsg2(messageParts[1] ? messageParts[1] + "." : "");
+      setBodymsg3(messageParts[2] ? messageParts[2] + "." : "");
+
+      handleMRDialogOpen(); // Trigger pop-up when purchase_date is missing
+    }
+    // else if (isWithinOneYear) {
     //   console.log("2");
     //   console.log("untilDate :", untilDate);
     //   handleMRNDialogOpen(); // Trigger pop-up if within one year
-    // } else
-    if (Number(totcts) >= 3 && productDetails.product_type === "Diamond") {
+    // }
+    else if (Number(totcts) >= 3 && productDetails.product_type === "Diamond") {
       console.log("3");
       handleRDialogOpen();
     }
@@ -129,10 +143,10 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
   };
 
   // DATE IS NULL
-  // const handleMRDialogOpen = () => {
-  //   console.log("called from useeffect ");
-  //   setIsMRDialogOpen(true); // Open dialog
-  // };
+  const handleMRDialogOpen = () => {
+    console.log("called from useeffect ");
+    setIsMRDialogOpen(true); // Open dialog
+  };
 
   // DATE IS NOTN NULL
   // const handleMRNDialogOpen = () => {
@@ -163,15 +177,15 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
     setSaletype(SaleType.BUYBACK_REQUEST);
   };
 
-  // const handleMRDialogClose = () => {
-  //   setIsMRDialogOpen(false); // Close dialog
-  //   setSwitchToSummary(true);
-  // };
+  const handleMRDialogClose = () => {
+    setIsMRDialogOpen(false); // Close dialog
+    setSwitchToSummary(true);
+  };
 
-  // const handleMRDialogSubmit = () => {
-  //   setIsMRDialogOpen(false); // Close dialog
-  //   setSwitchToSummary(true);
-  // };
+  const handleMRDialogSubmit = () => {
+    setIsMRDialogOpen(false); // Close dialog
+    setSwitchToSummary(true);
+  };
 
   // const handleMRNDialogClose = () => {
   //   setIsMRDialogOpen(false); // Close dialog
@@ -188,9 +202,10 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
       <div
         className="px-3 bg-[#FAFAFA]"
         style={
-          totalTcs > 3 &&
-          productDetails?.uid_status === "SOLD" &&
-          productDetails.product_type === "Diamond"
+          (totalTcs > 3 &&
+            productDetails?.uid_status === "SOLD" &&
+            productDetails.product_type === "Diamond") ||
+          productDetails.buyback_isblock === true
             ? // || isWithinOneYear || !productDetails?.purchase_date
               { filter: "blur(4px)" }
             : {}
@@ -384,18 +399,18 @@ const BuybackAtPurchasedStore: React.FC<BuybackAtPurchasedStoreProps> = ({
       )}
 
       {/* Dialog for sale Restriction when date is null */}
-      {/* {isMRDialogOpen && (
+      {isMRDialogOpen && (
         <RestrictionModal
           isOpen={isMRDialogOpen}
           onClose={handleMRDialogClose}
           onSubmit={handleMRDialogSubmit}
           headmsg="Buyback Policy Restrictions"
-          bodymsg1="The buyback for this product is temporarily restricted."
-          bodymsg2="For assistance, please reach out to our customer"
-          bodymsg3="service team."
+          bodymsg1={bodymsg1} //"The buyback for this product is temporarily restricted."
+          bodymsg2={bodymsg2} //"For assistance, please reach out to our customer"
+          bodymsg3={bodymsg3} //"service team."
           isIcon={"yes"}
         />
-      )} */}
+      )}
 
       {/* Dialog for sale Restriction when date is not null */}
       {/* {isMRNDialogOpen && (
