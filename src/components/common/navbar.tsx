@@ -153,7 +153,8 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
         <Link href="/">
           <div className="flex flex-row justify-center items-center">
             <Image
-              src="/logo/DS LOGO 2.25IN.jpg"
+              //src="/logo/DS LOGO 2.25IN.jpg"
+              src="/logo/new_logo.png"
               alt="Company Logo"
               width={869}
               height={567}
