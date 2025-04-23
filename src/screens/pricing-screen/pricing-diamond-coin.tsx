@@ -76,7 +76,7 @@ const DiamondCoinSolitares: React.FC<Props> = () => {
   }, [countryCode, hideLoader, notifyErr, showLoader]);
 
   const CardCoin: React.FC<DiamondCoin> = (props) => (
-    <div className="relative flex flex-col mt-6 text-gray-700 bg-white border shadow-md bg-clip-border rounded-xl w-96">
+    <div className="relative flex flex-col mt-6 text-gray-700 bg-white border shadow-md bg-clip-border rounded-xl md:w-[343px] w-[169px]">
       <div className="p-2">
         <table className="table w-full table-fixed [&>tr>td]:text-center md:[&>tr>td]:text-xl [&>tr>td]:text-xs">
           <tr className="w-full">
@@ -159,7 +159,7 @@ const DiamondCoinSolitares: React.FC<Props> = () => {
         </div>
       </div>
 
-      <div className="p-4 justify-center items-center gap-[20px] bg-slate-50 mt-6">
+      <div className="w-full px-2 justify-center items-center gap-[20px] bg-slate-50 mt-6">
         <div className="px-2 text-gray-900 md:text-3xl text-lg font-Montserrat font-medium tracking-widest text-center">
           Unique Features
         </div>
