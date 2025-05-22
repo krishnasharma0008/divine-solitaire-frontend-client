@@ -30,7 +30,7 @@ const DiamondCoinSolitares: React.FC<Props> = () => {
   //const { currency } = useCurrency(); //for currency
   //const countryCode = reverseCountryCurrencyMap[currency];
 
-  // Inside your component
+  // for hand scrolling
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isDown, setIsDown] = useState(false);
   const [startX, setStartX] = useState(0);
