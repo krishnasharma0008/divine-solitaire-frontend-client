@@ -8,7 +8,7 @@ import TabHeader from "./tab-header";
 const ShapeOptions: Array<ShapeOption> = [
   {
     img: "/image7.png",
-    text: "ROUND",
+    text: "Round",
     value: "RND",
   },
   {

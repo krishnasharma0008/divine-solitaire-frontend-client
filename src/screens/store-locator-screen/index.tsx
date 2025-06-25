@@ -103,6 +103,7 @@ const StoreLocatorScreen: React.FC = () => {
   }, []);
 
   const handleClick = (codeno: string) => {
+    console.log("Store code:", codeno);
     router.push(`/store-detail/${codeno}`);
   };
 
@@ -161,7 +162,7 @@ const StoreLocatorScreen: React.FC = () => {
               </button>
             ))}
           </div>
-          <div className="flex flex-col justify-center items-center mt-4 md:mt-6 md:flex-row md:justify-center md:space-x-4 md:overflow-x-auto pt-3">
+          <div className="flex flex-col justify-center items-center mt-4 md:mt-6 md:flex-row md:justify-center md:space-x-2 pt-3">
             {selectedTab === 0 && (
               <div className="flex flex-col md:flex-row justify-between items-center self-stretch">
                 {/* First column */}
@@ -169,11 +170,11 @@ const StoreLocatorScreen: React.FC = () => {
                   <StoreLocatorMaps storesList={storeList} />
                 </div>
                 {/* Second column */}
-                <div className="flex flex-col w-full items-start md:p-2 rounded-lg md:w-1/2 pt-5 px-2 md:px-8 max-h-[500px] overflow-y-auto overflow-x-hidden">
+                <div className="flex flex-col w-full items-start md:p-2 rounded-lg md:w-1/2 pt-5 px-2 md:px-2 max-h-[500px] overflow-y-auto overflow-x-hidden">
                   {storeList.map((store) => (
                     <div key={store.id} className="mb-4">
                       <StoreView
-                        codeno={store.codeno}
+                        code={store.code}
                         name={store.name}
                         address={store.address}
                         contact_no={store.contact_no}
@@ -183,7 +184,7 @@ const StoreLocatorScreen: React.FC = () => {
                         country={store.country}
                         state={store.state}
                         city={store.city}
-                        onClick={() => handleClick(store.codeno)}
+                        onClick={() => handleClick(store.code)}
                       />
                     </div>
                   ))}
