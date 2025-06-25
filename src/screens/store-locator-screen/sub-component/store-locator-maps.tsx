@@ -63,7 +63,7 @@ const StoreLocatorMaps: React.FC<StoreLocatorMapsProps> = ({ storesList }) => {
             }}
             title={data.name}
             key={data.id}
-            onClick={() => handleClick(data.codeno)}
+            onClick={() => handleClick(data.code)}
             icon={{
               url: "/MapPin.png",
               anchor: new google.maps.Point(5, 58),
