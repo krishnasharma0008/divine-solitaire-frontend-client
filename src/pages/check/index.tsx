@@ -208,7 +208,7 @@ const Sample: React.FC = () => {
           <MenuTwitterIcon />{" "}
         </div>
 
-        <div className="mt-6 flex max-w-md gap-x-4">
+        <div className="mt-6 flex flex-col max-w-md gap-x-4">
           <NewsletterButton
             className=""
             id="email"
@@ -220,16 +220,19 @@ const Sample: React.FC = () => {
             onClick={clickHandler}
           />
         </div>
+        {"123"}
         <Carousel {...carouselProps} />
-
-        <Carousel
-          type="slide"
-          cardType="ImageCard"
-          className="border w-auto"
-          slidesPerView={1}
-          navigation={true}
-          items={making_iamges}
-        />
+        {"456"}
+        <div className="w-[200px]">
+          <Carousel
+            type="slide"
+            cardType="ImageCard"
+            className="border w-auto"
+            slidesPerView={1}
+            navigation={true}
+            items={making_iamges}
+          />
+        </div>
       </div>
       <div>
         <DiamondSelector diamondData={colorData} />

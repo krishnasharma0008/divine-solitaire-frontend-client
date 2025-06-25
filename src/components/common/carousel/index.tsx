@@ -34,7 +34,19 @@ const Carousel: React.FC<CarouselProps> = ({ items, cardType, ...props }) => {
   return (
     <Swiper modules={[Pagination, Navigation]} {...props}>
       {items.map((item, idx) => (
-        <SwiperSlide key={idx}>{<C {...item} />}</SwiperSlide>
+        <SwiperSlide key={idx}>
+          {
+            <C
+              {...item}
+              onClick={() => {
+                //console.log("Carousel item clicked");
+                if ("onClick" in item && typeof item.onClick === "function") {
+                  item.onClick(); // manually invoke the onClick
+                }
+              }}
+            />
+          }
+        </SwiperSlide>
       ))}
     </Swiper>
   );
