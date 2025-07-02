@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useCallback, useContext, useEffect, useState } from "react";
 
 import { deleteSolitairePrice, getSolitairePriceList } from "@/api/pricing";
-import { ArrowUpIcon, TrashIcon, EyeIcon, Button } from "@/components";
+import { ArrowUpIcon, TrashIcon, EyeIcon, Button, XMarkIcon } from "@/components";
 //import LoginModal from "@/components/modals/login-modal";
 import ValidationModal from "@/components/modals/validation-modal";
 import { NOTIFICATION_MESSAGES } from "@/config";
@@ -85,6 +85,11 @@ const SavedSolitares: React.FC<Props> = () => {
     push("/login");
     setIsDialogOpen(false); // Close dialog
   };
+
+    const handleLoginDialogClose = () => {
+    setIsDialogOpen(false); // Close dialog
+  };
+
 
   const openSelectedKyd = (data: StonePrice) => () => {
     setSelectedKyd(data);
@@ -211,8 +216,21 @@ const SavedSolitares: React.FC<Props> = () => {
       </div>
 
       {isDialogOpen && (
-        <div className="pointer-events-auto fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60">
-          <div className="relative max-w-[311px]  lg:max-w-[40%] sm:max-w-[90%] bg-white shadow-sm">
+        <div
+          className="pointer-events-auto fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60"
+          onClick={handleLoginDialogClose}
+        >
+          <div
+            className="relative max-w-[311px]  lg:max-w-[40%] sm:max-w-[90%] rounded-md bg-white shadow-sm"
+            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+          >
+            <div className=" flex shrink-0 font-[Montserrat] font-bold text-base justify-around align-middle py-4 text-[#000000]">
+              <XMarkIcon
+                className="h-5 w-5 absolute top-1.5 right-1.5"
+                onClick={handleLoginDialogClose}
+              />
+            </div>
+
             <div className="w-full relative border-t border-slate-200 p-4 ">
               <div className="flex justify-center items-center font-[Montserrat] text-sm leading-6">
                 <p className="font-medium">Please Login To Proceed</p>
@@ -225,7 +243,7 @@ const SavedSolitares: React.FC<Props> = () => {
                   className="rounded-md border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:bg-slate-100"
                   themeType="dark"
                 >
-                  Login In
+                  Log In
                 </Button>
               </div>
             </div>
