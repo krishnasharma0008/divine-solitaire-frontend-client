@@ -6,7 +6,8 @@ import {
 import { useState } from "react";
 
 import { MinusIcon, PlusIcon } from "@/components/icons";
-import { calculateGrowth, formatByCurrency } from "@/util";
+// import { calculateGrowth, formatByCurrency } from "@/util";
+import { formatByCurrency } from "@/util";
 
 interface VerifyTrackSummaryAccordionProps {
   title: {
@@ -56,7 +57,7 @@ const VerifyTrackSummaryAccordion: React.FC<
               )}
               {!title.isCoin && title.uid_status === "SOLD" && (
                 <div className="flex flex-row justify-between text-base font-normal">
-                  {title.currency_code === "INR" && (
+                  {/* {title.currency_code === "INR" && (
                     <div>
                       <div>Purchase Price:</div>
                       <div>
@@ -67,9 +68,9 @@ const VerifyTrackSummaryAccordion: React.FC<
                         )}
                       </div>
                     </div>
-                  )}
-                  <div>
-                    <div>Current Price:</div>
+                  )} */}
+                  <div className="flex flex-row space-x-2">
+                    <div>Current Price&nbsp;:&nbsp;</div>
                     <div>
                       {formatByCurrency(
                         title.currentPrice,
@@ -78,7 +79,7 @@ const VerifyTrackSummaryAccordion: React.FC<
                       )}
                     </div>
                   </div>
-                  {title.currency_code === "INR" && (
+                  {/* {title.currency_code === "INR" && (
                     <div>
                       <div>Growth :</div>
 
@@ -101,7 +102,7 @@ const VerifyTrackSummaryAccordion: React.FC<
                         )}
                       </div>
                     </div>
-                  )}
+                  )} */}
                 </div>
               )}
               {!title.isCoin && title.uid_status === "UNSOLD" && (

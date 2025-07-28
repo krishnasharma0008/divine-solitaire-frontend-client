@@ -17,6 +17,7 @@ import ImageGallery from "@/components/common/image-gallery";
 import { NOTIFICATION_MESSAGES } from "@/config";
 import LoaderContext from "@/context/loader-context";
 import NotificationContext from "@/context/notification-context";
+import { formatDate } from "@/hooks/use-dateformat";
 import { getToken, setRedirectionRoute } from "@/local-storage";
 import {
   isJewelleryProduct,
@@ -376,18 +377,18 @@ const VerifyTrackSummary: React.FC = () => {
               currency_code={productDetails.currency_code}
               className="mt-9"
             />
-            <div className="mt-4 text-base sm:text-lg px-4 font-medium">
+            <div className="mt-4 text-base sm:text-lg px-4 font-medium ml-4">
               {"Jeweller's Name:"}
             </div>
-            <div className="mt-2 text-sm sm:text-base px-4">
+            <div className="mt-2 text-sm sm:text-base px-4 ml-4">
               {productDetails.purchase_from}
             </div>
 
-            <div className="mt-4 text-base sm:text-lg px-4 font-medium">
+            <div className="mt-4 text-base sm:text-lg px-4 font-medium ml-4">
               {"Date Of Purchase:"}
             </div>
-            <div className="mt-2 text-sm sm:text-base px-4">
-              {productDetails.purchase_date}
+            <div className="mt-2 text-sm sm:text-base px-4 ml-4">
+              {formatDate(productDetails.purchase_date)}
             </div>
           </>
         )}
