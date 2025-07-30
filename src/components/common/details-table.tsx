@@ -1,3 +1,5 @@
+import { ArrowDownIcon, ArrowUpIcon } from "../icons";
+
 interface DetailsTableProps {
   rows: Array<Array<string | number>>;
   title?: string;
@@ -25,11 +27,13 @@ const DetailsTable: React.FC<DetailsTableProps> = ({
           <span>{title}</span>
           {growth && (
             <span
-              className={`float-right ${
-                growth > 0 ? "text-green" : "text-rose-600"
-              }`}
+              className="float-right flex items-center gap-1"
+              // className={`float-right ${
+              //   growth > 0 ? "text-green" : "text-yellow-600"
+              // }`}
             >
-              {growth.toFixed(2)} %
+              Growth: {growth.toFixed(2)} %{" "}
+              {growth > 0 ? <ArrowUpIcon /> : <ArrowDownIcon />}
             </span>
           )}
         </div>
