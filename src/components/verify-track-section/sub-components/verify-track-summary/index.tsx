@@ -185,9 +185,28 @@ const VerifyTrackSummary: React.FC = () => {
   };
 
   if (productDetails !== null && productDetails.product_type === "Diamond") {
+    //const design_no = "RND 0.36 H VS1";
+
+    const shape = productDetails.slt_details[0].shape;
+    console.log("Shape :", shape);
+    //if (shape === "RND") {
     productDetails.images = [
-      "/vtdia/carousel_1.png",
-      "/vtdia/carousel_2.png",
+      shape === "RND"
+        ? "/vtdia/carousel_1.png"
+        : shape === "PRN"
+        ? "/image8.png"
+        : shape === "OVL"
+        ? "/image9.png"
+        : shape === "PER"
+        ? "/image_9.png"
+        : shape === "RADQ"
+        ? "/radiant.png"
+        : shape === "CUSQ"
+        ? "/cushion.png"
+        : shape === "HRT"
+        ? "/heart.png"
+        : "",
+      shape === "RND" ? "/vtdia/carousel_2.png" : "",
       "/vtdia/carousel_3.png",
       "/vtdia/carousel_4.png",
     ];
