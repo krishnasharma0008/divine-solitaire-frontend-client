@@ -208,7 +208,7 @@ const VerifyTrackSummary: React.FC = () => {
         : "",
       shape === "RND" ? "/vtdia/carousel_2.png" : "",
       "/vtdia/carousel_3.png",
-      "/vtdia/carousel_4.png",
+      shape === "RND" ? "/vtdia/carousel_4.png" : "",
     ];
 
     //console.log(productDetails.images);
