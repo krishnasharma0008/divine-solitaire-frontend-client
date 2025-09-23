@@ -156,7 +156,7 @@ const CanvasSPI: React.FC<CanvasSPIProps> = ({
       ctx.fillText(
         data.Growth_Month_Percentage >= 0 ? "↑" : "↓",
         arrowX,
-        centerY
+        centerY - 10
       );
 
       // // Yearly Growth
@@ -197,7 +197,7 @@ const CanvasSPI: React.FC<CanvasSPIProps> = ({
       ctx.fillText(
         data.Growth_Year_Percentage >= 0 ? "↑" : "↓",
         arrowXy,
-        centerYy
+        centerYy - 10
       );
 
       if (onReady) {
