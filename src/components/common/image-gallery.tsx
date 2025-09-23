@@ -141,42 +141,44 @@ const ImageGallery: React.FC<{ images: Image[] }> = ({ images }) => {
 
       {/* Thumbnails */}
       <div className="flex space-x-3 mt-4">
-        {filteredImages.map((image: Image, index: number) => (
+        {filteredImages.map((image, index) => (
           <div
             key={image.uid}
             onClick={() => handleImageClick(index)}
-            className={`cursor-pointer ${
+            className={`relative cursor-pointer ${
               selectedImage === index
                 ? "border border-gray-400"
                 : "border border-gray-200"
-            }`}
+            } w-12 h-12`}
           >
-            {image.title.slice(0, 5) === "Image" ? (
-              /* eslint-disable-next-line @next/next/no-img-element */
-              <img
-                src={image.thumbnailUrl}
-                alt={image.title}
-                className="w-12 h-12 object-contain p-[3px]"
-                onError={(e) => {
-                  const imgElement = e.target as HTMLImageElement;
-                  imgElement.src = "/Empty.jpg";
-                }}
+            {image.url.includes("carousel_3.png") ? (
+              <CanvasImage
+                url={image.url}
+                uid={image.uid}
+                width={48}
+                height={48}
               />
+            ) : image.title.slice(0, 5) === "Image" ? (
+              <>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={image.thumbnailUrl}
+                  alt={image.title}
+                  className="w-full h-full object-contain p-[2px]"
+                  onError={(e) =>
+                    ((e.target as HTMLImageElement).src = "/Empty.jpg")
+                  }
+                />
+              </>
             ) : (
-              <div className="relative w-12 h-12">
+              <div className="relative w-full h-full">
                 <video
                   src={image.thumbnailUrl}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <button className="p-1 flex items-center justify-center">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src="/play.png"
-                      alt="play button"
-                      className="w-3 h-3"
-                    />
-                  </button>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/play.png" alt="play" className="w-3 h-3" />
                 </div>
               </div>
             )}
