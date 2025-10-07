@@ -205,6 +205,8 @@ const VerifyTrackSummary: React.FC = () => {
         ? "/cushion.png"
         : shape === "HRT"
         ? "/heart.png"
+        : shape === "MAQ"
+        ? "/marquise.jpg"
         : "",
       shape === "RND" ? "/vtdia/carousel_2.png" : "",
       "/vtdia/carousel_3.png",
