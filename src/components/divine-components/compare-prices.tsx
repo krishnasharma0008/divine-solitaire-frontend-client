@@ -36,7 +36,7 @@ interface ComparePricesProps {
 const CustomDatePicker = forwardRef(
   (
     { value, onClick }: { value: string; onClick: (value: string) => void },
-    ref: Ref<HTMLButtonElement>
+    ref: Ref<HTMLButtonElement>,
   ) => (
     <Button
       themeType="light"
@@ -49,7 +49,7 @@ const CustomDatePicker = forwardRef(
         <CalendarIcon />
       </span>
     </Button>
-  )
+  ),
 );
 
 const ComparePrices: React.FC<ComparePricesProps> = ({
@@ -105,19 +105,20 @@ const ComparePrices: React.FC<ComparePricesProps> = ({
                       {`${formatByCurrency(
                         parseInt(priceItem.price) * cts,
                         clocale,
-                        ccode
+                        ccode,
                       )}`}
                     </div>
                     <div className="flex justify-center items-center gap-1">
                       <div className="text-base font-normal font-montserrat leading-normal">
                         {/* {priceItem.growth}% */}Growth:&nbsp;
                         <span
-                          className={`text-base font-normal font-montserrat leading-normal 
-                  ${
-                    parseFloat(priceItem.growth) < 0
-                      ? "text-red-500"
-                      : "text-green-500"
-                  }`}
+                          className="text-base font-normal font-montserrat leading-normal"
+                          //         className={`text-base font-normal font-montserrat leading-normal
+                          // ${
+                          //   parseFloat(priceItem.growth) < 0
+                          //     ? "text-red-500"
+                          //     : "text-green-500"
+                          // }`}
                         >
                           {priceItem.growth}%
                         </span>

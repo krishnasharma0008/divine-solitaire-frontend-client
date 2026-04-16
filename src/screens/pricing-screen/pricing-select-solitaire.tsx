@@ -34,7 +34,7 @@ import { formatByCurrency } from "@/util";
 const CustomDatePicker = forwardRef(
   (
     { value, onClick }: { value: string; onClick: (value: string) => void },
-    ref: Ref<HTMLButtonElement>
+    ref: Ref<HTMLButtonElement>,
   ) => (
     <Button
       themeType="light"
@@ -44,7 +44,7 @@ const CustomDatePicker = forwardRef(
     >
       Select Month <CalendarIcon className="inline-block ml-3" />
     </Button>
-  )
+  ),
 );
 
 const SelectYourSolitaire: React.FC = () => {
@@ -239,7 +239,7 @@ const SelectYourSolitaire: React.FC = () => {
               `${formatByCurrency(
                 stonePrice * state.cts,
                 countrylocale,
-                countryode
+                countryode,
               )}`}
           </div>
         </div>
@@ -293,7 +293,7 @@ const SelectYourSolitaire: React.FC = () => {
                     `${formatByCurrency(
                       parseInt(price.price) * state.cts,
                       countrylocale,
-                      countryode
+                      countryode,
                     )}`}
                   ,
                   {/* ,
@@ -306,12 +306,13 @@ const SelectYourSolitaire: React.FC = () => {
                 <div className="text-base font-normal font-montserrat leading-normal">
                   Growth:
                   <span
-                    className={`text-base font-normal font-montserrat leading-normal 
-                  ${
-                    parseFloat(price.growth) < 0
-                      ? "text-red-500"
-                      : "text-green-500"
-                  }`}
+                    className="text-base font-normal font-montserrat leading-normal"
+                    //   className={`text-base font-normal font-montserrat leading-normal
+                    // ${
+                    //   parseFloat(price.growth) < 0
+                    //     ? "text-red-500"
+                    //     : "text-green-500"
+                    // }`}
                   >
                     {price.growth}%
                   </span>
