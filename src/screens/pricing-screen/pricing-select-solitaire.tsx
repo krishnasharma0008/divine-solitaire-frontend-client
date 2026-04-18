@@ -317,9 +317,15 @@ const SelectYourSolitaire: React.FC = () => {
                     {price.growth}%
                   </span>
                   {parseFloat(price.growth) < 0 ? (
-                    <ArrowDownIcon className="inline-block" />
+                    // <ArrowDownIcon className="inline-block" />
+                    <span className="inline-block">
+                      <ArrowDownIcon />
+                    </span>
                   ) : (
-                    <ArrowUpIcon className="inline-block" />
+                    //<ArrowUpIcon className="inline-block" />
+                    <span className="inline-block">
+                      <ArrowUpIcon />
+                    </span>
                   )}
                 </div>
                 <div></div>
