@@ -304,7 +304,7 @@ const SelectYourSolitaire: React.FC = () => {
                   )}`} */}
                 </div>
                 <div className="text-base font-normal font-montserrat leading-normal">
-                  Growth:
+                  Growth:&nbsp;
                   <span
                     className="text-base font-normal font-montserrat leading-normal"
                     //   className={`text-base font-normal font-montserrat leading-normal
@@ -318,12 +318,12 @@ const SelectYourSolitaire: React.FC = () => {
                   </span>
                   {parseFloat(price.growth) < 0 ? (
                     // <ArrowDownIcon className="inline-block" />
-                    <span className="inline-block">
+                    <span className="inline-block w-4 h-4 text-red-500">
                       <ArrowDownIcon />
                     </span>
                   ) : (
                     //<ArrowUpIcon className="inline-block" />
-                    <span className="inline-block">
+                    <span className="inline-block w-4 h-4 text-green-500">
                       <ArrowUpIcon />
                     </span>
                   )}

@@ -61,7 +61,7 @@ interface ComparedPrice {
 
 const comparePriceReducer = (
   state: ComparePrice,
-  action: ComparePriceAction
+  action: ComparePriceAction,
 ) => {
   switch (action.type) {
     case "ALL":
@@ -120,7 +120,7 @@ const useSolitairePrice = () => {
         : state.cts >= 0.1 && state.cts <= 0.17
         ? otherRoundColorsCarat
         : colors.filter(
-            (color) => color !== "I" && color !== "J" && color !== "K"
+            (color) => color !== "I" && color !== "J" && color !== "K",
           )
       : colors;
 
@@ -144,7 +144,7 @@ const useSolitairePrice = () => {
       : claritiesRoundCarat;
 
   const [comparedPrices, setComparedPrices] = useState<Array<ComparedPrice>>(
-    []
+    [],
   );
 
   // const getValidFancyShapeValue = (): Shape | FancyShape => {
@@ -235,7 +235,7 @@ const useSolitairePrice = () => {
 
   const getValidClarityValue = (
     value: number,
-    stype: string
+    stype: string,
   ): Clarity | ClarityRound | ClarityRoundcarat => {
     //console.log("check Clarity");
     if (stype === "regular") {
@@ -333,7 +333,7 @@ const useSolitairePrice = () => {
       try {
         const response = await getStonePrice(
           { shape, clarity, colour, cts },
-          countrycode as string
+          countrycode as string,
         );
         const { data } = response;
         //console.log("Price : ", data.data);
@@ -360,21 +360,21 @@ const useSolitairePrice = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state, countrycode]);
 
-  useEffect(() => {
-    if (state.shape === Shape.ROUND) {
-      dispatch({ type: "cts", payload: 0.18 as unknown as string });
-    } else {
-      dispatch({
-        type: "roundChange",
-        payload: {
-          colour: getValidColourValue(0.18),
-          clarity: getValidClarityValue(0.18, shapeType),
-          cts: 0.18,
-        } as ComparePrice,
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.shape]);
+  // useEffect(() => {
+  //   if (state.shape === Shape.ROUND) {
+  //     dispatch({ type: "cts", payload: 0.18 as unknown as string });
+  //   } else {
+  //     dispatch({
+  //       type: "roundChange",
+  //       payload: {
+  //         colour: getValidColourValue(0.18),
+  //         clarity: getValidClarityValue(0.18, shapeType),
+  //         cts: 0.18,
+  //       } as ComparePrice,
+  //     });
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [state.shape]);
 
   const getComparision = async (date: Date) => {
     // state.month = date.getMonth() + 1;
@@ -459,12 +459,29 @@ const useSolitairePrice = () => {
             //       ? getValidClarityValue(state.cts)
             //       : "IF"
             //     : "VVS",
-            cts: 0.18,
+            //cts: 0.18,
+            cts: state.cts,
           } as unknown as ComparePrice,
         });
       }
     }
-    dispatch({ type, payload: `${value}` });
+    //dispatch({ type, payload: `${value}` });
+    if (type === "shape") {
+      const defaultCarat = value === Shape.ROUND ? 0.18 : 0.1;
+
+      dispatch({
+        type: "roundChange",
+        payload: {
+          colour: getValidColourValue(defaultCarat),
+          clarity: getValidClarityValue(defaultCarat, shapeType),
+          cts: defaultCarat,
+        } as ComparePrice,
+      });
+
+      dispatch({ type: "shape", payload: `${value}` });
+    } else {
+      dispatch({ type, payload: `${value}` });
+    }
 
     changePastPriceHandler();
   };
@@ -488,7 +505,7 @@ const useSolitairePrice = () => {
           const date = new Date(entry.date);
           const addedComparison = await fetchComparisonData(date);
           collect_data.push(addedComparison);
-        })
+        }),
       );
 
       setComparedPrices(collect_data);
@@ -499,12 +516,12 @@ const useSolitairePrice = () => {
     if (shapeType === "regular") {
       if (isRound && (value < 0.1 || value > 2.99)) {
         setShowValidationMessage(
-          "The size should be between 0.10 and 2.99 carat"
+          "The size should be between 0.10 and 2.99 carat",
         );
         return value < 0.1 ? 0.1 : value < 0.18 ? 0.18 : 2.99;
       } else if (!isRound && (value < 0.1 || value > 1.23)) {
         setShowValidationMessage(
-          "The size should be between 0.10 and 1.23 carat"
+          "The size should be between 0.10 and 1.23 carat",
         );
         return value < 0.1 ? 0.1 : 1.23;
       }
@@ -565,7 +582,7 @@ const useSolitairePrice = () => {
           purity: state.clarity,
           shape: state.shape,
         },
-        countrycode as string
+        countrycode as string,
       );
       notify(NOTIFICATION_MESSAGES.SOLITAIRE_SAVED);
     } catch (err) {
@@ -576,7 +593,7 @@ const useSolitairePrice = () => {
 
   const removePrice = (idx: number) => {
     setComparedPrices((prices) =>
-      prices.filter((price, priceIdx) => idx !== priceIdx)
+      prices.filter((price, priceIdx) => idx !== priceIdx),
     );
   };
 

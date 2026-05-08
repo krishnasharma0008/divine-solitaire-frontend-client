@@ -20,7 +20,8 @@ const HomeScreenSolitaireCraftedCharm: React.FC = () => {
                       <div
                         className="image-container image-ready small-img mobile-view-image"
                         style={{
-                          backgroundImage: 'url("/rstuv7e1a1jpg.jpg")',
+                          backgroundImage:
+                            'url("/home-page/crafted-charm/craftsmanship.jpg")',
                           minHeight: "230px",
                         }}
                       ></div>
@@ -36,7 +37,8 @@ const HomeScreenSolitaireCraftedCharm: React.FC = () => {
                       <div
                         className="image-container image-ready small-img mobile-view-image"
                         style={{
-                          backgroundImage: 'url("/pqrst96feejpg.jpg")',
+                          backgroundImage:
+                            'url("/home-page/crafted-charm/jewellery-usps.jpg")',
                           minHeight: "230px",
                         }}
                       ></div>
@@ -52,7 +54,8 @@ const HomeScreenSolitaireCraftedCharm: React.FC = () => {
                       <div
                         className="image-container image-ready small-img mobile-view-image"
                         style={{
-                          backgroundImage: 'url("/stuvw9ae2fjpg.jpg")',
+                          backgroundImage:
+                            'url("/home-page/diamond-value/know-diamond-value.jpg")',
                           minHeight: "230px",
                         }}
                       ></div>

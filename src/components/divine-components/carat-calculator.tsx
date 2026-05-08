@@ -71,8 +71,12 @@ const CaratCalculator: React.FC<CaratCalculator> = ({
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     // if (/[0-9|.]/.test(e.target.value) || !e.target.value.length) {
-    if (/[0-9|.]/.test(e.target.value)) {
-      setCaratValue(e.target.value);
+    // if (/[0-9|.]/.test(e.target.value)) {
+    //   setCaratValue(e.target.value);
+    // }
+    const value = e.target.value;
+    if (value === "" || /^\d*\.?\d*$/.test(value)) {
+      setCaratValue(value);
     }
   };
 

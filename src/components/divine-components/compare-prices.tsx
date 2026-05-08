@@ -62,6 +62,7 @@ const ComparePrices: React.FC<ComparePricesProps> = ({
   ccode,
 }) => {
   const removePriceWrapper = (idx: number) => () => removePrice(idx);
+
   return (
     <div className={className}>
       <div className="flex flex-col gap-4">
@@ -126,9 +127,9 @@ const ComparePrices: React.FC<ComparePricesProps> = ({
                       <div>
                         {/* <ArrowUpIcon /> */}
                         {parseFloat(priceItem.growth) < 0 ? (
-                          <ArrowDownIcon />
+                          <ArrowDownIcon className="w-4 h-4 text-red-500" />
                         ) : (
-                          <ArrowUpIcon />
+                          <ArrowUpIcon className="w-4 h-4 text-green-500" />
                         )}
                       </div>
                     </div>

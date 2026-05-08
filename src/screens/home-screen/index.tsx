@@ -1,4 +1,4 @@
-import Image from "next/image";
+//import Image from "next/image";
 //import Link from "next/link";
 
 // import {
@@ -30,24 +30,7 @@ import {
 
 const HomepageScreen: React.FC = () => (
   <div className="">
-    {/* <Popup /> */}
-    {/* <div className="langingPage">
-      <Image
-        src="/homepage-banner.gif"
-        alt="Home Page"
-        height={696}
-        width={1440}
-        className="w-full object-cover h-custom z-10"
-        style={{ height: "calc(100vh - 170px)" }}
-      />
-      <div className="scroll_down w-full">
-        <div className="md:text-3xl flex flex-col gap-3 p-3 md:p-5">
-          <div>Superior quality solitaires with Hearts and Arrows</div>
-          <div>180+ Stores | Across 95+ Cities</div>
-        </div>
-      </div>
-    </div> */}
-    <div className="hidden lg:flex lg:flex-col lg:justify-between lg:relative lg:h-screen">
+    {/* <div className="hidden lg:flex lg:flex-col lg:justify-between lg:relative lg:h-screen">
       <div
         className="relative w-full"
         style={{ height: "calc(100vh - 100px)", marginTop: "-30px" }}
@@ -66,13 +49,13 @@ const HomepageScreen: React.FC = () => (
         </div>
       </div>
       <div className="absolute bottom-16 left-0 w-full bg-black text-white text-center md:text-3xl flex flex-col gap-3 p-3 md:p-5">
-        <div>Superior quality solitaires with Hearts and Arrows</div>
-        {/* <div>200+ Stores | Across 100+ Cities</div> */}
-        <div>200+ Stores in 100+ Cities</div>
+        <div>Superior quality solitaires with Hearts and Arrows</div> */}
+    {/* <div>200+ Stores | Across 100+ Cities</div> */}
+    {/* <div>200+ Stores in 100+ Cities</div>
       </div>
-    </div>
+    </div> */}
 
-    <div className="lg:hidden">
+    {/* <div className="lg:hidden">
       <div className="relative">
         <Image
           src="/homepage-banner.gif"
@@ -82,10 +65,54 @@ const HomepageScreen: React.FC = () => (
           className="w-full h-auto"
         />
         <div className="bg-black text-white text-center md:text-3xl flex flex-col gap-3 pb-3 md:pb-5">
-          <div>Superior quality solitaires with Hearts and Arrows</div>
-          {/* <div>180+ Stores | Across 95+ Cities</div> */}
-          <div>200+ Stores in 100+ Cities</div>
+          <div>Superior quality solitaires with Hearts and Arrows</div> */}
+    {/* <div>180+ Stores | Across 95+ Cities</div> */}
+    {/* <div>200+ Stores in 100+ Cities</div>
         </div>
+      </div>
+    </div> */}
+
+    {/* Desktop Banner */}
+    <div className="hidden lg:flex lg:flex-col lg:justify-between lg:relative lg:h-screen">
+      <div
+        className="relative w-full"
+        style={{ height: "100vh", marginTop: "-30px" }}
+      >
+        <div
+          className="absolute top-0 left-0 w-full"
+          style={{ height: "calc(100% - 50px)" }}
+        >
+          <video
+            src="/home-page/homepage-banner.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+      {/* <div className="absolute bottom-16 left-0 w-full bg-transparent text-white text-center md:text-3xl flex flex-col gap-3 p-3 md:p-5">
+        <div>Superior quality solitaires with Hearts and Arrows</div>
+        <div>200+ Stores in 100+ Cities</div>
+      </div> */}
+    </div>
+
+    {/* Mobile Banner */}
+    <div className="lg:hidden">
+      <div className="relative">
+        <video
+          src="/home-page/homepage-banner.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-auto"
+        />
+        {/* <div className="bg-black text-white text-center md:text-3xl flex flex-col gap-3 pb-3 md:pb-5">
+          <div>Superior quality solitaires with Hearts and Arrows</div>
+          <div>200+ Stores in 100+ Cities</div>
+        </div> */}
       </div>
     </div>
 

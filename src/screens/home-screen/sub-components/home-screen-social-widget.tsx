@@ -6,7 +6,7 @@ const HomeScreenSocialWidget: React.FC = () => {
           <div className="column gallery">
             <div>
               <img
-                src="/OPQRSf69f7jpeg.jpeg"
+                src="/home-page/social-widget/pendant-1.jpg"
                 title="@divinesolitaires"
                 alt="@divinesolitaires"
               />
@@ -17,7 +17,7 @@ const HomeScreenSocialWidget: React.FC = () => {
             </div>
             <div>
               <img
-                src="/opqrs14adbjpeg.jpeg"
+                src="/home-page/social-widget/rings-1.jpg"
                 title="@divinesolitaires"
                 alt="@divinesolitaires"
               />
@@ -28,7 +28,7 @@ const HomeScreenSocialWidget: React.FC = () => {
             </div>
             <div>
               <img
-                src="/OPQRS075b7jpeg.jpeg"
+                src="/home-page/social-widget/earrings-studs.jpg"
                 title="@divinesolitaires"
                 alt="@divinesolitaires"
               />
@@ -39,7 +39,7 @@ const HomeScreenSocialWidget: React.FC = () => {
             </div>
             <div>
               <img
-                src="/BCDEF09f77jpeg.jpeg"
+                src="/home-page/social-widget/earrings-flower.jpg"
                 title="@divinesolitaires"
                 alt="@divinesolitaires"
               />
@@ -68,7 +68,7 @@ const HomeScreenSocialWidget: React.FC = () => {
           <div className="column gallery">
             <div>
               <img
-                src="/STUVWf2dccjpg.jpg"
+                src="/home-page/social-widget/bracelet.jpg"
                 title="@divinesolitaires"
                 alt="@divinesolitaires"
               />
@@ -79,7 +79,7 @@ const HomeScreenSocialWidget: React.FC = () => {
             </div>
             <div>
               <img
-                src="/KLMNO362fajpeg.jpeg"
+                src="/home-page/social-widget/rings-couple.jpg"
                 title="@divinesolitaires"
                 alt="@divinesolitaires"
               />
@@ -90,7 +90,7 @@ const HomeScreenSocialWidget: React.FC = () => {
             </div>
             <div>
               <img
-                src="/BCDEFa1e53jpeg.jpeg"
+                src="/home-page/social-widget/pendant-2.jpg"
                 title="@divinesolitaires"
                 alt="@divinesolitaires"
               />
@@ -101,7 +101,7 @@ const HomeScreenSocialWidget: React.FC = () => {
             </div>
             <div>
               <img
-                src="/TUVWX74873jpeg.jpeg"
+                src="/home-page/social-widget/rings-2.jpg"
                 title="@divinesolitaires"
                 alt="@divinesolitaires"
               />
