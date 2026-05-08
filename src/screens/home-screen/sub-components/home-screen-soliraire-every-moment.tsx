@@ -1,6 +1,27 @@
 //import Image from "next/image";
 
 const HomeScreenSolitaireEveryMoment: React.FC = () => {
+  const features = [
+    { img: "/home-page/features/insurance.jpg", label: "Free Insurance" },
+    { img: "/home-page/features/certified.jpg", label: "100% Certified" },
+    {
+      img: "/home-page/features/diamond-upgrade.jpg",
+      label: "Lifetime Upgrade",
+    },
+    { img: "/home-page/features/hearts-arrows.jpg", label: "Hearts & Arrows" },
+    { img: "/home-page/features/buyback.jpg", label: "Lifetime Buyback" },
+    {
+      img: "/home-page/features/conflict-free.jpg",
+      label: "Conflict Free Diamonds",
+    },
+    { img: "/home-page/features/laser.jpg", label: "Laser Inscribed" },
+    {
+      img: "/home-page/features/light-performance.jpg",
+      label: "Light Performance",
+    },
+    { img: "/home-page/features/360-view.jpg", label: "360° Loupe View" },
+  ];
+
   return (
     <>
       <section className="block module-home">
@@ -68,44 +89,27 @@ const HomeScreenSolitaireEveryMoment: React.FC = () => {
       <section className="block bg-white features-wrap text-center">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-sm-12 col-xs-12 features-inner plr-xs-0  overflow-x-auto scrollbar-hidden">
+            <div className="col-sm-12 col-xs-12 features-inner plr-xs-0 overflow-x-auto scrollbar-hidden">
               <ul className="branding-slider">
-                <li className="branding-slider-block min-w-[125.56px]">
-                  <div className="bg-free_insu"></div>
-                  <p>Free Insurance</p>
-                </li>
-                <li className="branding-slider-block min-w-[125.56px]">
-                  <div className="bg-certi"></div>
-                  <p>100% Certified</p>
-                </li>
-                <li className="branding-slider-block min-w-[125.56px]">
-                  <div className="bg-lifetime_upgrade"></div>
-                  <p>Lifetime Upgrade</p>
-                </li>
-                <li className="branding-slider-block min-w-[125.56px]">
-                  <div className="bg-heart_arrow"></div>
-                  <p>Hearts &amp; Arrows</p>
-                </li>
-                <li className="branding-slider-block min-w-[125.56px]">
-                  <div className="bg-lifetime_buyback"></div>
-                  <p>Lifetime Buyback</p>
-                </li>
-                <li className="branding-slider-block min-w-[125.56px]">
-                  <div className="bg-conflict_free"></div>
-                  <p>Conflict Free Diamonds</p>
-                </li>
-                <li className="branding-slider-block min-w-[125.56px]">
-                  <div className="bg-laser"></div>
-                  <p>Laser Inscribed</p>
-                </li>
-                <li className="branding-slider-block min-w-[125.56px]">
-                  <div className="bg-light_perf"></div>
-                  <p>Light Performance</p>
-                </li>
-                <li className="branding-slider-block min-w-[125.56px]">
-                  <div className="bg-360_loupe_view"></div>
-                  <p>360° Loupe View</p>
-                </li>
+                {features.map(({ img, label }) => (
+                  <li
+                    key={label}
+                    className="branding-slider-block min-w-[125.56px]"
+                  >
+                    <div
+                      style={{
+                        backgroundImage: `url("${img}")`,
+                        backgroundSize: "contain",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center",
+                        width: "120px",
+                        height: "120px",
+                        margin: "0 auto",
+                      }}
+                    ></div>
+                    <p>{label}</p>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

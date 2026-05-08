@@ -504,66 +504,83 @@ span.link-primary {
   font-size: 16px;
 }
 
+/* Feature icons — new individual images */
+/* File mapping (copy to /public/features/):
+   insurance.jpg      ← Website_Banner_311_X_497_pxl_9.jpg  (shield)
+   certified.jpg      ← Website_Banner_311_X_497_pxl_3.jpg  (123 parameters)
+   upgrade.jpg        ← Website_Banner_311_X_497_pxl_7.jpg  (diamond icon)
+   hearts-arrows.jpg  ← Website_Banner_311_X_497_pxl_1.jpg  (hearts & arrows)
+   buyback.jpg        ← Website_Banner_311_X_497_pxl_9.jpg  (shield)
+   conflict-free.jpg  ← Website_Banner_311_X_497_pxl_2.jpg  (diamond with rays)
+   laser.jpg          ← Website_Banner_311_X_497_pxl_4.jpg  (magnifier diamond)
+   light-perf.jpg     ← Website_Banner_311_X_497_pxl_2.jpg  (diamond with rays)
+   360-view.jpg       ← Website_Banner_311_X_497_pxl_8.jpg  (phone + diamond)
+*/
+
 .bg-free_insu {
-  width: 60px;
-  height: 60px;
-  background: url(/feature-wrap.png) -90px -90px;
+  width: 90px;
+  height: 90px;
+  background: url(/home-page/features/insurance.jpg) center / contain no-repeat;
   margin: auto;
 }
 
 .bg-certi {
   width: 60px;
   height: 60px;
-  background: url(/feature-wrap.png) -10px -10px;
+  background: url(/home-page/features/certified.jpg) center / contain no-repeat;
   margin: auto;
 }
 
 .bg-lifetime_upgrade {
   width: 60px;
   height: 60px;
-  background: url(/feature-wrap.png) -90px -170px;
+  background: url(/home-page/features/diamond-upgrade.jpg) center / contain
+    no-repeat;
   margin: auto;
 }
 
 .bg-heart_arrow {
   width: 60px;
   height: 60px;
-  background: url(/feature-wrap.png) -170px -10px;
+  background: url(/home-page/features/hearts-arrows.jpg) center / contain
+    no-repeat;
   margin: auto;
 }
 
 .bg-lifetime_buyback {
   width: 60px;
   height: 60px;
-  background: url(/feature-wrap.png) -10px -170px;
+  background: url(/home-page/features/buyback.jpg) center / contain no-repeat;
   margin: auto;
 }
 
 .bg-conflict_free {
   width: 60px;
   height: 60px;
-  background: url(/feature-wrap.png) -10px -90px;
+  background: url(/home-page/features/conflict-free.jpg) center / contain
+    no-repeat;
   margin: auto;
 }
 
 .bg-laser {
   width: 60px;
   height: 60px;
-  background: url(/feature-wrap.png) -170px -90px;
+  background: url(/home-page/features/laser.jpg) center / contain no-repeat;
   margin: auto;
 }
 
 .bg-light_perf {
   width: 60px;
   height: 60px;
-  background: url(/feature-wrap.png) -170px -170px;
+  background: url(/home-page/features/light-performance.jpg) center / contain
+    no-repeat;
   margin: auto;
 }
 
 .bg-360_loupe_view {
   width: 60px;
   height: 60px;
-  background: url(/feature-wrap.png) -90px -10px;
+  background: url(/home-page/features/360-view.jpg) center / contain no-repeat;
   margin: auto;
 }
 
