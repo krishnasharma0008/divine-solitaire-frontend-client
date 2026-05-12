@@ -467,7 +467,8 @@ const useSolitairePrice = () => {
     }
     //dispatch({ type, payload: `${value}` });
     if (type === "shape") {
-      const defaultCarat = value === Shape.ROUND ? 0.18 : 0.1;
+      //const defaultCarat = value === Shape.ROUND ? 0.18 : 0.1;
+      const defaultCarat = 0.18;
 
       dispatch({
         type: "roundChange",
