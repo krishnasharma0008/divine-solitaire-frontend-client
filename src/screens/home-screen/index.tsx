@@ -73,33 +73,20 @@ const HomepageScreen: React.FC = () => (
     </div> */}
 
     {/* Desktop Banner */}
-    <div className="hidden lg:flex lg:flex-col lg:justify-between lg:relative lg:h-screen">
-      <div
-        className="relative w-full"
-        style={{ height: "100vh", marginTop: "-30px" }}
-      >
-        <div
-          className="absolute top-0 left-0 w-full"
-          style={{ height: "calc(100% - 50px)" }}
-        >
-          <video
-            src="/home-page/homepage-banner.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
-          />
-        </div>
-      </div>
-      {/* <div className="absolute bottom-16 left-0 w-full bg-transparent text-white text-center md:text-3xl flex flex-col gap-3 p-3 md:p-5">
-        <div>Superior quality solitaires with Hearts and Arrows</div>
-        <div>200+ Stores in 100+ Cities</div>
-      </div> */}
+    {/* Desktop Banner */}
+    <div className="hidden lg:flex lg:items-center lg:justify-center lg:h-screen bg-black">
+      <video
+        src="/home-page/homepage-banner.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="w-full h-full object-cover"
+      />
     </div>
 
     {/* Mobile Banner */}
-    <div className="lg:hidden">
+    <div className="lg:hidden" style={{ marginTop: "70px" }}>
       <div className="relative">
         <video
           src="/home-page/homepage-banner.mp4"

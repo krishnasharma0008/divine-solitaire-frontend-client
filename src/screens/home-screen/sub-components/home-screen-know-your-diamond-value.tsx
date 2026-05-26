@@ -16,7 +16,7 @@ const HomeScreenYourDiamondValue: React.FC = () => {
                     <a target="_blank" href="/pricing">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src="/home-page/diamond-value/diamond-care-mobile.jpg"
+                        src="/home-page/diamond-value/Website Banner 500 X 299 pxl.jpg"
                         title="Know diamond value"
                         alt="Know diamond value"
                       />
@@ -57,6 +57,18 @@ const HomeScreenYourDiamondValue: React.FC = () => {
           </div>
         </div>
       </section>
+      <div className="w-full mt-10 overflow-hidden">
+        <div className="hidden md:block relative  overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/home-page/Hearts & Arrows Web Banner 1030 X 270 pxl.jpeg"
+            title="Diamond Education - care"
+            alt="Diamond Education - care"
+            className="w-full h-auto object-cover"
+          />
+        </div>
+      </div>
+
       <div className="w-full mt-10 overflow-hidden">
         <div className="hidden md:block relative  overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}

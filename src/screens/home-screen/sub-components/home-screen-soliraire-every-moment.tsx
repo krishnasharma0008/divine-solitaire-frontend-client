@@ -2,86 +2,108 @@
 
 const HomeScreenSolitaireEveryMoment: React.FC = () => {
   const features = [
-    { img: "/home-page/features/insurance.jpg", label: "Free Insurance" },
-    { img: "/home-page/features/certified.jpg", label: "100% Certified" },
     {
-      img: "/home-page/features/diamond-upgrade.jpg",
-      label: "Lifetime Upgrade",
+      img: "/home-page/features/Website Banner 311 X 497 pxl 8.png",
+      label: "Hearts & Arrows",
     },
-    { img: "/home-page/features/hearts-arrows.jpg", label: "Hearts & Arrows" },
-    { img: "/home-page/features/buyback.jpg", label: "Lifetime Buyback" },
     {
-      img: "/home-page/features/conflict-free.jpg",
-      label: "Conflict Free Diamonds",
+      img: "/home-page/features/Website Banner 311 X 497 pxl 5.png",
+      label: "100% Certified",
     },
-    { img: "/home-page/features/laser.jpg", label: "Laser Inscribed" },
     {
-      img: "/home-page/features/light-performance.jpg",
+      img: "/home-page/features/Website Banner 311 X 497 pxl 6.png",
+      label: "Upgrade",
+    },
+    {
+      img: "/home-page/features/Website Banner 311 X 497 pxl 1.png",
+      label: "Buyback",
+    },
+
+    {
+      img: "/home-page/features/Website Banner 311 X 497 pxl 1.png",
+      label: "Free Insurance",
+    },
+    {
+      img: "/home-page/features/Website Banner 311 X 497 pxl 7.png",
       label: "Light Performance",
     },
-    { img: "/home-page/features/360-view.jpg", label: "360° Loupe View" },
+    {
+      img: "/home-page/features/Website Banner 311 X 497 pxl 4.png",
+      label: "Laser Inscribed",
+    },
+    {
+      img: "/home-page/features/Website Banner 311 X 497 pxl 2.png",
+      label: "360° Loupe View",
+    },
+    {
+      img: "/home-page/features/Website Banner 311 X 497 pxl 7.png",
+      label: "Conflict Free Diamonds",
+    },
   ];
 
   return (
     <>
-      <section className="block module-home">
-        <div className="featured-products waypoint-active" data-waypoint="once">
-          <header>
-            <h1 className="raise main-title"> Solitaires for every moment </h1>
-            <p className="body-large raise">Add brilliance to each day</p>
-          </header>
-          <div className="container">
-            <div className="row">
-              <div className="flex branding-slider">
-                <div className="col col-sm-4 classic branding-slider-block">
-                  <div className="with-link-primary">
-                    <div className="background-container">
-                      <div
-                        className="image-container image-ready small-img mobile-view-image"
-                        style={{
-                          backgroundImage: 'url("/UVWXY1abb6jpg.jpg")',
-                          minHeight: "230px",
-                        }}
-                      ></div>
-                    </div>
-                    <span className="link-primary animate-out">
-                      Superior Quality
-                    </span>
-                  </div>
-                </div>
-                <div className="col col-sm-4 classic branding-slider-block">
-                  <div className="with-link-primary">
-                    <div className="background-container">
-                      <div
-                        className="image-container image-ready small-img mobile-view-image"
-                        style={{
-                          backgroundImage: 'url("/wxyzA5c076jpg.jpg")',
-                          minHeight: "230px",
-                        }}
-                      ></div>
-                    </div>
-                    <span className="link-primary animate-out">
-                      Transparent Pricing
-                    </span>
-                  </div>
-                </div>
-                <div className="col col-sm-4 classic branding-slider-block">
-                  <div className="with-link-primary">
-                    <div className="background-container">
-                      <div
-                        className="image-container image-ready small-img mobile-view-image"
-                        style={{
-                          backgroundImage: 'url("/MNOPQ3e663jpg.jpg")',
-                          minHeight: "230px",
-                        }}
-                      ></div>
-                    </div>
-                    <span className="link-primary animate-out">
-                      Diamond Journey
-                    </span>
-                  </div>
-                </div>
+      <section className="py-16 lg:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          {/* Heading */}
+          <div className="text-center mb-12">
+            <h1 className="text-3xl lg:text-5xl font-light tracking-wide text-black">
+              Solitaires for every moment
+            </h1>
+
+            <p className="mt-4 text-gray-600 text-base lg:text-lg">
+              Add brilliance to each day
+            </p>
+          </div>
+
+          {/* Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Card 1 */}
+            <div className="group cursor-pointer">
+              <div className="overflow-hidden rounded-sm">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/home-page/features/Website Banner 427 X 342 pxl_1.jpg"
+                  alt="Superior Quality"
+                  className="w-full h-[260px] lg:h-[360px] object-cover transition duration-700 group-hover:scale-105"
+                />
               </div>
+
+              <p className="mt-4 text-center text-lg tracking-wide">
+                Superior Quality
+              </p>
+            </div>
+
+            {/* Card 2 */}
+            <div className="group cursor-pointer">
+              <div className="overflow-hidden rounded-sm">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/home-page/features/Website Banner 427 X 342 pxl_2.jpg"
+                  alt="Transparent Pricing"
+                  className="w-full h-[260px] lg:h-[360px] object-cover transition duration-700 group-hover:scale-105"
+                />
+              </div>
+
+              <p className="mt-4 text-center text-lg tracking-wide">
+                Transparent Pricing
+              </p>
+            </div>
+
+            {/* Card 3 */}
+            <div className="group cursor-pointer">
+              <div className="overflow-hidden rounded-sm">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/home-page/features/Website Banner 427 X 342 pxl_4.jpg"
+                  alt="Diamond Journey"
+                  className="w-full h-[260px] lg:h-[360px] object-cover transition duration-700 group-hover:scale-105"
+                />
+              </div>
+
+              <p className="mt-4 text-center text-lg tracking-wide">
+                Diamond Journey
+              </p>
             </div>
           </div>
         </div>
