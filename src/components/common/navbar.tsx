@@ -141,11 +141,10 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
   };
 
   return (
-    <div className="w-full flex justify-between items-center text-white h-[50px] lg:h-[70px] top-0">
-      <div className="lg:w-4/12 my-auto py-">
-        <div className="w-10">
-          <Sidebar {...sidebarProps} pageName={pageName} />
-        </div>
+    <div className="fixed top-0 left-0 z-50 w-full h-[72px] lg:h-[82px] bg-black flex items-center justify-between px-4 lg:px-8">
+      {/* Left */}
+      <div className="w-[80px] lg:w-[180px]">
+        <Sidebar {...sidebarProps} pageName={pageName} />
       </div>
 
       {/* Centered logo */}
@@ -164,6 +163,19 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
           </div>
         </Link>
       </div>
+      {/* Center Logo */}
+      {/* <div className="absolute left-1/2 -translate-x-1/2">
+        <Link href="/">
+          <Image
+            src="/logo/Divine Logo-04.png"
+            alt="Divine Solitaires"
+            width={220}
+            height={90}
+            priority
+            className="w-[140px] lg:w-[190px] h-auto object-contain"
+          />
+        </Link>
+      </div> */}
 
       <div className="lg:w-4/12 flex justify-end gap-2 items-center">
         {/* <div className="hidden relative lg:block w-24 h-10 rounded"> */}
