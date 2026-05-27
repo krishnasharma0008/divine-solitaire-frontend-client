@@ -58,7 +58,19 @@ const HomeScreenYourDiamondValue: React.FC = () => {
         </div>
       </section>
       <div className="w-full mt-10 overflow-hidden">
-        <div className="hidden md:block relative  overflow-hidden">
+        {/* Desktop */}
+        <div className="hidden md:block relative overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/home-page/Hearts & Arrows Web Banner 1030 X 270 pxl.jpeg"
+            title="Diamond Education - care"
+            alt="Diamond Education - care"
+            className="w-full h-auto object-cover"
+          />
+        </div>
+
+        {/* Mobile */}
+        <div className="block md:hidden relative overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/home-page/Hearts & Arrows Web Banner 1030 X 270 pxl.jpeg"
