@@ -148,12 +148,13 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
       </div>
 
       {/* Centered logo */}
-      <div className="flex-grow flex justify-center items-center">
+      {/* <div className="flex-grow flex justify-center items-center">
         <Link href="/">
           <div className="flex flex-row justify-center items-center">
             <Image
               //src="/logo/DS LOGO 2.25IN.jpg"
-              src="/logo/new_logo.png"
+              //src="/logo/new_logo.png"
+              src="/logo/Divine Logo-04.png"
               alt="Company Logo"
               width={869}
               height={567}
@@ -162,9 +163,9 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
             />
           </div>
         </Link>
-      </div>
+      </div> */}
       {/* Center Logo */}
-      {/* <div className="absolute left-1/2 -translate-x-1/2">
+      <div className="absolute left-1/2 -translate-x-1/2">
         <Link href="/">
           <Image
             src="/logo/Divine Logo-04.png"
@@ -172,10 +173,10 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
             width={220}
             height={90}
             priority
-            className="w-[140px] lg:w-[190px] h-auto object-contain"
+            className="w-[100px] lg:w-[100px] h-auto object-contain"
           />
         </Link>
-      </div> */}
+      </div>
 
       <div className="lg:w-4/12 flex justify-end gap-2 items-center">
         {/* <div className="hidden relative lg:block w-24 h-10 rounded"> */}
