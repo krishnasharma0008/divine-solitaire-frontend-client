@@ -65,8 +65,9 @@ const Sidebar: React.FC<SidebarProps> = ({ items, pageName }) => {
           <div className="w-full flex items-center justify-center relative h-20 overflow-hidden">
             <Link href="/">
               <Image
-                src="/logo/new_logo.png"
+                //src="/logo/new_logo.png"
                 //src="/logo/DS LOGO 2.25IN.jpg"
+                src="/logo/Divine Logo-04.png"
                 alt="Divine Logo"
                 // width="102"
                 // height="64"
