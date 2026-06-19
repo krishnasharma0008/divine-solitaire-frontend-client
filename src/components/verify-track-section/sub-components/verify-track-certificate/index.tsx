@@ -3,8 +3,8 @@ import { useContext } from "react";
 
 import {
   CertificateTextIcon,
-  DownloadIcon,
-  LogoIcon,
+  //DownloadIcon,
+  //LogoIcon,
 } from "@/components/icons";
 import { VerifyTrackByUid } from "@/interface";
 import {
@@ -123,7 +123,7 @@ const VerifyTrackCertificate: React.FC = () => {
           {
             label: `${hasQuantity ? "Pcs | Carat" : ""}`,
             value: `${hasQuantity ? `${sd_pcs} pcs | ${sd_cts} Cts.` : ""}`,
-          }
+          },
         );
   }
 
@@ -140,9 +140,17 @@ const VerifyTrackCertificate: React.FC = () => {
         className={`border-2 sm:border border-black w-full p-2 lg:px-14 sm:pt-12 lg:pb-36 text-center`}
       >
         <div dir="rtl">
-          <DownloadIcon className="relative top-0 start-0" />
+          {/* <DownloadIcon className="relative top-0 start-0" /> */}
         </div>
-        <LogoIcon className="m-auto" />
+        {/* <LogoIcon className="m-auto" /> */}
+        <Image
+          src="/logo/Divine Logo-01.png"
+          alt="Divine Solitaires"
+          width={116}
+          height={72}
+          priority
+          className="mx-auto block w-[100px] h-auto object-contain"
+        />
         <CertificateTextIcon className="m-auto mt sm:mt-8 w-60 sm:w-auto" />
         <ContentTable
           title={isSold ? "Divine Mount" : "Divine Solitaire Summary"}

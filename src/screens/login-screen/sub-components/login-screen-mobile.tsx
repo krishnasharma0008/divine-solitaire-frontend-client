@@ -25,43 +25,72 @@ const LoginScreenMobileInput: React.FC = ({}) => {
   const { push } = useRouter();
 
   const onClickHandler = async () => {
+    const value = loginType.trim();
+    const isEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value);
+    const isMobile = /^\d{10}$/.test(value);
+
+    if (!isEmail && !isMobile) {
+      notifyErr("Invalid E-mail or Mobile Number");
+      return;
+    }
+
     showLoader();
     try {
-      if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(loginType)) {
-        setMobileNumberInStorage(loginType);
-        // It's an email
-        const res = await loginGetOTP(loginType);
-        console.log("Message :", res.data.sucess);
-        if (res.data.sucess) {
-          push({ pathname: "/login/verify" });
-        } else {
-          setRedirectionRoute(window.location.pathname);
-          push({ pathname: "/registration-form" });
-        }
-        //push({ pathname: "/login/verify" });
-      } else if (/^\d+$/.test(loginType) && loginType.length === 10) {
-        setMobileNumberInStorage(loginType);
-
-        const res = await loginGetOTP(loginType);
-        console.log("Sucess :", res.data.sucess);
-        if (res.data.sucess) {
-          push({ pathname: "/login/verify" });
-        } else {
-          setRedirectionRoute(window.location.pathname);
-          push({ pathname: "/registration-form" });
-        }
-        //push({ pathname: "/login/verify" });
+      setMobileNumberInStorage(value);
+      const res = await loginGetOTP(value);
+      console.log("Sucess :", res.data.sucess);
+      if (res?.data?.sucess) {
+        push({ pathname: "/login/verify" });
       } else {
-        // Invalid input, display an error message
-        notifyErr("Invalid E-mail or Mobile Number");
+        setRedirectionRoute(window.location.pathname);
+        push({ pathname: "/registration-form" });
       }
-      // Continue with the rest of your logic
     } catch (err) {
       console.log("LoginScreenMobile", err);
       notifyErr(NOTIFICATION_MESSAGES.SOMETHING_WRONG);
+    } finally {
+      hideLoader();
     }
-    hideLoader();
   };
+
+  // const onClickHandler = async () => {
+  //   showLoader();
+  //   try {
+  //     if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(loginType)) {
+  //       setMobileNumberInStorage(loginType);
+  //       // It's an email
+  //       const res = await loginGetOTP(loginType);
+  //       console.log("Message :", res.data.sucess);
+  //       if (res.data.sucess) {
+  //         push({ pathname: "/login/verify" });
+  //       } else {
+  //         setRedirectionRoute(window.location.pathname);
+  //         push({ pathname: "/registration-form" });
+  //       }
+  //       //push({ pathname: "/login/verify" });
+  //     } else if (/^\d+$/.test(loginType) && loginType.length === 10) {
+  //       setMobileNumberInStorage(loginType);
+
+  //       const res = await loginGetOTP(loginType);
+  //       console.log("Sucess :", res.data.sucess);
+  //       if (res.data.sucess) {
+  //         push({ pathname: "/login/verify" });
+  //       } else {
+  //         setRedirectionRoute(window.location.pathname);
+  //         push({ pathname: "/registration-form" });
+  //       }
+  //       //push({ pathname: "/login/verify" });
+  //     } else {
+  //       // Invalid input, display an error message
+  //       notifyErr("Invalid E-mail or Mobile Number");
+  //     }
+  //     // Continue with the rest of your logic
+  //   } catch (err) {
+  //     console.log("LoginScreenMobile", err);
+  //     notifyErr(NOTIFICATION_MESSAGES.SOMETHING_WRONG);
+  //   }
+  //   hideLoader();
+  // };
 
   // const onClickHandler = async () => {
   //   showLoader();
