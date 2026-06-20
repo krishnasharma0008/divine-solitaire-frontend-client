@@ -16,6 +16,7 @@ const loginGetOTPApi = (
 ): Promise<AxiosResponse<LoginResponse>> =>
   callWebService(loginGetOTPEndpoint.url, {
     method: loginGetOTPEndpoint.method,
+    timeout: 20000,
     data: {
       contactno,
     },

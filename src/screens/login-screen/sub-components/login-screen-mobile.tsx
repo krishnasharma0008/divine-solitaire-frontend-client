@@ -37,8 +37,13 @@ const LoginScreenMobileInput: React.FC = ({}) => {
     showLoader();
     try {
       setMobileNumberInStorage(value);
+      const start = Date.now(); // ← start timer
+
       const res = await loginGetOTP(value);
-      console.log("Sucess :", res.data.sucess);
+      const end = Date.now();
+      console.log("2. After API call, time taken:", end - start, "ms");
+
+      //console.log("Sucess :", res.data.sucess);
       if (res?.data?.sucess) {
         push({ pathname: "/login/verify" });
       } else {
