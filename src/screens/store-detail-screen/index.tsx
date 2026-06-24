@@ -56,7 +56,7 @@ const initialStateForm: AppointmentForm = {
 
 const AppointmentFormReducer = (
   state: AppointmentForm,
-  action: AppointmentFormAction
+  action: AppointmentFormAction,
 ) => {
   if (action.type === "ALL") {
     return {
@@ -70,7 +70,7 @@ const AppointmentFormReducer = (
 const StoreDetailScreen: React.FC = () => {
   const [state, dispatch] = useReducer(
     AppointmentFormReducer,
-    initialStateForm
+    initialStateForm,
   );
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
@@ -128,7 +128,7 @@ const StoreDetailScreen: React.FC = () => {
         },
         function (error) {
           console.error("Error getting location:", error);
-        }
+        },
       );
     } else {
       console.error("Geolocation is not supported by this browser.");
@@ -137,7 +137,7 @@ const StoreDetailScreen: React.FC = () => {
 
   const onChangeHandlerCreator = (
     fieldname: string,
-    type?: "integer" | "text"
+    type?: "integer" | "text",
   ) => {
     return (e: React.ChangeEvent<HTMLInputElement>) => {
       if (type === "integer" && isNaN(parseInt(e.target.value))) {
@@ -255,7 +255,7 @@ const StoreDetailScreen: React.FC = () => {
     : [];
 
   const images: { src: string; alt: string }[] = (
-    rawImages.length > 0 ? rawImages : ["/logo/new_logo.png"]
+    rawImages.length > 0 ? rawImages : ["/logo/Divine Logo-04.png"]
   ).map((img, index) => ({
     src: img,
     alt: `Store Image ${index + 1}`,

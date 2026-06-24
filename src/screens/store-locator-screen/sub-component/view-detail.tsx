@@ -52,7 +52,7 @@ const initialState: AppointmentForm = {
 
 const AppointmentFormReducer = (
   state: AppointmentForm,
-  action: AppointmentFormAction
+  action: AppointmentFormAction,
 ) => {
   if (action.type === "ALL") {
     return {
@@ -103,7 +103,7 @@ const StoreView: React.FC<StoreViewProps> = ({
         },
         function (error) {
           console.error("Error getting location:", error);
-        }
+        },
       );
     } else {
       console.error("Geolocation is not supported by this browser.");
@@ -112,7 +112,7 @@ const StoreView: React.FC<StoreViewProps> = ({
 
   const onChangeHandlerCreator = (
     fieldname: string,
-    type?: "integer" | "text"
+    type?: "integer" | "text",
   ) => {
     return (e: React.ChangeEvent<HTMLInputElement>) => {
       if (type === "integer" && isNaN(parseInt(e.target.value))) {
@@ -151,7 +151,7 @@ const StoreView: React.FC<StoreViewProps> = ({
         dispatch({
           type: fieldname,
           payload: new Date(
-            dayjs.utc(e.target.value).format(DateFormat)
+            dayjs.utc(e.target.value).format(DateFormat),
           ).toISOString(),
         });
       } else {
@@ -222,7 +222,7 @@ const StoreView: React.FC<StoreViewProps> = ({
     : [];
 
   const images: { src: string; alt: string }[] = (
-    rawImages.length > 0 ? rawImages : ["/logo/new_logo.png"]
+    rawImages.length > 0 ? rawImages : ["/logo/Divine Logo-04.png"]
   ).map((img, index) => ({
     src: img,
     alt: `Store Image ${index + 1}`,
@@ -347,7 +347,7 @@ const StoreView: React.FC<StoreViewProps> = ({
                   <Image
                     src={
                       store_image1 === ""
-                        ? "/logo/new_logo.png"
+                        ? "/logo/Divine Logo-04.png"
                         : `/${store_image1}`
                     }
                     alt={`${name} Store`}
