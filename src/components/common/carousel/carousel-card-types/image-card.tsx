@@ -17,7 +17,7 @@ const ImageCard: React.FC<ImageCardProps> = ({ src, alt, onClick }) => (
         className="center md:w-auto w-60 max-h-52 md:max-h-auto md:h-full m-auto"
         onError={(e) => {
           const imgElement = e.target as HTMLImageElement;
-          imgElement.src = "/logo/new_logo.png"; // Replace with your placeholder image URL
+          imgElement.src = "/logo/Divine Logo-04.png"; // Replace with your placeholder image URL
           imgElement.className = "w-1/2 h-1/2 hover:pointer bg-black p-2";
         }}
       />

@@ -63,7 +63,7 @@ const Sidebar: React.FC<SidebarProps> = ({ items, pageName }) => {
         <div className="mb-2 flex items-center justify-between p-4 bg-black">
           {/* <div className="w-full flex items-center justify-center"> */}
           <div className="w-full flex items-center justify-center relative h-20 overflow-hidden">
-            <Link href="/">
+            <Link href="/" onClick={closeDrawer}>
               <Image
                 //src="/logo/new_logo.png"
                 //src="/logo/DS LOGO 2.25IN.jpg"
