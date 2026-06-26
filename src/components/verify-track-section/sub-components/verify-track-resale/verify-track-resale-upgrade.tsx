@@ -110,7 +110,7 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
             {`${formatByCurrency(
               productDetails.current_price,
               productDetails.currency_locale,
-              productDetails.currency_code
+              productDetails.currency_code,
             )}`}
           </span>
         </div>
@@ -131,7 +131,7 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
               {formatByCurrency(
                 minValue, // + productDetails.current_price,
                 productDetails.currency_locale,
-                productDetails.currency_code
+                productDetails.currency_code,
               )}
             </span>
           </div>
@@ -147,12 +147,12 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
               {formatByCurrency(
                 minValue, // + productDetails.current_price,
                 productDetails.currency_locale,
-                productDetails.currency_code
+                productDetails.currency_code,
               )}
             </span>
           </div>
         </div>
-        <div className="px-4 mt-7 text-center   text-base">
+        {/* <div className="px-4 mt-7 text-center   text-base">
           <div className="bg-black border rounded-md">
             <div className="text-white text-xl leading-6 pt-2.5 pb-2.5 font-medium tracking-wide">
               {`${formatByCurrency(
@@ -167,7 +167,26 @@ const VerifyTrackResaleUpgrade: React.FC<VerifyTrackResaleUpgradeProps> = ({
               Approximate Value Payable:
             </div>
           </div>
-        </div>
+        </div> */}
+        {Number(productAmt) >= minValue && (
+          <div className="px-4 mt-7 text-center text-base">
+            <div className="bg-black border rounded-md">
+              <div className="text-white text-xl leading-6 pt-2.5 pb-2.5 font-medium tracking-wide">
+                {formatByCurrency(
+                  Math.max(
+                    0,
+                    Number(productAmt) - productDetails.current_price,
+                  ),
+                  productDetails.currency_locale,
+                  productDetails.currency_code,
+                )}
+              </div>
+              <div className="m-2.5 leading-5 text-white">
+                Approximate Value Payable:
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       {/* <div className="px-4 w-full flex mt-6 ">
         <Checkbox
