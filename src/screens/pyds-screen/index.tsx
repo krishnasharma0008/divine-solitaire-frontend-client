@@ -1281,7 +1281,7 @@ export default function PydsLanding() {
         </button>
       </section>
 
-      <footer>
+      {/*<footer>
         <div className={cx("logo", "on-dark")}>
           <svg
             className={cx("trinity")}
@@ -1321,7 +1321,7 @@ export default function PydsLanding() {
           Details are indicative and subject to the full scheme agreement
           provided at enrolment.
         </p>
-      </footer>
+      </footer>*/}
 
       {/* ==================== ENQUIRY MODAL ==================== */}
       <div
