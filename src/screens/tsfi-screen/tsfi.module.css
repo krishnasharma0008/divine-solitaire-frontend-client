@@ -1,0 +1,445 @@
+.page {
+  /* Brand palette (Divine Solitaires brand book) */
+  --brand: #b3c7c4;
+  --brand-tint: #edf2f0;
+  --ink: #0d3530;
+  --ink-soft: #33534e;
+  --muted: rgba(13, 53, 48, 0.55);
+  --gold: #986422;
+  --gold-light: #d8b152;
+  --gold-grad: linear-gradient(135deg, #d8b152 0%, #b5852f 55%, #986422 100%);
+  --line: rgba(13, 53, 48, 0.12);
+  --white: #ffffff;
+  --logo-black: #1d1d1b;
+  --tr-red: #e1313f;
+  --tr-blue: #65acdd;
+  --tr-yellow: #f7b700;
+}
+
+.page {
+  box-sizing: border-box;
+}
+.page * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ============ MOBILE-FIRST BASE ============ */
+.page {
+  font-family: var(--font-montserrat), "Montserrat", sans-serif;
+  background: var(--white);
+  color: var(--ink);
+  line-height: 1.7;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.002em;
+}
+.page h1,
+.page h2,
+.page h3,
+.page h4 {
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink);
+}
+.wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  background: var(--ink);
+  color: #fff;
+  text-decoration: none;
+  font-family: inherit;
+  padding: 13px 30px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 0.02em;
+  border: 1.5px solid var(--ink);
+  transition: 0.2s;
+  cursor: pointer;
+}
+.btn:hover {
+  background: var(--gold-grad);
+  border-color: transparent;
+  color: var(--ink);
+}
+.btn.gold {
+  background: var(--gold-grad);
+  border-color: transparent;
+  color: var(--ink);
+}
+.btn.gold:hover {
+  background: var(--ink);
+  color: #fff;
+}
+.btn.center {
+  display: block;
+  width: max-content;
+  margin: 26px auto 0;
+}
+
+/* ---------- Sections ---------- */
+.page section {
+  padding: 40px 0;
+}
+.tint {
+  background: var(--brand-tint);
+}
+.section-head {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 24px;
+}
+.section-head h2 {
+  font-size: clamp(1.6rem, 6vw, 2.3rem);
+  margin: 8px 0;
+}
+.section-head p {
+  color: var(--muted);
+  font-size: 1rem;
+}
+.section-head.left {
+  text-align: left;
+  margin-left: 0;
+}
+.section-head.left .btn {
+  margin-top: 18px;
+}
+
+/* ---------- Hero banner ---------- */
+.hero {
+  padding: 0;
+}
+.hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- Testimonials (native horizontal scroll strip) ---------- */
+.vstrip {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 4px 20px 24px;
+  scrollbar-width: none;
+}
+.vstrip::-webkit-scrollbar {
+  display: none;
+}
+.vstrip > * {
+  scroll-snap-align: center;
+  flex: 0 0 auto;
+}
+.vid-card {
+  width: 230px;
+  aspect-ratio: 9/16;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 40px -26px rgba(13, 53, 48, 0.45);
+}
+.vid-card video,
+.vid-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* ---------- Rewards gift marquee (pure CSS) ---------- */
+.rewards {
+  background: var(--ink);
+  color: #eaf1ef;
+  overflow: hidden;
+}
+.rewards .section-head h2 {
+  color: #fff;
+}
+.rewards .section-head p {
+  color: rgba(255, 255, 255, 0.62);
+}
+.rewards .eyebrow {
+  color: var(--gold-light);
+}
+.marquee-wrap {
+  display: grid;
+  gap: 16px;
+  padding: 8px 0;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+.marquee {
+  overflow: hidden;
+}
+.marquee-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: mq 40s linear infinite;
+  will-change: transform;
+}
+.marquee.rev .marquee-track {
+  animation-name: mqr;
+}
+@keyframes mq {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes mqr {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.gift-card {
+  flex: 0 0 auto;
+  width: 150px;
+  height: 150px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+}
+.gift-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---------- How it works ---------- */
+.hiw-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  align-items: start;
+}
+.steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+.solitaire-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.solitaire-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.sc-content {
+  padding: 22px;
+  position: relative;
+}
+.sc-num {
+  font-family: var(--font-cormorant), serif;
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.sc-content h3 {
+  font-size: 1.12rem;
+  margin-bottom: 8px;
+}
+.sc-content p {
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+/* ---------- Weekly draw (stacked cards) ---------- */
+.draw-grid {
+  display: grid;
+  gap: 22px;
+}
+.draw-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.draw-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.draw-content {
+  padding: 24px 22px;
+}
+.draw-content h4 {
+  font-size: 1.35rem;
+  margin-bottom: 12px;
+}
+.draw-date {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.draw-date p {
+  font-weight: 600;
+  color: var(--gold);
+}
+.countdown {
+  display: flex;
+  gap: 6px;
+  font-variant-numeric: tabular-nums;
+}
+.countdown span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.countdown b {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  padding: 7px 6px;
+  background: var(--brand-tint);
+  border-radius: 8px;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1rem;
+}
+.draw-feature {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+.draw-feature li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+.draw-feature b {
+  color: var(--ink);
+  font-weight: 700;
+  margin-right: 2px;
+}
+.draw-feature .icon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-tint);
+  border-radius: 8px;
+}
+.draw-feature .icon img {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---------- Scroll reveal (replaces AOS) ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.show {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============ TABLET (min-width:640px) ============ */
+@media (min-width: 640px) {
+  .wrap {
+    padding: 0 24px;
+  }
+  .page section {
+    padding: 52px 0;
+  }
+  .section-head {
+    margin-bottom: 30px;
+  }
+  .steps {
+    grid-template-columns: 1fr 1fr;
+  }
+  .draw-card {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+
+/* ============ DESKTOP (min-width:1000px) ============ */
+@media (min-width: 1000px) {
+  .page section {
+    padding: 60px 0;
+  }
+  .section-head {
+    margin-bottom: 36px;
+  }
+  .hiw-grid {
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .steps {
+    grid-template-columns: 1fr;
+  }
+  .section-head.left {
+    position: sticky;
+    top: 90px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .marquee-track {
+    animation: none;
+  }
+}

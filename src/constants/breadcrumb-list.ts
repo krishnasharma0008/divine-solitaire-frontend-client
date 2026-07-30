@@ -3,7 +3,8 @@
 enum URLs {
   INSURE_NOW = "/insurenow",
   RESALE = "/resale",
-  BLOGS = "/",
+  BLOGS = "/blogs",
+  TSFI = "/tsfi",
   ABOUT_US = "/about-us",
   CONTACT_US = "/contact-us",
   CREATE_PORTFOLIO = "/portfolio",
@@ -27,6 +28,7 @@ interface BreadCrumb {
 
 interface Page {
   BLOGS: BreadCrumb;
+  TSFI: BreadCrumb;
   CONTACT_US: BreadCrumb;
   ABOUT_US: BreadCrumb;
   CREATE_PORTFOLIO: BreadCrumb;
@@ -46,6 +48,7 @@ interface Page {
 
 const PAGES: Page = {
   BLOGS: { text: "Blogs", url: URLs.DASHBOARD },
+  TSFI: { text: "Tsfi", url: URLs.TSFI },
   CONTACT_US: { text: "Contact Us", url: URLs.DASHBOARD },
   ABOUT_US: { text: "About Us", url: URLs.DASHBOARD },
   CREATE_PORTFOLIO: { text: "Create Portfolio", url: URLs.DASHBOARD },
@@ -73,6 +76,7 @@ const breadcrumbList: {
   [key in URLs]: Array<BreadCrumb>;
 } = {
   [URLs.BLOGS]: [PAGES.DASHBOARD, PAGES.BLOGS],
+  [URLs.TSFI]: [PAGES.DASHBOARD, PAGES.TSFI],
   [URLs.ABOUT_US]: [PAGES.DASHBOARD, PAGES.ABOUT_US],
   [URLs.CONTACT_US]: [PAGES.DASHBOARD, PAGES.CONTACT_US],
   [URLs.CREATE_PORTFOLIO]: [PAGES.DASHBOARD, PAGES.CREATE_PORTFOLIO],

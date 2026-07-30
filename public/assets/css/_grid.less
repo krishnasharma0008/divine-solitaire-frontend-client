@@ -1,0 +1,198 @@
+@gutter: 15px;
+@max-columns: 12;
+@gap-unit: 1px;
+
+.f-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -@gutter;
+  margin-right: -@gutter;
+}
+
+.f-col {
+  padding-left: @gutter;
+  padding-right: @gutter;
+  width: 100%;
+}
+
+.flex-generator(@prefix, @i: 1) when (@i =< @max-columns) {
+  .@{prefix}-@{i} {
+    .f-col {
+      width: (100% / @i);
+    }
+  }
+
+  .flex-generator(@prefix, (@i + 1));
+}
+
+// default
+.flex-generator(f);
+
+/* ==== customWidth  =========================================================== */
+
+.customWidth(@name; @i: 5) when (@i =< 100) {
+  .@{name}@{i} {
+    width: ~"@{i}%";
+    padding-left: @gutter;
+    padding-right: @gutter;
+  }
+
+  .customWidth(@name; (@i + 5));
+}
+
+// generate
+.customWidth(w);
+
+/* ==== GRID =========================================================== */
+.grid {
+  display: grid;
+  margin-left: -@gutter;
+  margin-right: -@gutter;
+}
+
+.grid div {
+  padding-left: @gutter;
+  padding-right: @gutter;
+  width: 100%;
+}
+
+.make-grid(@prefix, @i: 1) when (@i =< @max-columns) {
+  .@{prefix}-@{i} {
+    grid-template-columns: repeat(@i, 1fr);
+  }
+  .make-grid(@prefix, (@i + 1));
+}
+
+.make-grid(g);
+
+/* ==== Gap System (Better Scalable)  =========================================================== */
+
+.make-gap(@prefix: gp, @i: 0) when (@i =< 100) {
+  .@{prefix}-@{i} {
+    gap: (@i * @gap-unit);
+  }
+
+  .make-gap(@prefix, (@i + 1));
+}
+
+.make-gap();
+/* =============================================================================================  */
+
+/* =============================================================================================  */
+
+/* = Rsponsive ============================================================================================  */
+
+.responsive-loop() {
+  .generate-flex-responsive(1440, 1440px);
+  .generate-flex-responsive(1280, 1280px);
+  .generate-flex-responsive(1200, 1200px);
+  .generate-flex-responsive(1154, 1154px);
+  .generate-flex-responsive(1024, 1024px);
+  .generate-flex-responsive(990, 990px);
+  .generate-flex-responsive(800, 800px);
+  .generate-flex-responsive(768, 768px);
+  .generate-flex-responsive(640, 640px);
+  .generate-flex-responsive(576, 576px);
+  .generate-flex-responsive(480, 480px);
+  .generate-flex-responsive(400, 400px);
+
+  .generate-grid-responsive(1440, 1440px);
+  .generate-grid-responsive(1280, 1280px);
+  .generate-grid-responsive(1200, 1200px);
+  .generate-grid-responsive(1154, 1154px);
+  .generate-grid-responsive(1024, 1024px);
+  .generate-grid-responsive(990, 990px);
+  .generate-grid-responsive(800, 800px);
+  .generate-grid-responsive(768, 768px);
+  .generate-grid-responsive(640, 640px);
+  .generate-grid-responsive(576, 576px);
+  .generate-grid-responsive(480, 480px);
+  .generate-grid-responsive(400, 400px);
+
+  .generate-width-responsive(1440, 1440px);
+  .generate-width-responsive(1280, 1280px);
+  .generate-width-responsive(1200, 1200px);
+  .generate-width-responsive(1154, 1154px);
+  .generate-width-responsive(1024, 1024px);
+  .generate-width-responsive(990, 990px);
+  .generate-width-responsive(800, 800px);
+  .generate-width-responsive(768, 768px);
+  .generate-width-responsive(640, 640px);
+  .generate-width-responsive(576, 576px);
+  .generate-width-responsive(480, 480px);
+  .generate-width-responsive(400, 400px);
+
+  .generate-gap-responsive(1440, 1440px);
+  .generate-gap-responsive(1280, 1280px);
+  .generate-gap-responsive(1200, 1200px);
+  .generate-gap-responsive(1154, 1154px);
+  .generate-gap-responsive(1024, 1024px);
+  .generate-gap-responsive(990, 990px);
+  .generate-gap-responsive(800, 800px);
+  .generate-gap-responsive(768, 768px);
+  .generate-gap-responsive(640, 640px);
+  .generate-gap-responsive(576, 576px);
+  .generate-gap-responsive(480, 480px);
+  .generate-gap-responsive(400, 400px);
+}
+
+.responsive-loop();
+
+.generate-flex-responsive(@bp-name, @bp-value) {
+  @media (max-width: @bp-value) {
+    .flex-generator(~"f-@{bp-name}");
+  }
+}
+
+.generate-grid-responsive(@bp-name, @bp-value) {
+  @media (max-width: @bp-value) {
+    .make-grid(~"g-@{bp-name}");
+  }
+}
+
+.generate-width-responsive(@bp-name, @bp-value) {
+  @media (max-width: @bp-value) {
+    .customWidth(~"w@{bp-name}-");
+  }
+}
+
+.generate-gap-responsive(@bp-name, @bp-value) {
+  @media (max-width: @bp-value) {
+    .make-grid(~"g-@{bp-name}");
+    .make-gap(~"gp-@{bp-name}");
+  }
+}
+
+/* .f-row div,
+.grid div {
+  background-color: #d2d2d2;
+  min-height: 50px;
+} */
+
+/* 
+Components
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Alerts
+Badge
+Breadcrumb
+Buttons
+Button group
+Card
+Carousel
+Close button
+Collapse
+Dropdowns
+List group
+Modal
+Navs & tabs
+Navbar
+Offcanvas
+Pagination
+Popovers
+Progress
+Scrollspy
+Spinners
+Toasts
+Tooltips
+
+*/

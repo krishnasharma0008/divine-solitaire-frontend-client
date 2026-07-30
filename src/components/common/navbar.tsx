@@ -135,6 +135,12 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
         icon: "no",
         name: URLs.BLOGS,
       },
+      {
+        title: "Tsfi",
+        url: "/tsfi",
+        icon: "no",
+        name: URLs.TSFI,
+      },
     ],
     isSidebarOpen: isSidebarOpen,
     setSidebarOpen: setSidebarOpen,
