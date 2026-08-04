@@ -56,7 +56,7 @@ const TermsCondition = () => {
             <br />
             CUSTOMER POLICY
             <br /> */}
-            POLICY DATED 01ST APRIL 2025 VERSION 4.0
+            POLICY DATED 01ST JULY 2026 VERSION 5.0
           </h2>
 
           <h3 className="text-lg font-semibold mt-8 mb-2 underline">
@@ -74,7 +74,7 @@ const TermsCondition = () => {
               incorporated by the DS.
             </li>
             <li>
-              Various features offered by DS is backed by with respective
+              ii. Various features offered by DS is backed by with respective
               policies which are uniform across India as evident from DS Verify
               & Track feature which anyone can access anytime through various
               online mode.
@@ -124,14 +124,15 @@ const TermsCondition = () => {
               provisions.
             </li>
             <li>
-              All the communication from DS will be done only through Email ID:{" "}
+              viii. All the communication from DS will be done only through
+              Email ID:{" "}
               <a
                 href="mailto:customerservice@divinesolitaires.com"
                 className="underline text-blue-600"
               >
                 customerservice@divinesolitaires.com
               </a>{" "}
-              and will be considered as valid communication.
+              and will be consider as valid communication.
             </li>
             <li>
               DS reserves the right, at any time without prior notice and
@@ -203,7 +204,7 @@ const TermsCondition = () => {
                 </li>
                 <li>
                   The Order cannot be cancelled under any circumstances, once it
-                  is shipped or dispatched by DS.
+                  is shipped or dispatched by DS
                 </li>
                 <li>
                   Incase of order of customised DS products total value of which
@@ -220,7 +221,7 @@ const TermsCondition = () => {
                   On cancellation, any benefits availed or obtained by the
                   Customers under any scheme or offers at the time of the
                   purchase, shall be reversed and/ or returned by the customer,
-                  Premium if any paid will not be returned back to the customer.
+                  Premium if any paid will not be returned back to the customer
                 </li>
               </ol>
 
@@ -305,7 +306,7 @@ const TermsCondition = () => {
                   The DS will refund the amount to the customer within 14
                   (fourteen) business days from the date of confirmation of the
                   cancellation order, the amount mentioned in DS Verify and
-                  Track shall be the final amount.
+                  Track shall be the final amount
                 </li>
               </ol>
 
@@ -437,8 +438,8 @@ const TermsCondition = () => {
                   Upon the independent verification and eligibility check by DS,
                   if it is observed or DS is of the opinion that the such
                   product is tempered or used or damaged, in such case, DS shall
-                  intimate the customer and reject the requests of the customer
-                  for return or accept the return as per exchange policy.
+                  intimate the customer and rejectthe requests ofthe customer
+                  for return or acceptthe return as per exchange policy.
                 </li>
                 <li>
                   If the DS product is found to be ineligible for return, the
@@ -471,7 +472,7 @@ const TermsCondition = () => {
                   product, return policy to every Customer for DS product sold
                   purchased from authorised Outlet of PJ of DS across India, if
                   the returned goods are in its original form and subject to QC
-                  check.
+                  check.{" "}
                 </li>
                 <li>
                   The eligibility of the return of DS product shall be
@@ -516,7 +517,7 @@ const TermsCondition = () => {
                 </li>
                 <li>
                   The customer will be notified on acceptance and rejection of
-                  the return request by DS.
+                  the return request by DS.{" "}
                 </li>
                 <li>
                   Once DS receives the returned product and confirms its
@@ -524,7 +525,7 @@ const TermsCondition = () => {
                   The refund amount will be the original amount paid by the
                   customer, less premium if any paid. Additionally, deduction of
                   3% processing fees based on the prevailing MRP of the product
-                  from the refund amount.
+                  from the refund amount.{" "}
                 </li>
                 <li>
                   The final refund amount will be communicated to the customer
@@ -566,7 +567,7 @@ const TermsCondition = () => {
                   well in advance to the shipping date. Any inconsistencies in
                   this regard will result in delay in the delivery of DS product
                   and/or changing of the actual expenses incurred by Divine
-                  Solitaire due to inconsistencies.
+                  Solitaire due to inconsistencies.{" "}
                 </li>
                 <li>
                   Products are shipped after the receipt of full payment against
@@ -580,7 +581,7 @@ const TermsCondition = () => {
                   before reaching to the Customer. The Customers, therefore,
                   shall NOT accept any damaged or tampered shipments as it will
                   then be the responsibility of the recipient in case any
-                  product is missing.
+                  product is missing.{" "}
                 </li>
                 <li>
                   Orders can be delivered to only Residential and Commercial
@@ -595,12 +596,12 @@ const TermsCondition = () => {
                   by the customer, DS shall not be responsible or liable for any
                   loss, damage, or defect that occurs after delivery, including
                   but not limited to mishandling, improper storage, or any other
-                  cause outside DS&apos;s control.
-                </li>
-                <li>
-                  Customers are requested to keep either of the below mentioned
-                  Proof of Identity handy to be shown to the courier person
-                  while receiving the package.
+                  cause outside DS&lsquo;s control.
+                  <li>
+                    Customers are requested to keep either of the below
+                    mentioned Proof of Identity handy to be shown to the courier
+                    person while receiving the package.
+                  </li>
                   <ul className="list-none pl-5 [&>li]:relative [&>li]:pl-6 [&>li::before]:absolute [&>li::before]:left-0 [&>li::before]:font-bold [&>li::before]:content-[attr(data-marker)]">
                     <li data-marker="a)">Aadhar Card</li>
                     <li data-marker="b)">PAN Card</li>
@@ -625,7 +626,7 @@ const TermsCondition = () => {
                 </li>
                 <li>
                   The Customer shall make 20% payment at the time of booking and
-                  the rest 80% in 10 equal monthly instalments.
+                  the rest 80% in 10 equal monthly instalments.{" "}
                 </li>
                 <li>
                   Customer can purchase the diamond before the maturity by
@@ -654,7 +655,7 @@ const TermsCondition = () => {
                       shall be applicable.
                     </li>
                     <li>
-                      <strong>If opted for refund:</strong>
+                      <strong>If opted for refund: </strong>
                       <ul className="list-[lower-alpha] list-inside pl-5 mt-2">
                         <li>
                           Customer will get the refund as per the buyback policy
@@ -686,75 +687,15 @@ const TermsCondition = () => {
                   adjusted in the last instalment.
                 </li>
                 <li>
-                  Buyback and Upgrade policy shall be applicable for DS product
-                  purchased under PYDS scheme once full amount is paid by the
-                  Customer.
+                  8. Buyback and Upgrade policy shall be applicable for DS
+                  product purchased under PYDS scheme once full amount is paid
+                  by the Customer.
                 </li>
               </ol>
 
               <h2 className="text-xl md:text-2xl font-bold mt-10 mb-6 text-left">
                 V. Buyback Policy
               </h2>
-
-              <ol className="list-decimal space-y-2 pl-5">
-                <li>
-                  The Product which are branded and certified as DS product
-                  (except accessories) are only eligible for buyback.
-                </li>
-                <li>
-                  The Customers who have registered with DS and accepted the
-                  terms and condition via app or website or through any other
-                  method are eligible for Buyback, after 30 days from
-                  registration.
-                </li>
-                <li>
-                  Buyback on DS products gifted/discounted will be subject to
-                  the lock in period for 2 years from the date of purchase,
-                  unless specifically mentioned.
-                </li>
-                <li>
-                  Buyback will be calculated at 90% of the prevailing price as
-                  per NSTPL for all Diamonds including DSD, SD and Diamond coin.
-                </li>
-                <li>
-                  Buyback for Gem Stones shall be at 80% of prevailing market
-                  price.
-                </li>
-                <li>
-                  The price of all metals will be as per the prevailing market
-                  price. Making and designs will not be considered.
-                </li>
-                <li>
-                  If Buyback happens from different PJ instead of original PJ,
-                  the Customers shall be charged with 10% of the administrative
-                  charges which shall be deducted from the buyback amount.
-                  Provided If Buyback of Diamond coin happens from different PJ
-                  instead of original PJ, 10% of the administrative charges will
-                  not be charged.
-                </li>
-                <li>
-                  The amount mentioned in the buyback section of verify and
-                  track for a particular product on the day of eligibility
-                  confirmation for Buyback by DS, will be treated as the final
-                  buyback amount overriding all other calculations. It will also
-                  include buyback amount of any precious metals or stones not
-                  covered herein.
-                </li>
-                <li>
-                  Divine Solitaires reserves the right to confiscate any pirated
-                  product submitted by Customer for Buyback as DS product and
-                  take appropriate legal action against such customer.
-                </li>
-                <li>
-                  The fulfilment of buyback payment above Rs. 20 lacs per
-                  customer will be communicated at the time of buyback.
-                </li>
-                <li>All applicable taxes to be borne by the Customer.</li>
-                <li>
-                  Buyback amount will be paid only to those customers in whose
-                  name invoice is raised.
-                </li>
-              </ol>
 
               <h3 className="text-lg font-semibold mt-6 mb-2">Procedure:</h3>
               <ol className="list-[lower-roman] list-inside pl-5 space-y-2 ">
@@ -844,7 +785,7 @@ const TermsCondition = () => {
                   The Customers who have registered with DS and accepted the
                   terms and condition via app or website or through any other
                   method are eligible for Upgrade, after 30 days from
-                  registration.
+                  registration.{" "}
                 </li>
                 <li>
                   Customer must upgrade by 50% to the existing value of his
@@ -874,7 +815,7 @@ const TermsCondition = () => {
                 <li>
                   The price prevailing on the day of eligibility confirmations
                   will be applicable for both the original and newly purchased
-                  products/s.
+                  products/s.{" "}
                 </li>
                 <li>
                   The amount mentioned in the upgrade section of verify and
@@ -887,7 +828,7 @@ const TermsCondition = () => {
                   Scheme/offer/Gifted products, customer can upgrade as many
                   times as they wish, provided buyback and exchange restriction
                   will be continued on the upgraded product from the date of
-                  first purchase of DS product.
+                  first purchase of DS product.{" "}
                 </li>
                 <li>
                   The benefit obtained by Customers under any scheme, offer, or
@@ -946,7 +887,7 @@ const TermsCondition = () => {
                   On receiving complete Upgrade request, DS will take 3 (three)
                   business days to verify & confirm the product eligibility sent
                   by Customer and DS reserves the right to exercise discretion
-                  in permitting Upgrade.
+                  in permitting Upgrade.{" "}
                 </li>
                 <li>
                   If the DS product is found to be ineligible for upgrade, the
@@ -956,7 +897,7 @@ const TermsCondition = () => {
                 </li>
                 <li>
                   Post confirmation of the Upgrade eligibility, the Customer
-                  will pay differential amount.
+                  will pay differential amount.{" "}
                 </li>
                 <li>
                   After the Differential amount is paid by the customer, the
@@ -981,7 +922,7 @@ const TermsCondition = () => {
                   The Customers who have registered with DS and accepted the
                   terms and condition via app or website or through any other
                   method are eligible for Exchange, after 30 days from
-                  registration.
+                  registration.{" "}
                 </li>
                 <li>
                   One DS Product (except accessories) can be exchanged against
@@ -1003,7 +944,7 @@ const TermsCondition = () => {
                 <li>
                   If exchange happens from different PJ instead of original PJ,
                   the Customers shall be charged with 10% of the administrative
-                  charges which shall be deducted from the exchange amount.
+                  charges which shall be deducted from the exchange amount.{" "}
                 </li>
                 <li>
                   Exchange on DS products sold as gift or discounted will be
@@ -1022,7 +963,7 @@ const TermsCondition = () => {
                   exchange amount overriding all other calculations.
                 </li>
                 <li>
-                  Customized DS product are not eligible for Exchange Request.
+                  Customized DS product are not eligible for Exchange Request.{" "}
                 </li>
                 <li>
                   The benefit obtained by Customers under any scheme, offer, or
@@ -1073,7 +1014,7 @@ const TermsCondition = () => {
                 </li>
                 <li>
                   Post confirmation of the Exchange eligibility, the Customer
-                  will pay differential amount if any,
+                  will pay differential amount if any,{" "}
                 </li>
                 <li>
                   After the Differential amount is paid by the customer, the new
@@ -1107,19 +1048,6 @@ const TermsCondition = () => {
           <div className="xl:max-w-5xl 2xl:max-w-6xl m-auto  mt-10 mb-6 px-4">
             <div className="prose max-w-none text-gray-800">
               <h2 className="text-xl md:text-2xl font-bold mt-10 mb-6 text-left">
-                VIII. Message Inscription Policy
-              </h2>
-
-              <ol className="list-decimal space-y-2 pl-5 ">
-                <li>
-                  Special message can be Inscribed either in the DSD or in the
-                  DSJ sold to the Customer upon their request. In this regard,
-                  the customer shall provide the message in writing.
-                </li>
-                <li>Charges for inscription - INR 2500/- per solitaire</li>
-              </ol>
-
-              <h2 className="text-xl md:text-2xl font-bold mt-10 mb-6 text-left">
                 IX. Customer Insurance Policy
               </h2>
 
@@ -1145,7 +1073,7 @@ const TermsCondition = () => {
                       FIR or complaint letter duly acknowledge by police
                       authorities
                     </li>
-                    <li>Detailed statement on how incident has happened</li>
+                    <li>Detailed statement on how incident has happened </li>
                     <li>KYC of Customer</li>
                     <li>Bank details of jewellers</li>
                   </ul>
@@ -1156,52 +1084,6 @@ const TermsCondition = () => {
 
           <div className="xl:max-w-5xl 2xl:max-w-6xl m-auto  mt-10 mb-6 px-4">
             <div className="prose max-w-none text-gray-800">
-              <h2 className="text-xl md:text-2xl font-bold mt-10 mb-6 text-left">
-                VIII. Message Inscription Policy
-              </h2>
-
-              <ol className="list-decimal space-y-2 pl-5">
-                <li>
-                  Special message can be Inscribed either in the DSD or in the
-                  DSJ sold to the Customer upon their request. In this regard,
-                  the customer shall provide the message in writing.
-                </li>
-                <li>Charges for inscription - INR 2500/- per solitaire</li>
-              </ol>
-
-              <h2 className="text-xl md:text-2xl font-bold mt-10 mb-6 text-left">
-                IX. Customer Insurance Policy
-              </h2>
-
-              <ol className="list-decimal space-y-2 pl-5">
-                <li>
-                  Period of free insurance - Divine Solitaires provides
-                  First-year free insurance for every DS product sold.
-                </li>
-                <li>
-                  DS or any of the Partner Jeweller of DS shall not be liable
-                  for any claims, customer shall put claim directly with the
-                  insurance company
-                </li>
-                <li>
-                  Primarily the Insurance cover against the risks such as Theft
-                  and Burglary unless policy covers any other claims.
-                </li>
-                <li>
-                  Documents to be required at the time of claim:
-                  <ul className="list-[lower-alpha] list-inside pl-4 mt-2 space-y-1">
-                    <li>Original Invoice/Purchase Bill</li>
-                    <li>
-                      FIR or complaint letter duly acknowledge by police
-                      authorities
-                    </li>
-                    <li>Detailed statement on how incident has happened</li>
-                    <li>KYC of Customer</li>
-                    <li>Bank details of jewellers</li>
-                  </ul>
-                </li>
-              </ol>
-
               <h2 className="text-xl md:text-2xl font-bold mt-10 mb-6 text-left">
                 X. Certificate Policy
               </h2>
@@ -1238,8 +1120,8 @@ const TermsCondition = () => {
                   provided.
                 </li>
                 <li>
-                  Any product with {"<"}0.30 ct, only DS certificate will be
-                  provided.
+                  Any product with &lt; 0.30 ct, only DS certificate will be
+                  provided.{" "}
                 </li>
                 <li>
                   Third Party International Laboratory Certificate will not be
