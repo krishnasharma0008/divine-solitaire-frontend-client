@@ -697,6 +697,68 @@ const TermsCondition = () => {
                 V. Buyback Policy
               </h2>
 
+              <ol className="list-decimal space-y-2 pl-5">
+                <li>
+                  The Product which are branded and certified as DS product
+                  (except accessories) are only eligible for buyback.
+                </li>
+                <li>
+                  The Customers who have registered with DS and accepted the
+                  terms and condition via app or website or through any other
+                  method are eligible for Buyback, after 30 days from
+                  registration.
+                </li>
+                <li>
+                  Buyback on DS products gifted/discounted will be subject to
+                  the lock in period for 2 years from the date of purchase,
+                  unless specifically mentioned.
+                </li>
+                <li>
+                  Buyback will be calculated at 90% of the prevailing price as
+                  per NSTPL for all Diamonds including DSD, SD and Diamond coin.
+                </li>
+                <li>
+                  Buyback for Gem Stones shall be at 80% of prevailing market
+                  price.
+                </li>
+                <li>
+                  The price of all metals will be as per the prevailing market
+                  price. Making and designs will not be considered.
+                </li>
+                <li>
+                  If Buyback happens from different PJ instead of original PJ,
+                  the Customers shall be charged with 10% of the administrative
+                  charges which shall be deducted from the buyback amount.
+                </li>
+                <li>
+                  Provided If Buyback of Diamond coin happens from different PJ
+                  instead of original PJ, 10% of the administrative charges will
+                  not be charged.
+                </li>
+                <li>
+                  The amount mentioned in the buyback section of verify and
+                  track for a particular product on the day of eligibility
+                  confirmation for Buyback by DS, will be treated as the final
+                  buyback amount overriding all other calculations. It will also
+                  include buyback amount of any precious metals or stones not
+                  covered herein.
+                </li>
+                <li>
+                  Divine Solitaires reserves the right to confiscate any pirated
+                  product submitted by Customer for Buyback as DS product and
+                  take appropriate legal action against such customer.
+                </li>
+                <li>
+                  The fulfilment of buyback payment above Rs. 20 lacs per
+                  customer will be communicated at the time of buyback.
+                </li>
+                <li>All applicable taxes to be borne by the Customer.</li>
+                <li>
+                  Buyback amount will be paid only to those customers in whose
+                  name invoice is raised.
+                </li>
+              </ol>
+
               <h3 className="text-lg font-semibold mt-6 mb-2">Procedure:</h3>
               <ol className="list-[lower-roman] list-inside pl-5 space-y-2 ">
                 <li>
@@ -754,7 +816,7 @@ const TermsCondition = () => {
                 </li>
               </ol>
 
-              <ol start={13} className="list-decimal space-y-2 pl-5">
+              <ol start={14} className="list-decimal space-y-2 pl-5">
                 <li>
                   DS is in the business of selling diamonds and jewellery. None
                   of its products should be treated as a financial instrument.
@@ -1152,6 +1214,302 @@ const TermsCondition = () => {
                   any order of special size which are not available in stock and
                   Customer wishes to buy by placing an order. Premium charges
                   will be applicable as mentioned in NSTPL.
+                </li>
+              </ol>
+            </div>
+          </div>
+
+          <div className="xl:max-w-5xl 2xl:max-w-6xl m-auto mt-10 mb-6 px-4">
+            <div className="prose max-w-none text-gray-800">
+              <h2 className="text-xl md:text-2xl font-bold mt-10 mb-6 text-left">
+                XII. The Divine Solitaires GPYDS 9+1+1 Plan
+              </h2>
+
+              <h3 className="text-lg font-semibold mt-6 mb-2">
+                Available Plans
+              </h3>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse border border-gray-300 text-sm">
+                  <thead>
+                    <tr className="bg-gray-100">
+                      <th className="border border-gray-300 p-2 text-left">
+                        Scheme
+                      </th>
+                      <th className="border border-gray-300 p-2 text-left">
+                        Monthly Instalment
+                      </th>
+                      <th className="border border-gray-300 p-2 text-left">
+                        Customer Pays (Months)
+                      </th>
+                      <th className="border border-gray-300 p-2 text-left">
+                        Amount Paid by Customer
+                      </th>
+                      <th className="border border-gray-300 p-2 text-left">
+                        Divine Solitaires Pays (Month)
+                      </th>
+                      <th className="border border-gray-300 p-2 text-left">
+                        Divine Solitaires Adds
+                      </th>
+                      <th className="border border-gray-300 p-2 text-left">
+                        Total Scheme Value
+                      </th>
+                      <th className="border border-gray-300 p-2 text-left">
+                        Additional Benefit to Monthly Lucky Draw Winner
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="border border-gray-300 p-2 font-semibold">
+                        PYDS A
+                      </td>
+                      <td className="border border-gray-300 p-2">₹ 3,000</td>
+                      <td className="border border-gray-300 p-2">9</td>
+                      <td className="border border-gray-300 p-2">₹ 27,000</td>
+                      <td className="border border-gray-300 p-2">1</td>
+                      <td className="border border-gray-300 p-2">₹ 3,000</td>
+                      <td className="border border-gray-300 p-2">₹ 30,000</td>
+                      <td className="border border-gray-300 p-2">₹ 3,000</td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300 p-2 font-semibold">
+                        PYDS B
+                      </td>
+                      <td className="border border-gray-300 p-2">₹ 5,000</td>
+                      <td className="border border-gray-300 p-2">9</td>
+                      <td className="border border-gray-300 p-2">₹ 45,000</td>
+                      <td className="border border-gray-300 p-2">1</td>
+                      <td className="border border-gray-300 p-2">₹ 5,000</td>
+                      <td className="border border-gray-300 p-2">₹ 50,000</td>
+                      <td className="border border-gray-300 p-2">₹ 5,000</td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300 p-2 font-semibold">
+                        PYDS C
+                      </td>
+                      <td className="border border-gray-300 p-2">₹ 10,000</td>
+                      <td className="border border-gray-300 p-2">9</td>
+                      <td className="border border-gray-300 p-2">₹ 90,000</td>
+                      <td className="border border-gray-300 p-2">1</td>
+                      <td className="border border-gray-300 p-2">₹ 10,000</td>
+                      <td className="border border-gray-300 p-2">₹ 1,00,000</td>
+                      <td className="border border-gray-300 p-2">₹ 10,000</td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300 p-2 font-semibold">
+                        PYDS D
+                      </td>
+                      <td className="border border-gray-300 p-2">₹ 15,000</td>
+                      <td className="border border-gray-300 p-2">9</td>
+                      <td className="border border-gray-300 p-2">₹ 1,35,000</td>
+                      <td className="border border-gray-300 p-2">1</td>
+                      <td className="border border-gray-300 p-2">₹ 15,000</td>
+                      <td className="border border-gray-300 p-2">₹ 1,50,000</td>
+                      <td className="border border-gray-300 p-2">₹ 15,000</td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300 p-2 font-semibold">
+                        PYDS E (0.50 cts & Above)
+                      </td>
+                      <td className="border border-gray-300 p-2">
+                        Custom (10% Based on Diamond Value)
+                      </td>
+                      <td className="border border-gray-300 p-2">9</td>
+                      <td className="border border-gray-300 p-2">
+                        Derived (9 Months)
+                      </td>
+                      <td className="border border-gray-300 p-2">1</td>
+                      <td className="border border-gray-300 p-2">
+                        Same as Monthly Instalment
+                      </td>
+                      <td className="border border-gray-300 p-2">
+                        Diamond Value + 1 Month Benefit
+                      </td>
+                      <td className="border border-gray-300 p-2">
+                        Same as 1 Instalment
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p className="mt-4">
+                The customer pays monthly instalments for 9 months, while Divine
+                Solitaires contributes an additional 1 month&apos;s instalment
+                value, thereby increasing the total scheme value. Additionally,
+                through a monthly lucky draw, up to 8 lucky winners during the
+                scheme tenure will receive an additional benefit equivalent to 1
+                month&apos;s instalment value, over and above the standard
+                scheme benefits.
+              </p>
+
+              <h3 className="text-lg font-semibold mt-6 mb-2">
+                Customer Benefits
+              </h3>
+              <ul className="list-disc pl-5 space-y-2">
+                <li>Signature Privilege: Price Protection Assurance on DSD.</li>
+                <li>
+                  1 Month Free Benefit: Get an additional month&apos;s
+                  instalment value at the end of the tenure.
+                </li>
+                <li>
+                  Lucky Draw Advantage:
+                  <ul className="list-disc pl-5 mt-2 space-y-1">
+                    <li>
+                      Every month, one winner gets added benefit of value worth
+                      of 1-month instalment.
+                    </li>
+                    <li>Applicable across all schemes.</li>
+                  </ul>
+                </li>
+              </ul>
+
+              <h3 className="text-lg font-semibold mt-6 mb-2">
+                Terms & Conditions
+              </h3>
+              <ol className="list-decimal space-y-2 pl-5">
+                <li>
+                  The PYDS Scheme is Valid on All Divine Solitaires product
+                  except Diamond Coins.
+                </li>
+                <li>
+                  The PYDS scheme (A-D) is valid for loose diamond selection up
+                  to 0.50 cts, wherein the customer will select the product
+                  after completion of the scheme and payment of all instalments.
+                  For diamonds above 0.50 cts (PYDS Scheme E), the solitaire
+                  must be selected at the beginning of the scheme. 10% (1 month)
+                  instalment as advance to be paid to start the PYDS scheme.
+                </li>
+                <li>
+                  The diamond made available at the time of delivery can be of
+                  any weight within the selected size bracket. Any difference in
+                  value due to final weight will be adjusted in the last
+                  instalment.
+                </li>
+                <li>
+                  The Divine Solitaires diamond will be delivered only upon
+                  maturity, i.e., completion of the full tenure (10 months) and
+                  payment of all instalments.
+                </li>
+                <li>
+                  The group scheme is applicable for a minimum 25 & maximum of
+                  40 members in each group.
+                </li>
+                <li>
+                  This plan is valid exclusively on the purchase of solitaires
+                  and diamond jewellery.
+                </li>
+                <li>
+                  Buyback on DS products gifted/discounted/PYDS will be subject
+                  to the lock in period for 2 years from the date of purchase,
+                  unless specifically mentioned.
+                </li>
+                <li>
+                  Price protection applies only to Divine Solitaires diamonds.
+                </li>
+                <li>
+                  In the event that the value of the selected solitaire exceeds
+                  the total scheme value, the most favourable price protection
+                  scenario shall be determined. A SKU will be identified based
+                  on the total accumulated scheme value, and the price
+                  protection will be calculated with reference to such selected
+                  solitaire. The applicable price protection value will be
+                  communicated to the customer prior to redemption.
+                </li>
+                <li>
+                  The customer shall be required to pay the balance amount in
+                  full before the delivery of the product.
+                </li>
+                <li>
+                  Metal and other charges will be calculated based on the
+                  prevailing rates at the time of redemption.
+                </li>
+                <li>
+                  The monthly privilege reward is granted to one member per
+                  cycle.
+                </li>
+                <li>
+                  <strong>Lucky Draw Eligibility:</strong> For Customer to be
+                  eligible for the monthly lucky draw, the customer&apos;s
+                  instalment for the respective month must be received on or
+                  before the 10th day of the month. Customers with overdue
+                  instalments will not be eligible for that month&apos;s lucky
+                  draw.
+                </li>
+                <li>
+                  <strong>GPYDS WhatsApp Group:</strong> Divine Solitaires shall
+                  create a dedicated WhatsApp group for each GPYDS group.
+                  Customers will be invited to join the group through a WhatsApp
+                  invitation link. Joining the group is optional and at the sole
+                  discretion of the customer.
+                </li>
+                <li>
+                  <strong>Lucky Draw Process & Transparency:</strong> The
+                  monthly lucky draw shall be conducted on the 3rd Saturday of
+                  every month through a video call on the same WhatsApp group
+                  with screen sharing to ensure complete transparency. The
+                  winner will be announced and communicated in the respective
+                  WhatsApp group.
+                </li>
+                <li>
+                  To initiate the PYDS scheme, the customer shall be required to
+                  pay an advance amount equivalent to 10% (1 month instalment)
+                  of the selected scheme value at the time of enrolment.
+                </li>
+                <li>
+                  Each member can avail the bonus reward only once during the
+                  scheme tenure.
+                </li>
+                <li>No two schemes can be combined under this plan.</li>
+                <li>All privileges are exclusive and non-transferable.</li>
+                <li>
+                  Pre-Maturity & Closure Policy:
+                  <ul className="list-[lower-alpha] pl-5 mt-2 space-y-2">
+                    <li>
+                      Purchase before maturity period/Pre-closure: if the
+                      customer wants to purchase the diamond before the maturity
+                      period by paying the balance amount, then the customer
+                      will get the price protection (the price at the time of
+                      booking or the prevailing price if lower than booking
+                      price).
+                    </li>
+                    <li>
+                      Purchase of already paid amount only/Termination of
+                      scheme: if the customer wants to terminate the scheme
+                      without paying the balance instalments, then the scheme
+                      becomes void. In such case, the customer can buy any
+                      diamond equal to the amount already paid till date at the
+                      prevailing prices as per the Divine Solitaires Nationwide
+                      Standard & Transparent Price List.
+                    </li>
+                    <li>
+                      Refund of paid amount: the scheme gets void if the
+                      customer wants refund of the paid amount (Down payment +
+                      instalments paid). In such case, if the diamond value is
+                      below Rs. 10,00,000/-, the buyback policy will be
+                      applicable on the amount paid, and if the value of the
+                      diamond is above Rs. 10,00,000/-, the customer cannot opt
+                      for refund. Additional scheme benefits or waivers or free
+                      gifts in the offer, if any, given will be adjusted from
+                      the refund amount or, if to be given, will not be applied.
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Delay in payment by Customer:
+                  <ul className="list-[lower-alpha] pl-5 mt-2 space-y-2">
+                    <li>
+                      Interest @ 18% pa will be charged if the instalment amount
+                      is delayed beyond the due date.
+                    </li>
+                    <li>
+                      If more than 3 instalments remain due and unpaid by the
+                      Customers, DS reserves the rights to terminate PYDS. The
+                      amount deposited will either be forfeited by DS or the
+                      customer will get an option to buy other DS product worth
+                      the amount already paid.
+                    </li>
+                  </ul>
                 </li>
               </ol>
             </div>

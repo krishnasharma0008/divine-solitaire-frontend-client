@@ -208,8 +208,8 @@ const OurPolicy = () => {
                       only need to pay the difference against bigger diamond.
                     </p>
                     <p className="mb-2.5">
-                      The consumer must upgrade by 35% to the existing value of
-                      his/her DS product or INR 20,000 whichever is higher. The
+                      The consumer must upgrade by 50% to the existing value of
+                      his/her DS product or INR 35,000 whichever is higher. The
                       diamond that is being upgraded must be in original
                       condition and accompanied by the original laboratory
                       grading document.
