@@ -1,4 +1,5 @@
 //import Image from "next/image";
+import useIsOutsideIndia from "@/hooks/use-is-outside-india";
 
 const HomeScreenSolitaireEveryMoment: React.FC = () => {
   const features = [
@@ -40,6 +41,11 @@ const HomeScreenSolitaireEveryMoment: React.FC = () => {
       label: "Conflict Free Diamonds",
     },
   ];
+
+  const isOutsideIndia = useIsOutsideIndia();
+  const visibleFeatures = features.filter(
+    (f) => !(isOutsideIndia && f.label === "Free Insurance"),
+  );
 
   return (
     <>
@@ -113,7 +119,7 @@ const HomeScreenSolitaireEveryMoment: React.FC = () => {
           <div className="row">
             <div className="col-sm-12 col-xs-12 features-inner plr-xs-0 overflow-x-auto scrollbar-hidden">
               <ul className="branding-slider">
-                {features.map(({ img, label }) => (
+                {visibleFeatures.map(({ img, label }) => (
                   <li
                     key={label}
                     className="branding-slider-block min-w-[125.56px]"
