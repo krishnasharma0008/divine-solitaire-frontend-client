@@ -3,6 +3,7 @@ const NOTIFICATION_MESSAGES = {
   SOLITAIRE_SAVED: "Solitaire Price Saved Successfully",
   SOLITAIRE_ERROR: "Solitaire Price Saving Failed",
   LOGIN_FAIL: "Invalid OTP. Please Try Again",
+  GOOGLE_LOGIN_FAIL: "Google login failed. Please try again",
   SOMETHING_WRONG: "Something Went Wrong! Please Try Again",
   ADDED_TO_PORTFOLIO: "Successfully Added To Portfolio",
   ADDED_TO_WISHLIST: "Successfully Added To Wishlist",
