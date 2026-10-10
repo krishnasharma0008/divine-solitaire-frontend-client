@@ -1,5 +1,5 @@
 //import Image from "next/image";
-import useIsOutsideIndia from "@/hooks/use-is-outside-india";
+import useIsOutsideIndia from "@/hooks/use-is-outside-india"; // visiable features are filtered based on this hook
 
 const HomeScreenSolitaireEveryMoment: React.FC = () => {
   const features = [
