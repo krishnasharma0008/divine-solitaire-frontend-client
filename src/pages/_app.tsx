@@ -2,6 +2,7 @@
 import Head from "next/head";
 import "../globals.css";
 import { ThemeProvider } from "@material-tailwind/react";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
@@ -39,12 +40,12 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   useEffect(() => {
     const handleRouteChange = (
       url: string,
-      { shallow }: { shallow: boolean }
+      { shallow }: { shallow: boolean },
     ) => {
       console.log(
         `App is changing to ${url} ${
           shallow ? "with" : "without"
-        } shallow routing`
+        } shallow routing`,
       );
       showLoader();
     };
@@ -108,21 +109,25 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
 };
 
 const WrappedApp: React.FC<AppProps> = (props) => (
-  <ThemeProvider>
-    <NotificationWrapper>
-      <LoaderWrapper>
-        <AuthProvider>
-          <CurrencyProvider>
-            <VerifyTrackContextWrapper>
-              <KnowYourDiamondContextWrapper>
-                <App {...props} />
-              </KnowYourDiamondContextWrapper>
-            </VerifyTrackContextWrapper>
-          </CurrencyProvider>
-        </AuthProvider>
-      </LoaderWrapper>
-    </NotificationWrapper>
-  </ThemeProvider>
+  <GoogleOAuthProvider
+    clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ""}
+  >
+    <ThemeProvider>
+      <NotificationWrapper>
+        <LoaderWrapper>
+          <AuthProvider>
+            <CurrencyProvider>
+              <VerifyTrackContextWrapper>
+                <KnowYourDiamondContextWrapper>
+                  <App {...props} />
+                </KnowYourDiamondContextWrapper>
+              </VerifyTrackContextWrapper>
+            </CurrencyProvider>
+          </AuthProvider>
+        </LoaderWrapper>
+      </NotificationWrapper>
+    </ThemeProvider>
+  </GoogleOAuthProvider>
 );
 
 export default WrappedApp;

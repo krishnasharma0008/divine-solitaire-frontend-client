@@ -20,6 +20,11 @@ export const loginVerifyOTPEndpoint: Endpoint = {
   url: "/api/verifyotp",
 };
 
+export const googleLoginEndpoint: Endpoint = {
+  method: HTTP_METHOD.POST,
+  url: "/api/googlelogin",
+};
+
 export const verifyTrackEndpoint: Endpoint = {
   method: HTTP_METHOD.GET,
   url: "/api/getproductinfo",

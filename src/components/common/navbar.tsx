@@ -15,6 +15,7 @@ import { useState } from "react";
 import { URLs } from "@/constants";
 //import { useCurrency } from "@/context/currency-context";
 import { useAuth } from "@/context/auth-context";
+import useIsOutsideIndia from "@/hooks/use-is-outside-india";
 import { Breadcrumbs } from "@/interface/breadcrumbs";
 //import { getToken } from "@/local-storage";
 
@@ -22,8 +23,11 @@ import Button from "./button";
 import Sidebar, { SidebarProps } from "./sidebar";
 import { ShoppingCartIcon, StoreLocatorIcon, UserIcon } from "../icons";
 
+const HIDDEN_OUTSIDE_INDIA = ["PYDS", "Insurance", "Resale"];
+
 const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
   const { isLoggedIn, logout } = useAuth();
+  const isOutsideIndia = useIsOutsideIndia();
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   const { push } = useRouter();
@@ -38,6 +42,13 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
     //deleteToken();
     push("/profile");
   };
+
+  console.log("Navbar isOutsideIndia:", isOutsideIndia);
+  console.log("Navbar isLoggedIn:", isLoggedIn);
+  console.log(
+    "countryCode:",
+    isOutsideIndia ? "Outside India" : "Inside India",
+  );
 
   // useEffect(() => {
   //   if (getToken()) {
@@ -150,7 +161,25 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
     <div className="fixed top-0 left-0 z-50 w-full h-[72px] lg:h-[82px] bg-black flex items-center justify-between px-4 lg:px-8">
       {/* Left */}
       <div className="w-[80px] lg:w-[180px]">
-        <Sidebar {...sidebarProps} pageName={pageName} />
+        {/* <Sidebar {...sidebarProps} pageName={pageName} /> */}
+        <Sidebar
+          {...sidebarProps}
+          // items={sidebarProps.items.filter(
+          //   (item) =>
+          //     !(isOutsideIndia && HIDDEN_OUTSIDE_INDIA.includes(item.title)),
+          // )}
+          items={sidebarProps.items
+            .filter(
+              (item) =>
+                !(isOutsideIndia && HIDDEN_OUTSIDE_INDIA.includes(item.title)),
+            )
+            .map((item) =>
+              isOutsideIndia && item.title === "My Portfolio"
+                ? { ...item, icon: "yes" }
+                : item,
+            )}
+          pageName={pageName}
+        />
       </div>
 
       {/* Centered logo */}
@@ -196,7 +225,11 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
           />
         </div> */}
         <div className="hidden relative lg:block lg:flex lg:w-auto w-full">
-          <Link href="/store-locator" className="inline-block">
+          {/* <Link href="/store-locator" className="inline-block"> */}
+          <Link
+            href="/store-locator"
+            className={isOutsideIndia ? "hidden" : "inline-block"}
+          >
             <Button
               themeType="dark"
               //classes="h-10 text-xs font-light leading-5 max-w-[12rem] tracking-widest hover:bg-white hover:text-black [&:hover>span>svg]:fill-white [&:hover>span>svg>g>path]:stroke-black hover:border-none"
@@ -223,7 +256,11 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
           <Link href={"https://shop.divinesolitaires.com"} target="_blank">
             <ShoppingCartIcon />
           </Link>
-          <Link href={"/store-locator"}>
+          {/* <Link href={"/store-locator"}> */}
+          <Link
+            href={"/store-locator"}
+            className={isOutsideIndia ? "hidden" : ""}
+          >
             <StoreLocatorIcon />
           </Link>
         </div>
