@@ -135,7 +135,7 @@ const HomeScreenSolitaireEveryMoment: React.FC = () => {
                         margin: "0 auto",
                       }}
                     ></div>
-                    <p>{label}</p>
+                    <p style={{ marginTop: "0px" }}>{label}</p>
                   </li>
                 ))}
               </ul>

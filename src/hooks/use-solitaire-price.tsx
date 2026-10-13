@@ -1,6 +1,6 @@
 //import { debounce } from "lodash";
 import dayjs from "dayjs";
-import { useContext, useEffect, useReducer, useState } from "react";
+import { useContext, useEffect, useReducer, useRef, useState } from "react";
 
 import { comparePastPrices, getStonePrice } from "@/api/pricing";
 import { saveSolitairePrice } from "@/api/pricing";
@@ -14,6 +14,7 @@ import { ClarityRound, ClarityRoundcarat } from "@/enum/clarity-enum";
 import { FancyShape } from "@/enum/shape-enum";
 import { ComparePrice } from "@/interface";
 import { getToken, setRedirectionRoute } from "@/local-storage";
+import { ActivityTypes, logActivity } from "@/util/activity";
 //import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
 
 import useCountryCode from "./use-country-code";
@@ -300,6 +301,25 @@ const useSolitairePrice = () => {
 
   const countrycode = useCountryCode();
   //const { currency } = useCurrency(); //for currency
+
+  const searchLogTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastSearchKey = useRef("");
+  const isFirstSearch = useRef(true);
+
+  const scheduleSearchLog = (detail: string) => {
+    // pehli (default) combination user ki search nahi hai
+    if (isFirstSearch.current) {
+      isFirstSearch.current = false;
+      lastSearchKey.current = detail;
+      return;
+    }
+    if (detail === lastSearchKey.current) return;
+    if (searchLogTimer.current) clearTimeout(searchLogTimer.current);
+    searchLogTimer.current = setTimeout(() => {
+      lastSearchKey.current = detail;
+      logActivity(ActivityTypes.Search, detail);
+    }, 1500);
+  };
   //const countrycode = currency; //reverseCountryCurrencyMap[currency];
 
   // useEffect(() => {
@@ -344,6 +364,7 @@ const useSolitairePrice = () => {
         setPremiumSizeRange(data.premium_size_range);
         setPremiumFcts(data.premium_fr_cts);
         setPremiumTcts(data.premium_to_cts);
+        scheduleSearchLog(`${shape}, ${clarity}, ${colour}, ${cts} ct`);
       } catch (error) {
         console.error("Error fetching stone price:", error);
       } finally {
@@ -412,6 +433,10 @@ const useSolitairePrice = () => {
       const addedComparison = await fetchComparisonData(date);
 
       setComparedPrices([...comparedPrices, addedComparison]);
+      logActivity(
+        ActivityTypes.Compare,
+        date.toLocaleString("en-US", { month: "short", year: "numeric" }),
+      );
     } catch (error) {
       console.error("Error in getComparison:", error);
     }

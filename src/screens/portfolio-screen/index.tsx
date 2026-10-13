@@ -19,6 +19,7 @@ import {
   deletePortfoliouid,
 } from "@/local-storage";
 import { calculateGrowth } from "@/util";
+import { ActivityTypes, logActivity } from "@/util/activity";
 //import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
 
 const PortfolioScreen: React.FC = () => {
@@ -48,6 +49,7 @@ const PortfolioScreen: React.FC = () => {
   };
 
   const handleClick = (uid: string) => {
+    logActivity(ActivityTypes.OpenItem, uid);
     deletePortfoliouid;
     setPortfoliouid(uid);
     push("/track");
@@ -176,7 +178,7 @@ const PortfolioScreen: React.FC = () => {
                   <p className="font-semibold text-xs md:text-base lg:text-xl sm:text-xs font-mono">
                     {Portfolio.reduce(
                       (total, item) => total + parseFloat(item.carat),
-                      0
+                      0,
                     ).toFixed(2)}
                   </p>
                 </div>
@@ -187,7 +189,7 @@ const PortfolioScreen: React.FC = () => {
                   <p className="font-semibold text-xs md:text-base lg:text-xl sm:text-xs font-mono">
                     {Portfolio.reduce(
                       (total, item) => total + parseFloat(item.purchase_price),
-                      0
+                      0,
                     ).toFixed(2)}
                   </p>
                 </div>
@@ -198,7 +200,7 @@ const PortfolioScreen: React.FC = () => {
                   <p className="font-semibold text-xs md:text-base lg:text-xl sm:text-xs font-mono">
                     {Portfolio.reduce(
                       (total, item) => total + parseFloat(item.current_price),
-                      0
+                      0,
                     ).toFixed(2)}
                   </p>
                 </div>
@@ -214,17 +216,17 @@ const PortfolioScreen: React.FC = () => {
                             Portfolio.reduce(
                               (total, item) =>
                                 total + parseFloat(item.purchase_price),
-                              0
-                            ).toFixed(2)
+                              0,
+                            ).toFixed(2),
                           ),
                           parseFloat(
                             Portfolio.reduce(
                               (total, item) =>
                                 total + parseFloat(item.current_price),
-                              0
-                            ).toFixed(2)
-                          )
-                        )
+                              0,
+                            ).toFixed(2),
+                          ),
+                        ),
                       ) > 0
                         ? "text-green"
                         : "text-red-600"
@@ -235,16 +237,16 @@ const PortfolioScreen: React.FC = () => {
                         Portfolio.reduce(
                           (total, item) =>
                             total + parseFloat(item.purchase_price),
-                          0
-                        ).toFixed(2)
+                          0,
+                        ).toFixed(2),
                       ),
                       parseFloat(
                         Portfolio.reduce(
                           (total, item) =>
                             total + parseFloat(item.current_price),
-                          0
-                        ).toFixed(2)
-                      )
+                          0,
+                        ).toFixed(2),
+                      ),
                     )}
                   </p>
                 </div>

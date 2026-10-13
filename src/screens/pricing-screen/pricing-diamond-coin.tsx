@@ -9,6 +9,7 @@ import { NOTIFICATION_MESSAGES } from "@/config";
 import LoaderContext from "@/context/loader-context";
 import NotificationContext from "@/context/notification-context";
 import useCountryCode from "@/hooks/use-country-code";
+import useIsOutsideIndia from "@/hooks/use-is-outside-india";
 import DiamondCoin from "@/interface/diamond-coin";
 import { formatByCurrency } from "@/util";
 //import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
@@ -21,12 +22,13 @@ const DiamondCoinSolitares: React.FC<Props> = () => {
   const { showLoader, hideLoader } = useContext(LoaderContext);
   const { notifyErr } = useContext(NotificationContext);
   const [diamondCoinList, setDiamondCoinList] = useState<Array<DiamondCoin>>(
-    []
+    [],
   );
   const [currencylocale, setCurrencyLocale] = useState<string>("");
   const [currencycode, setCurrencyCode] = useState<string>("");
 
   const countryCode = useCountryCode();
+  const isOutsideIndia = useIsOutsideIndia();
   //const { currency } = useCurrency(); //for currency
   //const countryCode = reverseCountryCurrencyMap[currency];
 
@@ -170,18 +172,20 @@ const DiamondCoinSolitares: React.FC<Props> = () => {
               <tr className="w-full flex">
                 <td className="w-full flex py-2 pr-2 lg:p-4 lg:pr-4 whitespace-nowrap justify-center items-center">
                   <BuybackIcon className="h-8 w-8 md:4 md:4 inline-block mr-3" />
-                  &nbsp;Lifetime Buyback
+                  &nbsp;Buyback
                 </td>
                 <td className="w-full flex py-2 lg:p-4 whitespace-nowrap justify-center items-center">
                   <BuybackIcon className="h-8 w-8 md:4 md:4 inline-block mr-3" />
-                  Lifetime Upgrade
+                  Upgrade
                 </td>
               </tr>
               <tr className="w-full flex">
-                <td className="w-full flex py-2 lg:p-4 lg:pr-4 whitespace-nowrap justify-center item-center">
-                  <InsuranceIcon className="h-8 w-8 md:4 md:4 bg-black inline-block mr-3" />{" "}
-                  Free Insurance &nbsp;&nbsp;&nbsp;
-                </td>
+                {!isOutsideIndia && (
+                  <td className="w-full flex py-2 lg:p-4 lg:pr-4 whitespace-nowrap justify-center item-center">
+                    <InsuranceIcon className="h-8 w-8 md:4 md:4 bg-black inline-block mr-3" />{" "}
+                    Free Insurance &nbsp;&nbsp;&nbsp;
+                  </td>
+                )}
                 <td className="w-full flex py-2 lg:p-4 whitespace-nowrap justify-center items-center">
                   <Image
                     src="/guarantee-certificate.png"
@@ -212,7 +216,7 @@ const DiamondCoinSolitares: React.FC<Props> = () => {
             (dcoin) =>
               dcoin.design_type !== "Diamond Coin" && (
                 <CardPendent key={dcoin.id} {...dcoin} />
-              )
+              ),
           )}
         </div>
       </div>

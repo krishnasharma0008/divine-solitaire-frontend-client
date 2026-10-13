@@ -78,15 +78,15 @@ const KnowYourDiamondScreen: React.FC = () => {
   }, [selectedKyd, setCurrentTab]);
 
   return (
-    <div className="pt-[88px] md:p-24">
+    <div className="md:p-24">
       <div>
-        <div className="mb-6 md:mb-9 text-gray-900 text-xl md:text-5xl font-bold md:leading-[3.5rem] tracking-wider uppercase text-center">
+        <div className="mb-6 md:mb-9 text-gray-900 text-2xl md:text-5xl font-bold md:leading-[3.5rem] tracking-wider uppercase text-center">
           Know Your Diamond Value
         </div>
       </div>
       <div className="w-full m-auto">
         <div className="w-full">
-          <TabNavWithSection {...tabProps} />
+          <TabNavWithSection {...tabProps} logTabViews />
         </div>
         <Separator />
         {/* {currentTab === 1 && ( */}

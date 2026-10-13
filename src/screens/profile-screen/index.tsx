@@ -57,7 +57,7 @@ const Profile: React.FC = () => {
 
   const onChangeHandlerCreator = (
     fieldname: string,
-    type?: "integer" | "text"
+    type?: "integer" | "text",
   ) => {
     return (e: React.ChangeEvent<HTMLInputElement>) => {
       if (type === "integer" && isNaN(parseInt(e.target.value))) {
