@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 
 //import { adminLogin } from "@/lib/admin-api";
 //import { getAdminToken, setAdminSession } from "@/lib/admin-auth";
