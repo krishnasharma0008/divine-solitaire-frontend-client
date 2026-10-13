@@ -17,6 +17,7 @@ import ImageGallery from "@/components/common/image-gallery";
 import { NOTIFICATION_MESSAGES } from "@/config";
 import LoaderContext from "@/context/loader-context";
 import NotificationContext from "@/context/notification-context";
+import useIsOutsideIndia from "@/hooks/use-is-outside-india";
 //import { formatDate } from "@/hooks/use-dateformat";
 import { getToken, setRedirectionRoute } from "@/local-storage";
 import {
@@ -57,7 +58,7 @@ const VerifyTrackSummary: React.FC = () => {
       productDetails?.product_type === "Diamond"
         ? productDetails?.slt_details?.reduce(
             (total, item) => total + item.carat,
-            0
+            0,
           )
         : 0;
     setTotalTcs(totcts);
@@ -81,6 +82,7 @@ const VerifyTrackSummary: React.FC = () => {
     setSwitchToInsurance,
   } = useContext(VerifyTrackContext);
   const { showLoader, hideLoader } = useContext(LoaderContext);
+  const isOutsideIndia = useIsOutsideIndia();
   const { notify, notifyErr } = useContext(NotificationContext);
 
   //const handleOpenInsurance = () => setOpenInsureNow(true);//
@@ -141,7 +143,7 @@ const VerifyTrackSummary: React.FC = () => {
       notify(
         isWishlist
           ? NOTIFICATION_MESSAGES.ADDED_TO_WISHLIST
-          : NOTIFICATION_MESSAGES.ADDED_TO_PORTFOLIO
+          : NOTIFICATION_MESSAGES.ADDED_TO_PORTFOLIO,
       );
     } catch (err) {
       console.log(err);
@@ -288,7 +290,7 @@ const VerifyTrackSummary: React.FC = () => {
             {`${formatByCurrency(
               Math.round(productDetails.current_price),
               productDetails.currency_locale,
-              productDetails.currency_code
+              productDetails.currency_code,
             )}`}
             <span className="font-montserrat text-sm leading-4 ml-2 font-body font-normal leading-none">
               Excl. GST
@@ -425,18 +427,20 @@ const VerifyTrackSummary: React.FC = () => {
       </Checkbox> */}
         <div
           className={`flex ${
-            productDetails.uid_status === "SOLD"
+            productDetails.uid_status === "SOLD" && !isOutsideIndia
               ? "justify-between"
               : "justify-center"
           } gap-1 mt-14`}
         >
-          <Button
-            themeType="light"
-            classes="w-6/12 text-xs sm:text-base leading-5 font-medium"
-            onClick={handleOpenInsurance}
-          >
-            INSURE NOW
-          </Button>
+          {!isOutsideIndia && (
+            <Button
+              themeType="light"
+              classes="w-6/12 text-xs sm:text-base leading-5 font-medium"
+              onClick={handleOpenInsurance}
+            >
+              INSURE NOW
+            </Button>
+          )}
           {/* <Button
           themeType="dark"
           classes="w-6/12 text-xs sm:text-base leading-5 font-medium"

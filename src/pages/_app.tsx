@@ -12,6 +12,7 @@ import { AuthProvider } from "@/context/auth-context";
 import { CurrencyProvider } from "@/context/currency-context";
 import LoaderContext from "@/context/loader-context";
 import VerifyTrackContextWrapper from "@/context/verify-track-context";
+import usePageVisitLogger from "@/hooks/use-page-visit-logger";
 import {
   KnowYourDiamondContextWrapper,
   LayoutWrapper,
@@ -36,6 +37,8 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const { showLoader, hideLoader } = useContext(LoaderContext);
 
   const router = useRouter();
+
+  usePageVisitLogger();
 
   useEffect(() => {
     const handleRouteChange = (

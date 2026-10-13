@@ -22,7 +22,7 @@ export const loginVerifyOTPEndpoint: Endpoint = {
 
 export const googleLoginEndpoint: Endpoint = {
   method: HTTP_METHOD.POST,
-  url: "/api/googlelogin",
+  url: "/api/google/webverify",
 };
 
 export const verifyTrackEndpoint: Endpoint = {
@@ -170,4 +170,16 @@ export const registerUserEndpoint: Endpoint = {
 export const termsConditionEndpoint: Endpoint = {
   method: HTTP_METHOD.POST,
   url: "https://query.rsdpl.com/api/user_registration_terms.html",
+};
+
+
+// // for user Activity logging
+// export const userActivityEndpoint: Endpoint = {
+//   method: HTTP_METHOD.POST,
+//   url: "/api/activity",
+// };
+
+export const userActivitySecureEndpoint: Endpoint = {
+  method: HTTP_METHOD.POST,
+  url: "/api/sec/activity",
 };

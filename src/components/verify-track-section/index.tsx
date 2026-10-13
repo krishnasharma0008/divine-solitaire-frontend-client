@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import { TabNavWithSection, TabNavWithSectionProps } from "@/components";
 import { VerifyTrackContext } from "@/context/verify-track-context";
 import { VerifyTrackTabsEnum } from "@/enum";
+import useIsOutsideIndia from "@/hooks/use-is-outside-india";
 //import { deletePortfoliouid, getPortfoliouid } from "@/local-storage";
 import { isJewelleryProduct, isSoldProduct } from "@/util";
 
@@ -54,7 +55,8 @@ const tabsByType: {
 const getTabNavProps = (
   isJewellery: boolean,
   isSold: boolean,
-  chkport?: string
+  hideInsurance: boolean,
+  chkport?: string,
 ): TabNavWithSectionProps => {
   const getSections = (): Array<Tab> => {
     const {
@@ -66,12 +68,25 @@ const getTabNavProps = (
       "H&A": HNA,
       Journey,
     } = tabsByType;
-    if (isJewellery && isSold)
-      return [Summary, Certificate, Insurance, Resale /*Loan*/];
-    if (isJewellery && !isSold) return [Summary, Certificate, Insurance];
-    if (!isJewellery && isSold)
-      return [Summary, Certificate, Insurance, HNA, Resale, /*Loan,*/ Journey];
-    return [Summary, Certificate, Insurance, HNA, Journey];
+    const sections = ((): Array<Tab> => {
+      if (isJewellery && isSold)
+        return [Summary, Certificate, Insurance, Resale /*Loan*/];
+      if (isJewellery && !isSold) return [Summary, Certificate, Insurance];
+      if (!isJewellery && isSold)
+        return [
+          Summary,
+          Certificate,
+          Insurance,
+          HNA,
+          Resale,
+          /*Loan,*/ Journey,
+        ];
+      return [Summary, Certificate, Insurance, HNA, Journey];
+    })();
+    // Insurance tab outside India mein nahi dikhana
+    return hideInsurance
+      ? sections.filter((tab) => tab !== Insurance)
+      : sections;
   };
 
   const initialTabIndex =
@@ -95,14 +110,25 @@ const VerifyTrackSection: React.FC = () => {
   const isJewellery = isJewelleryProduct(productDetails);
   const isSold = isSoldProduct(productDetails);
 
-  const currentTabVal = switchToInsurance ? 3 : undefined;
+  const isOutsideIndia = useIsOutsideIndia();
+
+  // Insurance tab hidden ho to usme switch mat karo
+  const currentTabVal = switchToInsurance && !isOutsideIndia ? 3 : undefined;
   const { query } = useRouter();
 
   return (
     <div className="lg:m-auto md:px-2 lg:my-6 md:my-auto lg:max-w-screen-2xl">
+      {/* key: tab list badalne par remount, taaki purana tab number galat tab na khole */}
       <TabNavWithSection
-        {...getTabNavProps(isJewellery, isSold, query.portfolio?.toString())}
+        key={isOutsideIndia ? "outside-india" : "india"}
+        {...getTabNavProps(
+          isJewellery,
+          isSold,
+          isOutsideIndia,
+          query.portfolio?.toString(),
+        )}
         currentTab={currentTabVal}
+        logTabViews
       />
     </div>
   );

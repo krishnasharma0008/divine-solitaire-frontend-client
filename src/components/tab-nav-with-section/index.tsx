@@ -1,4 +1,7 @@
-import { createContext, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { createContext, useEffect, useRef, useState } from "react";
+
+import { ActivityTypes, logActivity } from "@/util/activity";
 
 import TabNav from "../tab-nav";
 
@@ -17,6 +20,7 @@ interface TabNavWithSectionProps {
   selectedTabClass?: string;
   currentTab?: number;
   onChange?: (tabIndex: number) => void; // New prop
+  logTabViews?: boolean;
 }
 
 type TabNavContextData = {
@@ -40,10 +44,11 @@ const TabNavWithSection: React.FC<TabNavWithSectionProps> = ({
   selectedTabClass,
   currentTab: currentTabProp,
   onChange,
+  logTabViews,
 }) => {
   const [currentTab, setCurrentTabNum] = useState<number>(initialTab || 1);
   const [currentSection, setCurrentSection] = useState<React.ReactNode | null>(
-    sections[currentTab - 1].component
+    sections[currentTab - 1].component,
   );
 
   const onTabSwitchHandler = (newTabIndex: number) => {
@@ -81,6 +86,22 @@ const TabNavWithSection: React.FC<TabNavWithSectionProps> = ({
   useEffect(() => {
     setCurrentSection(sections[currentTab - 1].component);
   }, [currentTab, sections]);
+
+  const router = useRouter();
+  const isFirstTab = useRef(true);
+
+  useEffect(() => {
+    if (!logTabViews) return;
+    if (isFirstTab.current) {
+      isFirstTab.current = false;
+      return;
+    }
+    const label = sections[currentTab - 1]?.label;
+    if (!label) return;
+    const path = router.asPath.split(/[?#]/)[0];
+    logActivity(ActivityTypes.TabView, label, `${path}#${label}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentTab, logTabViews]);
 
   if (orientation === "horizontal")
     return (

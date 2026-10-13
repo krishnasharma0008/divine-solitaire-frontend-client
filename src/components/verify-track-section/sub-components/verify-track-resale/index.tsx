@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { TabNavWithSection, TabNavWithSectionProps } from "@/components";
 import { VerifyTrackContext } from "@/context/verify-track-context";
 import { SaleType } from "@/enum/sale-type-enum";
+import useIsOutsideIndia from "@/hooks/use-is-outside-india";
 
 import BuybackTabs from "./buy-back";
 import ExchangeTabs from "./exchange";
@@ -18,7 +19,7 @@ interface StepWrapperProps {
 
 const StepWrapper: React.FC<StepWrapperProps> = ({ type }) => {
   const [currentStep, setCurrentStep] = useState<RESALE_STEPS>(
-    RESALE_STEPS.ONE
+    RESALE_STEPS.ONE,
   );
   const [productAmt, setProductAmt] = useState<string>("");
   const [saletype, setSaletype] = useState<SaleType>(SaleType.UPGRADE);
@@ -56,23 +57,30 @@ const StepWrapper: React.FC<StepWrapperProps> = ({ type }) => {
 };
 
 const VerifyTrackResale: React.FC = () => {
+  const isOutsideIndia = useIsOutsideIndia();
+
+  const allSections: TabNavWithSectionProps["sections"] = [
+    {
+      label: "Upgrade",
+      component: <StepWrapper type="UPGRADE" />,
+    },
+    {
+      label: "Buyback",
+      component: <StepWrapper type="BUYBACK" />,
+    },
+    {
+      label: "Exchange", // Add the EXCHANGE tab
+      component: <StepWrapper type="EXCHANGE" />,
+    },
+  ];
+
   const tabProps: TabNavWithSectionProps = {
     initialTab: 1,
     orientation: "custom",
-    sections: [
-      {
-        label: "Upgrade",
-        component: <StepWrapper type="UPGRADE" />,
-      },
-      {
-        label: "Buyback",
-        component: <StepWrapper type="BUYBACK" />,
-      },
-      {
-        label: "Exchange", // Add the EXCHANGE tab
-        component: <StepWrapper type="EXCHANGE" />,
-      },
-    ],
+    // Exchange outside India mein nahi dikhana
+    sections: isOutsideIndia
+      ? allSections.filter((section) => section.label !== "Exchange")
+      : allSections,
   };
 
   const { switchToSummary } = useContext(VerifyTrackContext);
@@ -81,7 +89,11 @@ const VerifyTrackResale: React.FC = () => {
 
   return (
     <div className={tabProps.initialTab > 1 ? "bg-[#F0F0F0] mx-2 " : ""}>
-      <TabNavWithSection {...tabProps} currentTab={currentTabVal} />
+      <TabNavWithSection
+        key={isOutsideIndia ? "outside-india" : "india"}
+        {...tabProps}
+        currentTab={currentTabVal}
+      />
     </div>
   );
 };

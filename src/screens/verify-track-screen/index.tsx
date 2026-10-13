@@ -13,6 +13,7 @@ import NotificationContext from "@/context/notification-context";
 import { VerifyTrackContext } from "@/context/verify-track-context";
 import useCountryCode from "@/hooks/use-country-code";
 import { deletePortfoliouid, getPortfoliouid } from "@/local-storage";
+import { ActivityTypes, logActivity } from "@/util/activity";
 //import { countryCurrencyMap } from "@/util/country-currency-map";
 //import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
 
@@ -48,7 +49,7 @@ export default function Track() {
 
   const SearchData = async (
     UID: string,
-    portfolio?: string
+    portfolio?: string,
     //,imageUrl?: string
   ) => {
     try {
@@ -57,10 +58,16 @@ export default function Track() {
       //console.log(res.data.data);
       if (res.data.data) {
         setProductDetails(res.data.data);
+        logActivity(
+          ActivityTypes.UidSearch,
+          `${UID.toUpperCase()}, Found, ${res.data.data.uid_status}`,
+        );
         if (portfolio === "yes") {
           console.log(
             "Check Type",
-            res.data.data.product_type === "Diamond" ? "solitaire" : "jewellery"
+            res.data.data.product_type === "Diamond"
+              ? "solitaire"
+              : "jewellery",
           );
           push({
             //pathname: `/track/jewellery/${UID.toUpperCase()}`,
@@ -80,7 +87,7 @@ export default function Track() {
               res.data.data.product_type === "Diamond"
                 ? "solitaire"
                 : "jewellery"
-            }/${UID.toUpperCase()}`
+            }/${UID.toUpperCase()}`,
           );
         }
         deletePortfoliouid();
@@ -91,6 +98,7 @@ export default function Track() {
     } catch (err) {
       notifyErr(NOTIFICATION_MESSAGES.SOMETHING_WRONG);
       hideLoader();
+      logActivity(ActivityTypes.UidSearch, `${UID.toUpperCase()}, Not found`);
       console.log("Error in fetching data", err);
     }
   };

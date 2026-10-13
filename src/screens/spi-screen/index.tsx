@@ -20,6 +20,7 @@ import useCountryCode from "@/hooks/use-country-code";
 import { SolitairePriceIndex } from "@/interface";
 //import { useCurrency } from "@/context/currency-context";
 import { formatByCurrency } from "@/util";
+import { ActivityTypes, logActivity } from "@/util/activity";
 //import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
 
 interface SPIPrice {
@@ -37,7 +38,7 @@ interface SPIPrice {
 const CustomDatePicker = forwardRef(
   (
     { value, onClick }: { value: string; onClick: (value: string) => void },
-    ref: Ref<HTMLButtonElement>
+    ref: Ref<HTMLButtonElement>,
   ) => (
     <Button
       themeType="light"
@@ -47,7 +48,7 @@ const CustomDatePicker = forwardRef(
     >
       Select Month <CalendarIcon className="inline-block ml-3" />
     </Button>
-  )
+  ),
 );
 
 const SolitairePriceIndexScreen: React.FC = () => {
@@ -85,7 +86,7 @@ const SolitairePriceIndexScreen: React.FC = () => {
       const result = await getSolitairePriceIndex(
         currentMonthNumber,
         currentYear,
-        countrycode as string
+        countrycode as string,
       );
       const addedComparion = {
         Month: month.toDateString(),
@@ -98,6 +99,10 @@ const SolitairePriceIndexScreen: React.FC = () => {
         currency_locale: `${result.data.data.currency_locale}`,
       };
       setComparedPrices([...comparedPrices, addedComparion]);
+      logActivity(
+        ActivityTypes.Compare,
+        month.toLocaleString("en-US", { month: "short", year: "numeric" }),
+      );
     } catch (error) {
       console.log(error);
     }
@@ -128,7 +133,7 @@ const SolitairePriceIndexScreen: React.FC = () => {
 
   const removePrice = (idx: number) => {
     setComparedPrices((prices) =>
-      prices.filter((price, priceIdx) => idx !== priceIdx)
+      prices.filter((price, priceIdx) => idx !== priceIdx),
     );
   };
 
@@ -143,7 +148,7 @@ const SolitairePriceIndexScreen: React.FC = () => {
       const result = await getSolitairePriceIndex(
         currentMonthNumber,
         currentYear,
-        countrycode as string
+        countrycode as string,
       );
 
       if (!result.data || !result.data.data) {
@@ -249,8 +254,8 @@ const SolitairePriceIndexScreen: React.FC = () => {
                         new Date(
                           new Date(item.date).getFullYear(),
                           new Date(item.date).getMonth(),
-                          1
-                        )
+                          1,
+                        ),
                       ).format("DD MMM, YYYY")}
                     </div>
                     <div className="flex justify-center items-center gap-3">
@@ -259,7 +264,7 @@ const SolitairePriceIndexScreen: React.FC = () => {
                         {`${formatByCurrency(
                           parseFloat(item.Current_Month_SPI),
                           item.currency_locale,
-                          item.currency_code
+                          item.currency_code,
                         )}`}
                       </div>
                       <div className="text-base font-normal font-montserrat leading-normal">
