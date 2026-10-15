@@ -18,6 +18,7 @@ import { ActivityTypes, logActivity } from "@/util/activity";
 //import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
 
 import useCountryCode from "./use-country-code";
+import useIsOutsideIndia from "./use-is-outside-india";
 
 // List of valid shapes for each category
 const regularShapes = Object.values(Shape);
@@ -112,7 +113,9 @@ const useSolitairePrice = () => {
   //   ? otherRoundColorsCarat
   //   : colors.slice(0, 5);
 
-  const colorOptions =
+  const isOutsideIndia = useIsOutsideIndia();
+
+  const allColorOptions =
     shapeType === "regular"
       ? isRound
         ? state.cts < 0.18
@@ -124,6 +127,11 @@ const useSolitairePrice = () => {
             (color) => color !== "I" && color !== "J" && color !== "K",
           )
       : colors;
+
+  // Yellow Vivid (VDF) aur Yellow Intense (INY) India ke bahar nahi dikhane
+  const colorOptions = isOutsideIndia
+    ? allColorOptions.filter((color) => color !== "VDF" && color !== "INY")
+    : allColorOptions;
 
   // const clarityOptions = isRound
   //   ? state.cts < 0.18

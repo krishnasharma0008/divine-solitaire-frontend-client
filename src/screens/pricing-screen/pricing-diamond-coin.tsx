@@ -170,31 +170,43 @@ const DiamondCoinSolitares: React.FC<Props> = () => {
           <div className="w-full flex items-center justify-center border text-gray-700 bg-white shadow-md bg-clip-border rounded-xl p-4">
             <table className="w-full m-4 [&>tr>td]:text-left md:[&>tr>td]:text-xl [&>tr>td]:text-sm space-y-4">
               <tr className="w-full flex">
-                <td className="w-full flex py-2 pr-2 lg:p-4 lg:pr-4 whitespace-nowrap justify-center items-center">
-                  <BuybackIcon className="h-8 w-8 md:4 md:4 inline-block mr-3" />
-                  &nbsp;Buyback
+                <td className="w-full flex py-2 pr-2 lg:p-4 lg:pr-4 gap-2 md:gap-3 md:whitespace-nowrap justify-start md:justify-center items-center">
+                  <span className="flex w-10 md:w-auto flex-none justify-center">
+                    <BuybackIcon className="h-8 w-8 md:4 md:4 inline-block" />
+                  </span>
+                  <span className="hidden md:inline">&nbsp;</span>Buyback
                 </td>
-                <td className="w-full flex py-2 lg:p-4 whitespace-nowrap justify-center items-center">
-                  <BuybackIcon className="h-8 w-8 md:4 md:4 inline-block mr-3" />
+                <td className="w-full flex py-2 lg:p-4 gap-2 md:gap-3 md:whitespace-nowrap justify-start md:justify-center items-center">
+                  <span className="flex w-10 md:w-auto flex-none justify-center">
+                    <BuybackIcon className="h-8 w-8 md:4 md:4 inline-block" />
+                  </span>
                   Upgrade
                 </td>
               </tr>
               <tr className="w-full flex">
                 {!isOutsideIndia && (
-                  <td className="w-full flex py-2 lg:p-4 lg:pr-4 whitespace-nowrap justify-center item-center">
-                    <InsuranceIcon className="h-8 w-8 md:4 md:4 bg-black inline-block mr-3" />{" "}
-                    Free Insurance &nbsp;&nbsp;&nbsp;
+                  <td className="w-full flex py-2 lg:p-4 lg:pr-4 gap-2 md:gap-3 md:whitespace-nowrap justify-start md:justify-center items-center">
+                    <span className="flex w-10 md:w-auto flex-none justify-center">
+                      <InsuranceIcon className="h-8 w-8 md:4 md:4 bg-black inline-block" />
+                    </span>
+                    Free Insurance
+                    <span className="hidden md:inline">&nbsp;&nbsp;&nbsp;</span>
                   </td>
                 )}
-                <td className="w-full flex py-2 lg:p-4 whitespace-nowrap justify-center items-center">
-                  <Image
-                    src="/guarantee-certificate.png"
-                    alt="Divine Logo"
-                    height={120}
-                    width={160}
-                    className="h-12 w-12 md:6 md:6"
-                  />{" "}
-                  100% Certified&nbsp;&nbsp;&nbsp;&nbsp;
+                <td className="w-full flex py-2 lg:p-4 gap-2 md:gap-3 md:whitespace-nowrap justify-start md:justify-center items-center">
+                  <span className="flex w-10 md:w-auto flex-none justify-center">
+                    <Image
+                      src="/guarantee-certificate.png"
+                      alt="Divine Logo"
+                      height={120}
+                      width={160}
+                      className="h-12 w-12 md:6 md:6 object-contain"
+                    />
+                  </span>
+                  100% Certified
+                  <span className="hidden md:inline">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                  </span>
                 </td>
               </tr>
             </table>

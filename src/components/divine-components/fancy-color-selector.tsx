@@ -23,7 +23,7 @@ const ColourOptionsSelector: React.FC<OptionsProps> = ({
   //console.log("Default Value : ", defaultValue);
 
   const ColorsLength = options.filter(
-    (color) => color !== "VDF" && color !== "INY"
+    (color) => color !== "VDF" && color !== "INY",
   ).length;
 
   const optionClickHandler = (idx: number) => () => {
@@ -66,29 +66,32 @@ const ColourOptionsSelector: React.FC<OptionsProps> = ({
             </div>
           ))}
         </div>
-        {/* Divider */}
-        <div className="w-2 mt-4 bg-slate-200"></div>
-        {/* Div for colors VDF and INY */}
-        <div
-          className="flex flex-col gap-y-2 mt-4"
-          style={{ maxWidth: "120px" }}
-        >
-          {options.slice(ColorsLength).map((color, idx) => (
+        {/* Divider + colors VDF and INY (options mein na hon to dikhana nahi) */}
+        {options.length > ColorsLength && (
+          <>
+            <div className="w-2 mt-4 bg-slate-200"></div>
             <div
-              key={`color-${color}`}
-              onClick={optionClickHandler(idx + ColorsLength)}
-              className={`h-[2rem] flex whitespace-nowrap justify-center items-center border rounded border-solid border-black p-2 cursor-pointer ${
-                idx + ColorsLength === selected ? "bg-black text-white" : ""
-              }`}
+              className="flex flex-col gap-y-2 mt-4"
+              style={{ maxWidth: "120px" }}
             >
-              {color === "VDF"
-                ? "Yellow Vivid"
-                : color === "INY"
-                ? "Yellow Intense"
-                : color}
+              {options.slice(ColorsLength).map((color, idx) => (
+                <div
+                  key={`color-${color}`}
+                  onClick={optionClickHandler(idx + ColorsLength)}
+                  className={`h-[2rem] flex whitespace-nowrap justify-center items-center border rounded border-solid border-black p-2 cursor-pointer ${
+                    idx + ColorsLength === selected ? "bg-black text-white" : ""
+                  }`}
+                >
+                  {color === "VDF"
+                    ? "Yellow Vivid"
+                    : color === "INY"
+                    ? "Yellow Intense"
+                    : color}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </>
+        )}
       </div>
     </div>
   );
