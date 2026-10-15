@@ -280,22 +280,25 @@ const DiamondCoinSolitares: React.FC<Props> = () => {
           </div>
         </div>
       </div>
-      <div className="p-4 justify-center items-center gap-[20px] bg-slate-50 my-8">
-        <div className="px-2 text-gray-900 md:text-xl font-Montserrat font-medium tracking-widest text-center text-[9px]">
-          To buy this solitaire Diamond coin visit your nearest store
+
+      {!isOutsideIndia && (
+        <div className="p-4 justify-center items-center gap-[20px] bg-slate-50 my-8">
+          <div className="px-2 text-gray-900 md:text-xl font-Montserrat font-medium tracking-widest text-center text-[9px]">
+            To buy this solitaire Diamond coin visit your nearest store
+          </div>
+          <div className="flex w-full justify-center items-center p-6">
+            <Link href="/store-locator" className="inline-block">
+              <Button
+                themeType="dark"
+                classes="p-4 px-8 h-14 text-xs font-light leading-5 max-w-[12rem] tracking-widest hover:bg-white hover:text-black [&:hover>span>svg]:fill-white [&:hover>span>svg>g>path]:stroke-black hover:border-none"
+              >
+                STORE LOCATOR
+                <span className="inline-block align-middle float-right"></span>
+              </Button>
+            </Link>
+          </div>
         </div>
-        <div className="flex w-full justify-center items-center p-6">
-          <Link href="/store-locator" className="inline-block">
-            <Button
-              themeType="dark"
-              classes="p-4 px-8 h-14 text-xs font-light leading-5 max-w-[12rem] tracking-widest hover:bg-white hover:text-black [&:hover>span>svg]:fill-white [&:hover>span>svg>g>path]:stroke-black hover:border-none"
-            >
-              STORE LOCATOR
-              <span className="inline-block align-middle float-right"></span>
-            </Button>
-          </Link>
-        </div>
-      </div>
+      )}
       <style jsx>{`
         .scroll-hide::-webkit-scrollbar {
           display: none;
