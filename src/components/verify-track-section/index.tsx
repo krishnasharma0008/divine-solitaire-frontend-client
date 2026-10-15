@@ -117,7 +117,7 @@ const VerifyTrackSection: React.FC = () => {
   const { query } = useRouter();
 
   return (
-    <div className="lg:m-auto md:px-2 lg:my-6 md:my-auto lg:max-w-screen-2xl">
+    <div className="pt-[72px] lg:pt-0 lg:m-auto md:px-2 lg:my-6 md:my-auto lg:max-w-screen-2xl">
       {/* key: tab list badalne par remount, taaki purana tab number galat tab na khole */}
       <TabNavWithSection
         key={isOutsideIndia ? "outside-india" : "india"}
