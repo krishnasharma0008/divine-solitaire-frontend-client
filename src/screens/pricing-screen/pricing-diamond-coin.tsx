@@ -167,49 +167,50 @@ const DiamondCoinSolitares: React.FC<Props> = () => {
           Unique Features
         </div>
         <div className="w-full flex md:p-4 justify-center items-center">
-          <div className="w-full flex items-center justify-center border text-gray-700 bg-white shadow-md bg-clip-border rounded-xl p-4">
-            <table className="w-full m-4 [&>tr>td]:text-left md:[&>tr>td]:text-xl [&>tr>td]:text-sm space-y-4">
-              <tr className="w-full flex">
-                <td className="w-full flex py-2 pr-2 lg:p-4 lg:pr-4 gap-2 md:gap-3 md:whitespace-nowrap justify-start md:justify-center items-center">
-                  <span className="flex w-10 md:w-auto flex-none justify-center">
-                    <BuybackIcon className="h-8 w-8 md:4 md:4 inline-block" />
+          <div className="w-full border text-gray-700 bg-white shadow-md bg-clip-border rounded-xl p-4">
+            <div className="grid grid-cols-2 gap-4 md:text-xl text-sm">
+              {/* Left column */}
+              <ul className="flex flex-col gap-6 justify-self-center">
+                <li className="flex items-center gap-3">
+                  <span className="flex w-12 flex-none justify-center">
+                    <BuybackIcon className="h-8 w-8" />
                   </span>
-                  <span className="hidden md:inline">&nbsp;</span>Buyback
-                </td>
-                <td className="w-full flex py-2 lg:p-4 gap-2 md:gap-3 md:whitespace-nowrap justify-start md:justify-center items-center">
-                  <span className="flex w-10 md:w-auto flex-none justify-center">
-                    <BuybackIcon className="h-8 w-8 md:4 md:4 inline-block" />
-                  </span>
-                  Upgrade
-                </td>
-              </tr>
-              <tr className="w-full flex">
+                  <span className="md:whitespace-nowrap">Buyback</span>
+                </li>
+
                 {!isOutsideIndia && (
-                  <td className="w-full flex py-2 lg:p-4 lg:pr-4 gap-2 md:gap-3 md:whitespace-nowrap justify-start md:justify-center items-center">
-                    <span className="flex w-10 md:w-auto flex-none justify-center">
-                      <InsuranceIcon className="h-8 w-8 md:4 md:4 bg-black inline-block" />
+                  <li className="flex items-center gap-3">
+                    <span className="flex w-12 flex-none justify-center">
+                      <InsuranceIcon className="h-8 w-8 bg-black" />
                     </span>
-                    Free Insurance
-                    <span className="hidden md:inline">&nbsp;&nbsp;&nbsp;</span>
-                  </td>
+                    <span className="md:whitespace-nowrap">Free Insurance</span>
+                  </li>
                 )}
-                <td className="w-full flex py-2 lg:p-4 gap-2 md:gap-3 md:whitespace-nowrap justify-start md:justify-center items-center">
-                  <span className="flex w-10 md:w-auto flex-none justify-center">
+              </ul>
+
+              {/* Right column */}
+              <ul className="flex flex-col gap-6 justify-self-center">
+                <li className="flex items-center gap-3">
+                  <span className="flex w-12 flex-none justify-center">
+                    <BuybackIcon className="h-8 w-8" />
+                  </span>
+                  <span className="md:whitespace-nowrap">Upgrade</span>
+                </li>
+
+                <li className="flex items-center gap-3">
+                  <span className="flex w-12 flex-none justify-center">
                     <Image
                       src="/guarantee-certificate.png"
-                      alt="Divine Logo"
+                      alt="Certified"
                       height={120}
                       width={160}
-                      className="h-12 w-12 md:6 md:6 object-contain"
+                      className="h-12 w-12 object-contain"
                     />
                   </span>
-                  100% Certified
-                  <span className="hidden md:inline">
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                  </span>
-                </td>
-              </tr>
-            </table>
+                  <span className="md:whitespace-nowrap">100% Certified</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
