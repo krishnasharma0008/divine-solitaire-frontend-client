@@ -23,7 +23,13 @@ import Button from "./button";
 import Sidebar, { SidebarProps } from "./sidebar";
 import { ShoppingCartIcon, StoreLocatorIcon, UserIcon } from "../icons";
 
-const HIDDEN_OUTSIDE_INDIA = ["PYDS", "Insurance", "Resale"];
+const HIDDEN_OUTSIDE_INDIA = [
+  "PYDS",
+  "Insurance",
+  "Resale",
+  "Diamond Education",
+  "Tsfi",
+];
 
 const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
   const { isLoggedIn, logout } = useAuth();
@@ -42,13 +48,6 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
     //deleteToken();
     push("/profile");
   };
-
-  console.log("Navbar isOutsideIndia:", isOutsideIndia);
-  console.log("Navbar isLoggedIn:", isLoggedIn);
-  console.log(
-    "countryCode:",
-    isOutsideIndia ? "Outside India" : "Inside India",
-  );
 
   // useEffect(() => {
   //   if (getToken()) {
