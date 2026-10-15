@@ -1,6 +1,8 @@
 import React from "next";
 import Link from "next/link";
 
+import useIsOutsideIndia from "@/hooks/use-is-outside-india";
+
 //import NewsletterButton from "@/components/common/newsletter-button";
 
 import {
@@ -27,6 +29,8 @@ const Footer: React.FC = () => {
   //   alert("working click");
   // };
 
+  const isOutsideIndia = useIsOutsideIndia();
+
   const footer_Items = [
     { text: "About Us", link: "about-us" },
     { text: "Frequently Asked Questions", link: "/faqs" },
@@ -35,13 +39,20 @@ const Footer: React.FC = () => {
     { text: "Privacy Policy", link: "/privacy-policy" },
     { text: "Blog", link: "#" },
   ];
+  // const footer_menuItems = [
+  //   { text: "Store Locator", link: "/store-locator" },
+  //   { text: "Know The Diamond Value", link: "/pricing" },
+  //   // { text: "Media", link: "#" },
+  //   { text: "Our Policies", link: "/our-policy" },
+  //   { text: "Verify & Track Your Diamond", link: "/track" },
+  // ];
   const footer_menuItems = [
     { text: "Store Locator", link: "/store-locator" },
     { text: "Know The Diamond Value", link: "/pricing" },
     // { text: "Media", link: "#" },
     { text: "Our Policies", link: "/our-policy" },
     { text: "Verify & Track Your Diamond", link: "/track" },
-  ];
+  ].filter((item) => !(isOutsideIndia && item.link === "/store-locator"));
 
   return (
     <div className="w-full flex flex-col lg:flex-row items-center justify-center bg-Chinese-Black-sidebar text-white">
