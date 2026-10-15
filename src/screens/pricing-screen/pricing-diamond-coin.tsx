@@ -77,6 +77,32 @@ const DiamondCoinSolitares: React.FC<Props> = () => {
     }
   }, [countryCode, hideLoader, notifyErr, showLoader]);
 
+  // Unique Features tiles (Free Insurance is hidden outside India)
+  const features = [
+    { label: "Buyback", icon: <BuybackIcon className="h-7 w-7" /> },
+    ...(!isOutsideIndia
+      ? [
+          {
+            label: "Free Insurance",
+            icon: <InsuranceIcon className="h-7 w-7 bg-black" />,
+          },
+        ]
+      : []),
+    { label: "Upgrade", icon: <BuybackIcon className="h-7 w-7" /> },
+    {
+      label: "100% Certified",
+      icon: (
+        <Image
+          src="/guarantee-certificate.png"
+          alt=""
+          height={120}
+          width={160}
+          className="h-8 w-8 object-contain"
+        />
+      ),
+    },
+  ];
+
   const CardCoin: React.FC<DiamondCoin> = (props) => (
     <div className="relative flex flex-col mt-6 text-gray-700 bg-white border shadow-md bg-clip-border rounded-xl md:w-[343px] w-[169px]">
       <div className="p-2">
@@ -153,7 +179,7 @@ const DiamondCoinSolitares: React.FC<Props> = () => {
         onMouseMove={handleMouseMove}
         ref={scrollRef}
       >
-        <div className="inline-flex gap-4 pb-4">
+        <div className="mx-auto flex w-max gap-4 pb-4">
           {diamondCoinList
             .filter((dcoin) => dcoin.design_type === "Diamond Coin")
             .map((dcoin) => (
@@ -162,57 +188,30 @@ const DiamondCoinSolitares: React.FC<Props> = () => {
         </div>
       </div>
 
-      <div className="w-full px-2 justify-center items-center gap-[20px] bg-slate-50 mt-6">
+      {/* Unique Features: new tile design */}
+      <div className="w-full px-2 pb-6 justify-center items-center gap-[20px] bg-slate-50 mt-6">
         <div className="px-2 text-gray-900 md:text-3xl text-lg font-Montserrat font-medium tracking-widest text-center">
           Unique Features
         </div>
-        <div className="w-full flex md:p-4 justify-center items-center">
-          <div className="w-full border text-gray-700 bg-white shadow-md bg-clip-border rounded-xl p-4">
-            <div className="grid grid-cols-2 gap-4 md:text-xl text-sm">
-              {/* Left column */}
-              <ul className="flex flex-col gap-6 justify-self-center">
-                <li className="flex items-center gap-3">
-                  <span className="flex w-12 flex-none justify-center">
-                    <BuybackIcon className="h-8 w-8" />
-                  </span>
-                  <span className="md:whitespace-nowrap">Buyback</span>
-                </li>
-
-                {!isOutsideIndia && (
-                  <li className="flex items-center gap-3">
-                    <span className="flex w-12 flex-none justify-center">
-                      <InsuranceIcon className="h-8 w-8 bg-black" />
-                    </span>
-                    <span className="md:whitespace-nowrap">Free Insurance</span>
-                  </li>
-                )}
-              </ul>
-
-              {/* Right column */}
-              <ul className="flex flex-col gap-6 justify-self-center">
-                <li className="flex items-center gap-3">
-                  <span className="flex w-12 flex-none justify-center">
-                    <BuybackIcon className="h-8 w-8" />
-                  </span>
-                  <span className="md:whitespace-nowrap">Upgrade</span>
-                </li>
-
-                <li className="flex items-center gap-3">
-                  <span className="flex w-12 flex-none justify-center">
-                    <Image
-                      src="/guarantee-certificate.png"
-                      alt="Certified"
-                      height={120}
-                      width={160}
-                      className="h-12 w-12 object-contain"
-                    />
-                  </span>
-                  <span className="md:whitespace-nowrap">100% Certified</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        <span className="mx-auto mt-3 block h-px w-12 bg-gold" />
+        <ul
+          className="mx-auto mt-6 grid max-w-4xl grid-cols-2 gap-3 md:grid-cols-4 md:gap-4"
+          style={{ paddingLeft: "0" }}
+        >
+          {features.map((f) => (
+            <li
+              key={f.label}
+              className="flex flex-col items-center gap-3 rounded-2xl bg-white px-3 py-5 text-center ring-1 ring-neutral-200 md:py-7"
+            >
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-50 ring-1 ring-gold/40">
+                {f.icon}
+              </span>
+              <span className="text-sm md:text-base font-medium">
+                {f.label}
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className="p-4 justify-center items-center gap-[20px] bg-slate-50">
@@ -254,33 +253,29 @@ const DiamondCoinSolitares: React.FC<Props> = () => {
         </div>
       </div>
 
-      <div className="p-4 justify-center items-center gap-[20px] bg-slate-50">
-        <div className="px-2 text-gray-900 md:text-3xl text-lg font-Montserrat font-medium tracking-widest text-center">
-          An Elite Gift. A Prized Asset
-        </div>
-        <div className="flex gap-[20px] ">
-          <div className="relative flex flex-col mt-6 text-gray-700 bg-white border shadow-md bg-clip-border rounded-xl w-auto">
-            <div className="p-6">
-              <table className="table w-full table-fixed [&>tr>td]:text-center md:[&>tr>td]:text-xl [&>tr>td]:text-sm">
-                <tr className="w-full">
-                  <td className="text-gray-900 font-Montserrat font-normal tracking-widest text-center">
-                    An exclusive gift of
-                    <br />
-                    appreciation in value with time
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <Image
-                      src="/angift.png"
-                      alt="Gift Card"
-                      height={1000}
-                      width={1000}
-                      className="m-auto h-auto w-auto md:h-80"
-                    />
-                  </td>
-                </tr>
-              </table>
+      <div className="bg-neutral-900 px-6 py-10 md:py-16 text-white">
+        <div className="mx-auto max-w-4xl text-center md:grid md:grid-cols-2 md:items-center md:gap-12 md:text-left">
+          {/* Text */}
+          <div>
+            <h2 className="text-xl md:text-3xl font-medium tracking-wide">
+              An Elite Gift. A Prized Asset
+            </h2>
+            <span className="mx-auto mt-3 block h-px w-12 bg-gold md:mx-0" />
+            <p className="mx-auto mt-4 max-w-sm text-sm md:mx-0 md:text-lg leading-relaxed text-neutral-300">
+              An exclusive gift of appreciation in value with time
+            </p>
+          </div>
+
+          {/* Gift card */}
+          <div className="mx-auto mt-8 w-full max-w-xs md:mt-0 md:max-w-none">
+            <div className="rounded-2xl bg-white p-4 ring-1 ring-gold/40 shadow-[0_0_40px_rgba(184,146,74,0.25)]">
+              <Image
+                src="/angift.png"
+                alt="Gift Card"
+                height={1000}
+                width={1000}
+                className="m-auto h-auto w-full object-contain md:h-72 md:w-auto"
+              />
             </div>
           </div>
         </div>
