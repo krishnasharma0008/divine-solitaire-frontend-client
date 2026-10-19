@@ -17,6 +17,7 @@ import {
 //import { ComparePrices } from "@/components/divine-components";
 import CanvasSPI from "@/components/common/canavas-spi";
 import useCountryCode from "@/hooks/use-country-code";
+import useIsOutsideIndia from "@/hooks/use-is-outside-india";
 import { SolitairePriceIndex } from "@/interface";
 //import { useCurrency } from "@/context/currency-context";
 import { formatByCurrency } from "@/util";
@@ -60,7 +61,7 @@ const SolitairePriceIndexScreen: React.FC = () => {
   const [isShowMore1, setIsShowMore1] = useState(false);
 
   const countrycode = useCountryCode();
-
+  const isOutsideIndia = useIsOutsideIndia();
   // Date Logic
   const currentDate = new Date();
   currentDate.setDate(1);
@@ -167,10 +168,10 @@ const SolitairePriceIndexScreen: React.FC = () => {
     <div className="gap-24">
       <div className="xl:max-w-5xl 2xl:max-w-6xl m-auto">
         <div className="flex flex-col items-center md:px-0 [&>div]:px-4 px-[70px]">
-          <div className="mb-4 text-gray-900 text-2xl md:text-5xl font-bold md:leading-[3.5rem] tracking-wider uppercase text-center md:text-left">
+          <div className="mb-4 font-montserrat text-gray-900 text-2xl md:text-5xl font-bold md:leading-[3.5rem] tracking-wider uppercase text-center md:text-left">
             Solitaire Price Index
           </div>
-          <div className="mb-12 text-gray-700 text-sm md:text-xl font-normal leading-6 md:leading-7 tracking-wide text-center">
+          <div className="mb-12 font-montserrat text-gray-700 text-sm md:text-xl font-normal leading-6 md:leading-7 tracking-wide text-center">
             India&apos;s first and only Diamond Index by Divine Solitaires.
           </div>
         </div>
@@ -380,7 +381,7 @@ const SolitairePriceIndexScreen: React.FC = () => {
                   Indian diamonds. As the diamond price was
                 </p>
                 {isShowMore && (
-                  <p className="text-black text-justify text-16 font-montserrat font-normal leading-[22.4px]">
+                  <p className="text-black text-justify text-sm md:text-base font-montserrat font-normal leading-[22.4px]">
                     difficult to ascertain without laboratory equipment or a
                     specific diamond price index, it was difficult to know the
                     correct solitaire price of loose diamonds in India. The most
@@ -404,54 +405,55 @@ const SolitairePriceIndexScreen: React.FC = () => {
           </div>
         </div>
       </div>
-
-      <div className="xl:max-w-5xl 2xl:max-w-6xl m-auto my-24 border border-x-0 border-y-0 border-[#BCBCBC]">
-        <div className="flex flex-col justify-between items-center">
-          <div className="flex flex-col items-start gap-12">
-            <div className="flex flex-col gap-8 px-2">
-              <span className="float-left text-black font-montserrat text-[40px] font-normal leading-[56px] tracking-widest">
-                Return in Sensex, Gold & Diamonds since 2010
-              </span>
-              <div>
-                <p className="text-black text-justify text-sm md:text-base font-montserrat font-normal leading-[22.4px]">
-                  Just as the stock market indexes the share prices of different
-                  companies, the Solitaire Price Index (SPI) denotes the price
-                  of diamonds. Focused on bringing standard and transparent
-                  pricing to the procurement of loose diamonds, SPI is purely
-                  based on the Divine Solitaires’ “Nationwide Standard and
-                  Transparent Price List ”. Since we at Divine Solitaires are
-                  aware that buying a diamond is a huge moment from, both, an
-                  emotional and an investment
-                </p>
-                {isShowMore1 && (
-                  <p className="text-black text-justify text-16 font-montserrat font-normal leading-[22.4px]">
-                    standpoint, we publish the Divine Solitaire Price Index on
-                    the 1st of every month. This diamond price index gives clear
-                    indications on how the value of diamonds have risen over the
-                    month, year and quarter, and can be used by anyone to
-                    effectively track trends in diamond pricing. Divine
-                    Solitaires sends its price list to around 70 of the very top
-                    jewellers in the country. The diamond price list serves to
-                    help customers across the world to know the right solitaire
-                    prices and also to know the prevailing rates for upgrading
-                    or selling any diamond they own. The Solitaire Price Index
-                    (SPI) is computed from the prices of shape (Round Brilliant
-                    Cut Diamond), size (0.10 cents to 2.99 cents and above),
-                    colour (D to K) and clarity (IF to SI2). In all, the SPI
-                    carries a comprehensive listing that helps all consumers to
-                    know for themselves the right price of the diamond they wish
-                    to buy or sell, whatever be its size, shape, cut or colour.
+      {!isOutsideIndia && (
+        <div className="xl:max-w-5xl 2xl:max-w-6xl m-auto my-24 border border-x-0 border-y-0 border-[#BCBCBC]">
+          <div className="flex flex-col justify-between items-center">
+            <div className="flex flex-col items-start gap-12">
+              <div className="flex flex-col gap-8 px-2">
+                <span className="float-left text-black font-montserrat text-2xl md:text-[40px] font-normal leading-8 md:leading-[56px] tracking-wider md:tracking-widest">
+                  Return in Sensex, Gold & Diamonds since 2010
+                </span>
+                <div>
+                  <p className="text-black text-justify text-sm md:text-base font-montserrat font-normal leading-[22.4px]">
+                    Just as the stock market indexes the share prices of
+                    different companies, the Solitaire Price Index (SPI) denotes
+                    the price of diamonds. Focused on bringing standard and
+                    transparent pricing to the procurement of loose diamonds,
+                    SPI is purely based on the Divine Solitaires’ “Nationwide
+                    Standard and Transparent Price List ”. Since we at Divine
+                    Solitaires are aware that buying a diamond is a huge moment
+                    from, both, an emotional and an investment
                   </p>
-                )}
-                <p
-                  className="text-black font-montserrat text-base font-bold leading-normal float-left"
-                  onClick={toggleReadMoreLess1}
-                >
-                  {isShowMore1 ? "Read Less" : "Read More"}
-                </p>
+                  {isShowMore1 && (
+                    <p className="text-black text-justify text-16 font-montserrat font-normal leading-[22.4px]">
+                      standpoint, we publish the Divine Solitaire Price Index on
+                      the 1st of every month. This diamond price index gives
+                      clear indications on how the value of diamonds have risen
+                      over the month, year and quarter, and can be used by
+                      anyone to effectively track trends in diamond pricing.
+                      Divine Solitaires sends its price list to around 70 of the
+                      very top jewellers in the country. The diamond price list
+                      serves to help customers across the world to know the
+                      right solitaire prices and also to know the prevailing
+                      rates for upgrading or selling any diamond they own. The
+                      Solitaire Price Index (SPI) is computed from the prices of
+                      shape (Round Brilliant Cut Diamond), size (0.10 cents to
+                      2.99 cents and above), colour (D to K) and clarity (IF to
+                      SI2). In all, the SPI carries a comprehensive listing that
+                      helps all consumers to know for themselves the right price
+                      of the diamond they wish to buy or sell, whatever be its
+                      size, shape, cut or colour.
+                    </p>
+                  )}
+                  <p
+                    className="text-black font-montserrat text-base font-bold leading-normal float-left"
+                    onClick={toggleReadMoreLess1}
+                  >
+                    {isShowMore1 ? "Read Less" : "Read More"}
+                  </p>
+                </div>
               </div>
-            </div>
-            {/* <div className="flex-shrink-0 w-full md:w-[1078px] md:h-[520px]">
+              {/* <div className="flex-shrink-0 w-full md:w-[1078px] md:h-[520px]">
               <Image
                 src="/Rectangle 128.png"
                 alt="Arrow"
@@ -460,9 +462,10 @@ const SolitairePriceIndexScreen: React.FC = () => {
                 className="m-auto h-[520] w-[1078px] "
               />
             </div> */}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* <div className="xl:max-w-5xl 2xl:max-w-6xl m-auto py-24 border border-x-0 border-t-0 border-[#BCBCBC]">
         <HomeScreenOurFeatures />
