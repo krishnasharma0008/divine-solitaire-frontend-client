@@ -1,6 +1,6 @@
-//import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 //import { useEffect, useReducer, useState } from "react";
-import { useReducer, useState } from "react";
+import { useContext, useReducer, useState } from "react";
 
 import { createContactUs } from "@/api/contact-us";
 import {
@@ -12,6 +12,11 @@ import {
   Button,
 } from "@/components";
 import TextArea from "@/components/common/input-text-area";
+import MessageModal from "@/components/common/message-modal";
+import NOTIFICATION_MESSAGES from "@/config/notification-messages";
+import LoaderContext from "@/context/loader-context";
+import NotificationContext from "@/context/notification-context";
+import useIsOutsideIndia from "@/hooks/use-is-outside-india";
 import { ContactUsForm } from "@/interface";
 //import { getToken } from "@/local-storage";
 
@@ -31,7 +36,7 @@ const initialState: ContactUsForm = {
 
 const ContactUsFormReducer = (
   state: ContactUsForm,
-  action: ContactUsFormAction
+  action: ContactUsFormAction,
 ) => {
   if (action.type === "ALL") {
     return {
@@ -45,6 +50,17 @@ const ContactUsFormReducer = (
 const ContactUsScreen: React.FC = () => {
   const [state, dispatch] = useReducer(ContactUsFormReducer, initialState);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [submitting, setSubmitting] = useState<boolean>(false);
+  const [isSuccessOpen, setIsSuccessOpen] = useState<boolean>(false);
+  const { push } = useRouter();
+
+  const onSuccessClose = () => {
+    setIsSuccessOpen(false);
+    push("/");
+  };
+  const { showLoader, hideLoader } = useContext(LoaderContext);
+  const { notifyErr } = useContext(NotificationContext);
+  const isOutsideIndia = useIsOutsideIndia();
   //const [tnc, setTnc] = useState<boolean>(false);
   //const { push } = useRouter();
 
@@ -85,6 +101,7 @@ const ContactUsScreen: React.FC = () => {
   };
 
   const onClickHandler = () => {
+    if (submitting) return;
     const validationErrors: { [key: string]: string } = {};
 
     if (!state.fname) {
@@ -119,15 +136,30 @@ const ContactUsScreen: React.FC = () => {
     }
     //setTnc(true);
 
+    setErrors({});
+    //setTnc(true);
+
     const payload: ContactUsForm = {
       ...state,
     };
     //console.log(payload);
+    setSubmitting(true);
+    showLoader();
     createContactUs(payload)
-      .then(() => {
-        console.log("It is successfully created");
+      .then((res) => {
+        // interceptor kuch errors par undefined resolve karta hai
+        if (!res) throw new Error("Contact request failed");
+        dispatch({ type: "ALL", payload: initialState });
+        setIsSuccessOpen(true);
       })
-      .catch((err) => console.log("Error", err));
+      .catch((err) => {
+        console.log("Error", err);
+        notifyErr(NOTIFICATION_MESSAGES.SOMETHING_WRONG);
+      })
+      .finally(() => {
+        hideLoader();
+        setSubmitting(false);
+      });
   };
 
   // useEffect(() => {
@@ -162,23 +194,25 @@ const ContactUsScreen: React.FC = () => {
               Talk to us
             </span>
             <span className="text-black font-Montserrat text-base font-normal leading-6">
-              +91 9769888666
+              {isOutsideIndia ? "+1 404-786-1933" : "+91 9769888666"}
               <br />
               <br />
               <br />
               <br />
             </span>
           </div>
-          <div className="flex flex-col items-center justify-center gap-8">
-            <OurAddressIcon />
-            <span className="text-black font-Montserrat font-semibold text-base leading-6">
-              Our Address
-            </span>
-            <span className="text-black text-center font-Montserrat text-base font-normal leading-5">
-              R S Diamonds Pvt Ltd. Naman Midtown, Office No: 1402, A Wing, SB
-              Marg, Prabhadevi (W), Mumbai - 400013, India.
-            </span>
-          </div>
+          {!isOutsideIndia && (
+            <div className="flex flex-col items-center justify-center gap-8">
+              <OurAddressIcon />
+              <span className="text-black font-Montserrat font-semibold text-base leading-6">
+                Our Address
+              </span>
+              <span className="text-black text-center font-Montserrat text-base font-normal leading-5">
+                R S Diamonds Pvt Ltd. Naman Midtown, Office No: 1402, A Wing, SB
+                Marg, Prabhadevi (W), Mumbai - 400013, India.
+              </span>
+            </div>
+          )}
           <div className="flex flex-col items-center justify-center gap-8">
             <WorkingHourIcon />
             <span className="text-black font-Montserrat font-semibold text-base leading-6">
@@ -195,7 +229,7 @@ const ContactUsScreen: React.FC = () => {
         <div className="w-full h-px bg-[#E0E0E0] my-8 md:my-16"></div>
       </div>
       <div className="flex items-center justify-center gap-8">
-        <form className="w-full max-w-lg">
+        <form className="w-full max-w-lg" onSubmit={(e) => e.preventDefault()}>
           <div className="flex flex-wrap items-center justify-center">
             <span className="text-main text-4xl font-montserrat font-medium pb-7">
               Get In Touch
@@ -279,13 +313,20 @@ const ContactUsScreen: React.FC = () => {
               themeType="dark"
               classes="w-full md:w-1/2  text-base leading-5 font-medium"
               onClick={onClickHandler}
-              //disabled={!tnc}
+              disabled={submitting}
             >
               Submit
             </Button>
           </div>
         </form>
       </div>
+      <MessageModal
+        isOpen={isSuccessOpen}
+        onClose={onSuccessClose}
+        headmsg="Thank You!"
+        bodymsg1="Thank you for your enquiry."
+        bodymsg2="We will get back to you shortly."
+      />
     </>
   );
 };

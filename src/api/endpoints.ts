@@ -72,7 +72,7 @@ export const createProfileEndpoint: Endpoint = {
 
 export const createContactUsEndpoint: Endpoint = {
   method: HTTP_METHOD.POST,
-  url: "/api/sec/contactus/",
+  url: "/api/contactus",
 };
 
 export const comparePastPricesEndpoint: Endpoint = {

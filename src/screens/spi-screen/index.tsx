@@ -21,7 +21,8 @@ import useIsOutsideIndia from "@/hooks/use-is-outside-india";
 import { SolitairePriceIndex } from "@/interface";
 //import { useCurrency } from "@/context/currency-context";
 import { formatByCurrency } from "@/util";
-import { ActivityTypes, logActivity } from "@/util/activity";
+//import { ActivityTypes, logActivity } from "@/util/activity";
+import { track } from "@/util/activity";
 //import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
 
 interface SPIPrice {
@@ -100,8 +101,11 @@ const SolitairePriceIndexScreen: React.FC = () => {
         currency_locale: `${result.data.data.currency_locale}`,
       };
       setComparedPrices([...comparedPrices, addedComparion]);
-      logActivity(
-        ActivityTypes.Compare,
+      // logActivity(
+      //   ActivityTypes.Compare,
+      //   month.toLocaleString("en-US", { month: "short", year: "numeric" }),
+      // );
+      track.compare(
         month.toLocaleString("en-US", { month: "short", year: "numeric" }),
       );
     } catch (error) {

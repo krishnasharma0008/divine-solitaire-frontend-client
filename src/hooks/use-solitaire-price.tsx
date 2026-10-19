@@ -14,7 +14,8 @@ import { ClarityRound, ClarityRoundcarat } from "@/enum/clarity-enum";
 import { FancyShape } from "@/enum/shape-enum";
 import { ComparePrice } from "@/interface";
 import { getToken, setRedirectionRoute } from "@/local-storage";
-import { ActivityTypes, logActivity } from "@/util/activity";
+//import { ActivityTypes, logActivity } from "@/util/activity";
+import { track } from "@/util/activity";
 //import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
 
 import useCountryCode from "./use-country-code";
@@ -325,7 +326,8 @@ const useSolitairePrice = () => {
     if (searchLogTimer.current) clearTimeout(searchLogTimer.current);
     searchLogTimer.current = setTimeout(() => {
       lastSearchKey.current = detail;
-      logActivity(ActivityTypes.Search, detail);
+      //logActivity(ActivityTypes.Search, detail);
+      track.search(detail);
     }, 1500);
   };
   //const countrycode = currency; //reverseCountryCurrencyMap[currency];
@@ -441,8 +443,11 @@ const useSolitairePrice = () => {
       const addedComparison = await fetchComparisonData(date);
 
       setComparedPrices([...comparedPrices, addedComparison]);
-      logActivity(
-        ActivityTypes.Compare,
+      // logActivity(
+      //   ActivityTypes.Compare,
+      //   date.toLocaleString("en-US", { month: "short", year: "numeric" }),
+      // );
+      track.compare(
         date.toLocaleString("en-US", { month: "short", year: "numeric" }),
       );
     } catch (error) {

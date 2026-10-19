@@ -11,6 +11,8 @@ export const ActivityTypes = {
   UidSearch: "uid_search",
   Compare: "compare",
   OpenItem: "open_item",
+  Login: "login",
+  Logout: "logout",
 } as const;
 
 export type ActivityType = (typeof ActivityTypes)[keyof typeof ActivityTypes];
@@ -94,4 +96,27 @@ export const logActivity = (
       token
     ).catch(() => undefined);
   });
+};
+
+/**
+ * Sab tracking calls ka single entry point.
+ * Naya event: upar ActivityTypes mein type add karo, yahan ek helper.
+ * Detail strings purane format jaise hi hain, taaki dashboard ka data consistent rahe.
+ */
+export const track = {
+  pageView: (path: string) => logActivity(ActivityTypes.PageView, "", path),
+  search: (detail: string) => logActivity(ActivityTypes.Search, detail),
+  tabView: (label: string, path: string) =>
+    logActivity(ActivityTypes.TabView, label, `${path}#${label}`),
+  uidFound: (uid: string, status: string) =>
+    logActivity(
+      ActivityTypes.UidSearch,
+      `${uid.toUpperCase()}, Found, ${status}`
+    ),
+  uidNotFound: (uid: string) =>
+    logActivity(ActivityTypes.UidSearch, `${uid.toUpperCase()}, Not found`),
+  compare: (monthYear: string) => logActivity(ActivityTypes.Compare, monthYear),
+  openItem: (uid: string) => logActivity(ActivityTypes.OpenItem, uid),
+  login: (method: string) => logActivity(ActivityTypes.Login, method),
+  logout: () => logActivity(ActivityTypes.Logout),
 };

@@ -13,6 +13,7 @@ import {
   setMobileNumber,
   setToken,
 } from "@/local-storage";
+import { track } from "@/util/activity";
 
 interface AuthContextType {
   isLoggedIn: boolean;
@@ -26,7 +27,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(
-    !!getToken() && !!getUser && !!getMobileNumber
+    !!getToken() && !!getUser && !!getMobileNumber,
   );
 
   const login = (token: string, user: string, mobileno: string) => {
@@ -38,6 +39,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const logout = () => {
+    track.logout(); // token delete hone se pehle, warna log nahi jayega
     deleteToken();
     deleteUser();
     deleteMobileNumber();

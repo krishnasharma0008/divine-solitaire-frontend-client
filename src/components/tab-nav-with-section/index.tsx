@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
 import { createContext, useEffect, useRef, useState } from "react";
 
-import { ActivityTypes, logActivity } from "@/util/activity";
+//import { ActivityTypes, logActivity } from "@/util/activity";
+import { track } from "@/util/activity";
 
 import TabNav from "../tab-nav";
 
@@ -99,7 +100,8 @@ const TabNavWithSection: React.FC<TabNavWithSectionProps> = ({
     const label = sections[currentTab - 1]?.label;
     if (!label) return;
     const path = router.asPath.split(/[?#]/)[0];
-    logActivity(ActivityTypes.TabView, label, `${path}#${label}`);
+    //logActivity(ActivityTypes.TabView, label, `${path}#${label}`);
+    track.tabView(label, path);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentTab, logTabViews]);
 

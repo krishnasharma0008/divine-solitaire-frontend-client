@@ -10,6 +10,8 @@ const NOTIFICATION_MESSAGES = {
   ERROR: "Something Went Wrong",
   PROFILE_UPDATE_SUCESS: "Profile Updated Sucessfully",
   REGISTERATION_COMPLETE:"User Registered Scuessfully",
+  CONTACT_US_SUCCESS:
+    "Thank you for your enquiry. We will get back to you shortly.",
 };
 
 export default NOTIFICATION_MESSAGES;
