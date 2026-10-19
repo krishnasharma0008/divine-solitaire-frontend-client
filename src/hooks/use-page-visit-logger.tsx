@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 
-import { ActivityTypes, logActivity } from "@/util/activity";
+import { track } from "@/util/activity";
 
 const usePageVisitLogger = () => {
   const router = useRouter();
@@ -12,7 +12,7 @@ const usePageVisitLogger = () => {
     const path = router.asPath.split(/[?#]/)[0];
     if (!path || path === lastPath.current) return;
     lastPath.current = path;
-    logActivity(ActivityTypes.PageView, "", path);
+    track.pageView(path);
   }, [router.isReady, router.asPath]);
 };
 

@@ -18,6 +18,7 @@ import {
   setMobileNumber as setMobileNumberInStorage,
   setRedirectionRoute,
 } from "@/local-storage";
+import { track } from "@/util/activity";
 
 const LoginScreenMobileInput: React.FC = ({}) => {
   const { showLoader, hideLoader } = useContext(LoaderContext);
@@ -44,6 +45,7 @@ const LoginScreenMobileInput: React.FC = ({}) => {
       if (!data?.token) throw new Error("No token from server");
 
       login(data.token, data.fname ?? "", data.mno ?? "");
+      track.login("google");
       notify(NOTIFICATION_MESSAGES.LOGIN_SUCCESS);
       const saved = getRedirectionRoute();
       const safeSaved = saved && !saved.startsWith("/login") ? saved : "/";

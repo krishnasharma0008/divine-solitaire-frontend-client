@@ -7,6 +7,8 @@
 // } from "@/components";
 //import Popup from "@/components/common/popup";
 
+import useIsOutsideIndia from "@/hooks/use-is-outside-india";
+
 import {
   // HomeScreenOurFeatures,
   // HomeScreenShareLove,
@@ -27,6 +29,26 @@ import {
 //import SolitairePriceIndexScreen from "../spi-screen";
 
 // const Seperator: React.FC = () => <div className="border my-12 md:my-36" />;
+
+const HOME_BANNER_IN = "/home-page/homepage-banner.mp4";
+const HOME_BANNER_USA = "/home-page/homepage-banner-usa.mp4";
+
+const HomeBannerVideo: React.FC<{ className: string }> = ({ className }) => {
+  const isOutsideIndia = useIsOutsideIndia();
+  const src = isOutsideIndia ? HOME_BANNER_USA : HOME_BANNER_IN;
+
+  return (
+    <video
+      key={src}
+      src={src}
+      autoPlay
+      muted
+      loop
+      playsInline
+      className={className}
+    />
+  );
+};
 
 const HomepageScreen: React.FC = () => (
   <div className="">
@@ -75,27 +97,13 @@ const HomepageScreen: React.FC = () => (
     {/* Desktop Banner */}
     {/* Desktop Banner */}
     <div className="hidden lg:flex lg:items-center lg:justify-center lg:h-screen bg-black">
-      <video
-        src="/home-page/homepage-banner.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="w-full h-full object-cover"
-      />
+      <HomeBannerVideo className="w-full h-full object-cover" />
     </div>
 
     {/* Mobile Banner */}
     <div className="lg:hidden" style={{ marginTop: "70px" }}>
       <div className="relative">
-        <video
-          src="/home-page/homepage-banner.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-auto"
-        />
+        <HomeBannerVideo className="w-full h-auto" />
         {/* <div className="bg-black text-white text-center md:text-3xl flex flex-col gap-3 pb-3 md:pb-5">
           <div>Superior quality solitaires with Hearts and Arrows</div>
           <div>200+ Stores in 100+ Cities</div>

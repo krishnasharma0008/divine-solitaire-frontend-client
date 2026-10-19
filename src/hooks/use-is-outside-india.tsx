@@ -7,7 +7,7 @@ const detectOutsideIndia = (): Promise<boolean> => {
   if (!detection) {
     detection = fetch("/api/ipinfo")
       .then((res) => (res.ok ? res.json() : null))
-      .then((data) => (data?.country_code ? data.country_code !== "IN" : false))
+      .then((data) => (data?.country_code ? data.country_code !== "US" : false))
       .catch(() => false)
       .then((value) => {
         resolved = value;

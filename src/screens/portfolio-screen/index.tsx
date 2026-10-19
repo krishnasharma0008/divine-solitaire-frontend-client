@@ -19,7 +19,8 @@ import {
   deletePortfoliouid,
 } from "@/local-storage";
 import { calculateGrowth } from "@/util";
-import { ActivityTypes, logActivity } from "@/util/activity";
+//import { ActivityTypes, logActivity } from "@/util/activity";
+import { track } from "@/util/activity";
 //import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
 
 const PortfolioScreen: React.FC = () => {
@@ -49,7 +50,8 @@ const PortfolioScreen: React.FC = () => {
   };
 
   const handleClick = (uid: string) => {
-    logActivity(ActivityTypes.OpenItem, uid);
+    //logActivity(ActivityTypes.OpenItem, uid);
+    track.openItem(uid);
     deletePortfoliouid;
     setPortfoliouid(uid);
     push("/track");

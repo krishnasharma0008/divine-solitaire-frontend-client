@@ -13,7 +13,8 @@ import NotificationContext from "@/context/notification-context";
 import { VerifyTrackContext } from "@/context/verify-track-context";
 import useCountryCode from "@/hooks/use-country-code";
 import { deletePortfoliouid, getPortfoliouid } from "@/local-storage";
-import { ActivityTypes, logActivity } from "@/util/activity";
+//import { ActivityTypes, logActivity } from "@/util/activity";
+import { track } from "@/util/activity";
 //import { countryCurrencyMap } from "@/util/country-currency-map";
 //import { reverseCountryCurrencyMap } from "@/util/reverse-country-currency-map";
 
@@ -58,10 +59,11 @@ export default function Track() {
       //console.log(res.data.data);
       if (res.data.data) {
         setProductDetails(res.data.data);
-        logActivity(
-          ActivityTypes.UidSearch,
-          `${UID.toUpperCase()}, Found, ${res.data.data.uid_status}`,
-        );
+        // logActivity(
+        //   ActivityTypes.UidSearch,
+        //   `${UID.toUpperCase()}, Found, ${res.data.data.uid_status}`,
+        // );
+        track.uidFound(UID, res.data.data.uid_status);
         if (portfolio === "yes") {
           console.log(
             "Check Type",
@@ -98,7 +100,8 @@ export default function Track() {
     } catch (err) {
       notifyErr(NOTIFICATION_MESSAGES.SOMETHING_WRONG);
       hideLoader();
-      logActivity(ActivityTypes.UidSearch, `${UID.toUpperCase()}, Not found`);
+      //logActivity(ActivityTypes.UidSearch, `${UID.toUpperCase()}, Not found`);
+      track.uidNotFound(UID);
       console.log("Error in fetching data", err);
     }
   };

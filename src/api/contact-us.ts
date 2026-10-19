@@ -2,7 +2,7 @@ import { AxiosResponse } from "axios";
 import get from "lodash/get";
 
 import { ContactUsForm } from "@/interface";
-import { getToken } from "@/local-storage";
+//import { getToken } from "@/local-storage";
 
 import { createContactUsEndpoint } from "./endpoints";
 import callWebService from "./web-service";
@@ -18,10 +18,10 @@ const createContactUs = (
 
   return callWebService(createContactUsEndpoint.url, {
     method: createContactUsEndpoint.method,
-    headers: {
-      Authorization: "Bearer " + getToken(),
-      "Content-Type": "multipart/form-data",
-    },
+    // headers: {
+    //   Authorization: "Bearer " + getToken(),
+    //   "Content-Type": "multipart/form-data",
+    // },
     data: formData,
   });
 };
