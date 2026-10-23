@@ -57,6 +57,7 @@ const getTabNavProps = (
   isSold: boolean,
   hideInsurance: boolean,
   chkport?: string,
+  hideJewelleryJourney = false,
 ): TabNavWithSectionProps => {
   const getSections = (): Array<Tab> => {
     const {
@@ -69,9 +70,22 @@ const getTabNavProps = (
       Journey,
     } = tabsByType;
     const sections = ((): Array<Tab> => {
+      // Jewellery: pcs > 1 ho to Journey nahi dikhana
       if (isJewellery && isSold)
-        return [Summary, Certificate, Insurance, Resale /*Loan*/];
-      if (isJewellery && !isSold) return [Summary, Certificate, Insurance];
+        return [
+          Summary,
+          Certificate,
+          Insurance,
+          Resale /*Loan*/,
+          ...(hideJewelleryJourney ? [] : [Journey]),
+        ];
+      if (isJewellery && !isSold)
+        return [
+          Summary,
+          Certificate,
+          Insurance,
+          ...(hideJewelleryJourney ? [] : [Journey]),
+        ];
       if (!isJewellery && isSold)
         return [
           Summary,
@@ -126,6 +140,7 @@ const VerifyTrackSection: React.FC = () => {
           isSold,
           isOutsideIndia,
           query.portfolio?.toString(),
+          (productDetails?.slt_total_pcs ?? 0) > 1,
         )}
         currentTab={currentTabVal}
         logTabViews
