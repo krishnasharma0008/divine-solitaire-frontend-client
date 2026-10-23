@@ -11,7 +11,7 @@ const JourneyAboutDia_Items = [
   {
     icon: "/image 17.png",
     text: "Rough diamond",
-    carat: "(0.96 carat)",
+    carat: "",
   },
   {
     icon: "/image 18.png",
@@ -22,15 +22,19 @@ const JourneyAboutDia_Items = [
   {
     icon: "/image 19.png",
     text: "Polished Diamond",
-    carat: "(0.30 carat)",
+    carat: "",
   },
 ];
 
 const VerifyTrackJourneyAboutDiamond: React.FC<Props> = () => {
   const { productDetails } = useContext(VerifyTrackContext);
+  const roughCarat = productDetails?.slt_details?.[0]?.rough_carat
+    ? `(${productDetails.slt_details[0].rough_carat} carat)`
+    : "";
   const polishedCarat = productDetails?.slt_total_cts
     ? `(${productDetails.slt_total_cts} carat)`
     : "";
+
   return (
     <div className="w-full md:w-[716px] flex flex-col items-center px-4">
       <div className="flex flex-col justify-center items-center gap-9 self-stretch">
@@ -51,7 +55,11 @@ const VerifyTrackJourneyAboutDiamond: React.FC<Props> = () => {
                 {item.text}
               </span>
               <span className="text-black text-base font-montserrat font-normal leading-normal">
-                {item.text === "Polished Diamond" ? polishedCarat : item.carat}
+                {item.text === "Polished Diamond"
+                  ? polishedCarat
+                  : item.text === "Rough diamond"
+                  ? roughCarat
+                  : item.carat}
               </span>
             </div>
           ))}

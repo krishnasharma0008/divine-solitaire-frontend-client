@@ -179,10 +179,15 @@ const SolitairePriceIndexScreen: React.FC = () => {
             India&apos;s first and only Diamond Index by Divine Solitaires.
           </div>
         </div>
-        <div className="flex flex-col md:flex-row justify-between items-center self-stretch">
+        <div
+          className={`flex flex-col items-center self-stretch ${
+            isOutsideIndia ? "" : "md:flex-row justify-between"
+          }`}
+        >
           {/* First column */}
-          <div className="flex flex-col gap-2 md:w-1/2">
-            {/* <Image
+          {!isOutsideIndia && (
+            <div className="flex flex-col gap-2 md:w-1/2">
+              {/* <Image
               src="/api/get-spi-image"
               alt="spiimage"
               height={0}
@@ -190,25 +195,37 @@ const SolitairePriceIndexScreen: React.FC = () => {
               sizes="100vw"
               className="w-full h-auto"
             /> */}
-            <CanvasSPI
-              url="/edit/spi_banner.png" // your uploaded yellow template
-              data={{
-                currentMonth: currentMonth,
-                currentYear: currentYear.toString(),
-                firstDayOfMonth: firstDayOfMonth.toString(),
-                Current_Month_SPI: spi?.Current_Month_SPI || 0,
-                Growth_Month_Percentage: spi?.Growth_Month_Percentage || 0,
-                Growth_Year_Percentage: spi?.Growth_Year_Percentage || 0,
-                // Growth_Month_Percentage: 99.99,
-                // Growth_Year_Percentage: 99.99,
-              }}
-              width={1280}
-              height={768}
-            />
-          </div>
+
+              <CanvasSPI
+                url="/edit/spi_banner.png" // your uploaded yellow template
+                data={{
+                  currentMonth: currentMonth,
+                  currentYear: currentYear.toString(),
+                  firstDayOfMonth: firstDayOfMonth.toString(),
+                  Current_Month_SPI: spi?.Current_Month_SPI || 0,
+                  Growth_Month_Percentage: spi?.Growth_Month_Percentage || 0,
+                  Growth_Year_Percentage: spi?.Growth_Year_Percentage || 0,
+                  // Growth_Month_Percentage: 99.99,
+                  // Growth_Year_Percentage: 99.99,
+                }}
+                width={1280}
+                height={768}
+              />
+            </div>
+          )}
           {/* Second column */}
-          <div className="flex flex-col justify-between items-center md:pt-[88px] pt-0 self-stretch md:w-1/2 px-2">
-            <div className="flex flex-col items-start gap-6">
+          <div
+            className={`flex flex-col items-center px-2 ${
+              isOutsideIndia
+                ? "self-center w-full max-w-xl pt-0"
+                : "self-stretch justify-between md:pt-[88px] pt-0 md:w-1/2"
+            }`}
+          >
+            <div
+              className={`flex flex-col gap-6 ${
+                isOutsideIndia ? "items-center text-center" : "items-start"
+              }`}
+            >
               <span className="text-gray-700 font-montserrat text-base font-normal leading-6 tracking-wide">
                 This is an average of Divine Solitaire&apos;s Price List.
               </span>
@@ -222,9 +239,17 @@ const SolitairePriceIndexScreen: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row  align-top content-start mt-[50px]">
+        <div
+          className={`flex flex-col align-top content-start ${
+            isOutsideIndia ? "items-center mt-10" : "md:flex-row mt-[50px]"
+          }`}
+        >
           {/* First column */}
-          <div className="flex flex-col items-start gap-2 p-4 rounded-lg md:w-1/2 px-8 align-top ">
+          <div
+            className={`flex flex-col items-start gap-2 p-4 rounded-lg align-top ${
+              isOutsideIndia ? "w-full max-w-xl px-4" : "md:w-1/2 px-8"
+            }`}
+          >
             <div className="w-full inline-block ">
               <ReactDatePicker
                 customInput={

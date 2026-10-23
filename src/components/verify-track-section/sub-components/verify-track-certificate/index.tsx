@@ -137,7 +137,7 @@ const VerifyTrackCertificate: React.FC = () => {
   return (
     <div className="px-4">
       <div
-        className={`border-2 sm:border border-black w-full p-2 lg:px-14 sm:pt-12 lg:pb-36 text-center`}
+        className={`border-2 sm:border border-black w-full p-2 lg:px-14 sm:pt-12 lg:pb-12 text-center`}
       >
         <div dir="rtl">
           {/* <DownloadIcon className="relative top-0 start-0" /> */}
@@ -191,13 +191,45 @@ const VerifyTrackCertificate: React.FC = () => {
           Divine Solitaires Stringently analyses as well as Guarantees every
           diamond to score ‘The Best’ on all the 123 parameters.
         </div>
-        <Image
-          src="/guarantee-certificate.png"
-          alt="Divine Logo"
-          height={120}
-          width={160}
-          className="h-32 w-40 lg:float-right ml-auto lg:-mr-12"
-        />
+
+        <div className="flex flex-wrap items-center justify-between gap-4 lg:-mr-12">
+          <div className="flex flex-wrap items-center gap-4">
+            {productDetails.slt_details
+              .filter((item) => item.lab_certificate_url)
+              .map((item) => (
+                <a
+                  key={item.uid}
+                  href={item.lab_certificate_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block cursor-pointer text-center"
+                >
+                  <span className="flex h-auto w-40 flex-col items-center justify-center gap-1 px-2 text-sm font-semibold sm:text-base">
+                    <span>Third Party Certificate</span>
+                    {productDetails.slt_details.length > 1 && (
+                      <span className="text-xs font-normal sm:text-sm">
+                        {item.uid}
+                      </span>
+                    )}
+                  </span>
+                </a>
+              ))}
+          </div>
+          <a
+            href={productDetails.slt_details[0]?.analysis_report_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block cursor-pointer ml-auto"
+          >
+            <Image
+              src="/guarantee-certificate.png"
+              alt="Divine Logo"
+              height={120}
+              width={160}
+              className="h-32 w-40"
+            />
+          </a>
+        </div>
       </div>
     </div>
   );
