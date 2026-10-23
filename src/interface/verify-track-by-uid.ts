@@ -34,6 +34,12 @@ export interface VerifyTrackByUid {
       purchase_price: number;
       shape: string;
       uid: string;
+
+       //new fields
+  lab_certificate_url:string;// Third Party Certficate certificate url
+  analysis_report_url:string;// 123 paramater analysis report url
+  rough_carat:number;// rough carat weight
+  mined_from:string;// mined from location
     }
   ];
   slt_total_cts: number;
@@ -68,4 +74,6 @@ export interface VerifyTrackByUid {
   exchange_processing_charges: number;
   exchange_same_store_price: number;
   exchange_diffrent_store_price: number;
+
+ 
 }
