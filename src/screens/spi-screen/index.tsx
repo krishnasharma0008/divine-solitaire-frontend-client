@@ -210,10 +210,10 @@ const SolitairePriceIndexScreen: React.FC = () => {
           <div className="flex flex-col justify-between items-center md:pt-[88px] pt-0 self-stretch md:w-1/2 px-2">
             <div className="flex flex-col items-start gap-6">
               <span className="text-gray-700 font-montserrat text-base font-normal leading-6 tracking-wide">
-                This is an average of Divine Solitaire Price List.
+                This is an average of Divine Solitaire&apos;s Price List.
               </span>
               <span className="text-gray-700 font-montserrat text-base font-normal leading-6 tracking-wide">
-                Only Divine Solitaire provides with price
+                Only Divine Solitaire&apos;s provides with price
               </span>
               <span className="text-gray-700 font-montserrat text-base font-normal leading-6 tracking-wide">
                 Price list is released 1st of every month
@@ -429,7 +429,7 @@ const SolitairePriceIndexScreen: React.FC = () => {
                     from, both, an emotional and an investment
                   </p>
                   {isShowMore1 && (
-                    <p className="text-black text-justify text-16 font-montserrat font-normal leading-[22.4px]">
+                    <p className="text-black text-justify text-sm md:text-base font-montserrat font-normal leading-[22.4px]">
                       standpoint, we publish the Divine Solitaire Price Index on
                       the 1st of every month. This diamond price index gives
                       clear indications on how the value of diamonds have risen
