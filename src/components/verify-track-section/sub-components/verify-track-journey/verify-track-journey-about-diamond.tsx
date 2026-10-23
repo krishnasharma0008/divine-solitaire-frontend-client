@@ -1,4 +1,7 @@
 import Image from "next/image";
+import { useContext } from "react";
+
+import { VerifyTrackContext } from "@/context/verify-track-context";
 
 interface Props {
   children?: React.ReactNode;
@@ -24,6 +27,10 @@ const JourneyAboutDia_Items = [
 ];
 
 const VerifyTrackJourneyAboutDiamond: React.FC<Props> = () => {
+  const { productDetails } = useContext(VerifyTrackContext);
+  const polishedCarat = productDetails?.slt_total_cts
+    ? `(${productDetails.slt_total_cts} carat)`
+    : "";
   return (
     <div className="w-full md:w-[716px] flex flex-col items-center px-4">
       <div className="flex flex-col justify-center items-center gap-9 self-stretch">
@@ -44,7 +51,7 @@ const VerifyTrackJourneyAboutDiamond: React.FC<Props> = () => {
                 {item.text}
               </span>
               <span className="text-black text-base font-montserrat font-normal leading-normal">
-                {item.carat}
+                {item.text === "Polished Diamond" ? polishedCarat : item.carat}
               </span>
             </div>
           ))}
