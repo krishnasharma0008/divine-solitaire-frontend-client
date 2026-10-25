@@ -46,14 +46,14 @@ const DiamondEducationFourCConflictFree: React.FC<Props> = () => {
                 use.
               </p>
               <p className="mb-2.5 text-justify">
-                Divine Solitaires along with the global diamond industry is
-                intolerant towards conflict diamonds. In keeping with the
+                Divine Solitaire&apos;s along with the global diamond industry
+                is intolerant towards conflict diamonds. In keeping with the
                 Kimberley process which tracks diamonds from the mine to the
-                market, Divine Solitaires purchases diamonds from the largest
-                and the most respected suppliers. The business is strictly
-                limited to those who adhere and enforce the standards
-                established by the Kimberley process. All the Divine Solitaires
-                diamonds are warranted to be conflict-free.
+                market, Divine Solitaire&apos;s purchases diamonds from the
+                largest and the most respected suppliers. The business is
+                strictly limited to those who adhere and enforce the standards
+                established by the Kimberley process. All the Divine
+                Solitaire&apos;s diamonds are warranted to be conflict-free.
               </p>
             </span>
           </div>

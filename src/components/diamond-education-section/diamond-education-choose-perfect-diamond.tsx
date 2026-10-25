@@ -26,12 +26,12 @@ const DiamondEducationChoosePerfectDiamond: React.FC<Props> = () => {
             <p className="font-Montserrat text-justify not-italic font-normal text-base text-gray-900">
               Purchasing diamond jewellery is always a special and memorable
               event. It is important that the chosen piece is perfectly selected
-              and carefully decided upon. Thus, Divine Solitaires is committed
-              to providing its customers with all the necessary advice and
-              education on diamonds, enabling them to effectively choose diamond
-              jewellery from a diverse solitaire diamond collection which
-              includes diamond studs, diamond pendants, diamond bangles, diamond
-              necklaces, diamond bracelets, diamond earrings and diamond
+              and carefully decided upon. Thus, Divine Solitaire&apos;s is
+              committed to providing its customers with all the necessary advice
+              and education on diamonds, enabling them to effectively choose
+              diamond jewellery from a diverse solitaire diamond collection
+              which includes diamond studs, diamond pendants, diamond bangles,
+              diamond necklaces, diamond bracelets, diamond earrings and diamond
               tanmaniya. So let&apos;s take a look at some of our most popular
               diamond jewellery and how to select solitaire diamond jewellery:
             </p>

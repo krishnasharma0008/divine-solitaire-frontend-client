@@ -17,14 +17,14 @@ const VerifyTrackJourneyMinedFrom: React.FC<Props> = () => {
 
         <div className="flex flex-col items-start gap-3">
           <div className="text-black text-lg font-montserrat font-semibold leading-normal">
-            Mined From{minedFrom ? ` ..  ${minedFrom}` : ""}
+            Mined From{minedFrom ? ` : ${minedFrom}` : ""}
           </div>
           <div className="flex flex-col self-stretch">
             <span className="text-black text-base font-montserrat font-normal leading-normal">
-              Every Divine Solitaires diamond is ethically sourced from one of
-              these mines - Canada, Botswana, Russia, South Africa, Australia &
-              Angola. Diamond sourced from these, follow internationally
-              recognised labour & environment standards.
+              Every Divine Solitaire&apos;s diamond is ethically sourced from
+              one of these mines - Canada, Botswana, Russia, South Africa,
+              Australia & Angola. Diamond sourced from these, follow
+              internationally recognised labour & environment standards.
             </span>
           </div>
         </div>

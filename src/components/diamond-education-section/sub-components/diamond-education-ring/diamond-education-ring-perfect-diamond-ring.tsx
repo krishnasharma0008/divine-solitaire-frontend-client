@@ -54,11 +54,11 @@ const DiamondEducationRingPerfectDiamond: React.FC<Props> = () => {
                     It is therefore essential to know everything about diamonds
                     so that you can precisely make your choices which will help
                     you keep the cost your diamond ring price minimal and
-                    affordable. Divine Solitaires provides you with an exquisite
-                    range of diamond rings to choose from and helps you stick to
-                    your engagement ring budget. Here are a few factors to
-                    consider while buying your diamond ring to make it
-                    cost-effective:
+                    affordable. Divine Solitaire&apos;s provides you with an
+                    exquisite range of diamond rings to choose from and helps
+                    you stick to your engagement ring budget. Here are a few
+                    factors to consider while buying your diamond ring to make
+                    it cost-effective:
                   </p>
                   <p className="mb-2.5 text-justify">
                     Cuts and Shapes :
@@ -159,14 +159,14 @@ const DiamondEducationRingPerfectDiamond: React.FC<Props> = () => {
                   you are purchasing are worth their price. After you have
                   purchased the ring, a certificate of authenticity by the GIA
                   is given which tells you the quality of your engagement ring.
-                  Diamonds from Divine Solitaires are checked on 123 parameters
-                  before being certified to assure you of the best quality. The
-                  GIA certificate is only provided to diamonds that score above
-                  0.30 on their scale. Furthermore, Divine Solitaires issues its
-                  own Quality Guarantee Certificate for each diamond which is
-                  after a diamond is checked thoroughly on 123 parameters where
-                  as the other laboratories check diamonds on 40 parameters
-                  only.
+                  Diamonds from Divine Solitaire&apos;s are checked on 123
+                  parameters before being certified to assure you of the best
+                  quality. The GIA certificate is only provided to diamonds that
+                  score above 0.30 on their scale. Furthermore, Divine
+                  Solitaire&apos;s issues its own Quality Guarantee Certificate
+                  for each diamond which is after a diamond is checked
+                  thoroughly on 123 parameters where as the other laboratories
+                  check diamonds on 40 parameters only.
                 </p>
                 <p className="mb-3 text-justify">
                   Guarantee :
@@ -177,7 +177,7 @@ const DiamondEducationRingPerfectDiamond: React.FC<Props> = () => {
                   guarantee of the diamond helps you cover the extra cost of the
                   solitaires. Another important aspect is insuring your diamond
                   ring. Insurance is also important as it covers your engagement
-                  ring in case of any mishap or thefts. Divine Solitaires
+                  ring in case of any mishap or thefts. Divine Solitaire&apos;s
                   realizes this risk and hence provides you with a one-year free
                   insurance for engagement rings for you to choose diamonds that
                   are best.

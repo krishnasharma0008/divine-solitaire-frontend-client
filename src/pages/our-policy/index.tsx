@@ -94,59 +94,63 @@ const OurPolicy = () => {
                   </div>
                   <div>
                     <p className="mb-2.5">
-                      <b>The Divine Solitaires Conflict-Free Diamond Policy</b>
+                      <b>
+                        The Divine Solitaire&apos;s Conflict-Free Diamond Policy
+                      </b>
                     </p>
                     <p className="mb-[30px]">
-                      Divine Solitaires, along with the global diamond industry,
-                      has a zero-tolerance policy toward conflict diamonds.
-                      Through measures such as the Kimberley Process, which
-                      tracks diamonds from mine to market, the industry in
+                      Divine Solitaire&apos;s, along with the global diamond
+                      industry, has a zero-tolerance policy toward conflict
+                      diamonds. Through measures such as the Kimberley Process,
+                      which tracks diamonds from mine to market, the industry in
                       partnership with the governments, and non-governmental
                       organizations, policies diamond exports to prevent the
-                      trade of illegal diamonds. At Divine Solitaires, we only
-                      purchase diamonds through the largest and most respected
-                      suppliers who, like us, proudly adhere to and enforce the
-                      standards established by the Kimberley Process. All Divine
-                      Solitaires diamonds are warranted to be conflict free. If
-                      one of our suppliers was ever found to be in violation of
-                      that process, we would immediately serve that
-                      relationship. We will continue to support and promote any
-                      process that works to uphold legitimacy in the diamond
-                      trade. Diamonds are mined throughout the world, including
-                      major mines in Australia, Africa, Russia and Canada.
-                      Diamonds are a major source of good in many African
-                      nations, employing and providing healthcare to thousands.
-                      For more information on this issue, please visit
-                      DiamondFacts.org.
+                      trade of illegal diamonds. At Divine Solitaire&apos;s, we
+                      only purchase diamonds through the largest and most
+                      respected suppliers who, like us, proudly adhere to and
+                      enforce the standards established by the Kimberley
+                      Process. All Divine Solitaire&apos;s diamonds are
+                      warranted to be conflict free. If one of our suppliers was
+                      ever found to be in violation of that process, we would
+                      immediately serve that relationship. We will continue to
+                      support and promote any process that works to uphold
+                      legitimacy in the diamond trade. Diamonds are mined
+                      throughout the world, including major mines in Australia,
+                      Africa, Russia and Canada. Diamonds are a major source of
+                      good in many African nations, employing and providing
+                      healthcare to thousands. For more information on this
+                      issue, please visit DiamondFacts.org.
                     </p>
                     <p className="mb-2.5">
                       <b>About the Kimberley Process</b>
                     </p>
                     <p className="mb-[30px]">
-                      Divine Solitaires supports the Kimberley process, which is
-                      an International process to track and certify diamonds.
+                      Divine Solitaire&apos;s supports the Kimberley process,
+                      which is an International process to track and certify
+                      diamonds.
                     </p>
                     <p className="mb-2.5">
                       <b>Concerning Zimbabwe Diamonds</b>
                     </p>
                     <p className="mb-[30px]">
-                      Divine Solitaires is committed to ensuring that the
+                      Divine Solitaire&apos;s is committed to ensuring that the
                       highest ethical standards are observed when sourcing our
                       diamonds and jewelry. Because of the reported human rights
                       abuses in Zimbabwe’s Marange diamond district, Divine
-                      Solitaires will not purchase or offer diamonds from that
-                      area. As a responsible member of the diamond and jewellery
-                      industry, we are working with our suppliers to ensure our
-                      consumers receive only the finest goods procured from
-                      ethical sources.
+                      Solitaire&apos;s will not purchase or offer diamonds from
+                      that area. As a responsible member of the diamond and
+                      jewellery industry, we are working with our suppliers to
+                      ensure our consumers receive only the finest goods
+                      procured from ethical sources.
                     </p>
                     <p className="mb-2.5">
                       <b>
-                        The Divine Solitaires Position on Responsible Mining
+                        The Divine Solitaire&apos;s Position on Responsible
+                        Mining
                       </b>
                     </p>
                     <p className="mb-[30px]">
-                      Across our business, Divine Solitaires observes the
+                      Across our business, Divine Solitaire&apos;s observes the
                       highest ethical standards. We insist our business partners
                       do the same. This extends to our gold sourcing. The issue
                       of responsible mining is an important one and deserves our
@@ -187,10 +191,10 @@ const OurPolicy = () => {
                       </li>
                     </ul>
                     <p>
-                      Divine Solitaires views its policy on responsible mining
-                      as an evolving standard. It commits to continuously review
-                      our position with the goal of expanding it over time to
-                      have the broadest possible impact.
+                      Divine Solitaire&apos;s views its policy on responsible
+                      mining as an evolving standard. It commits to continuously
+                      review our position with the goal of expanding it over
+                      time to have the broadest possible impact.
                     </p>
                   </div>
                 </div>
@@ -202,10 +206,11 @@ const OurPolicy = () => {
                   </div>
                   <div>
                     <p className="mb-2.5">
-                      Any loose diamond purchased from Divine Solitaires can be
-                      upgraded to a larger diamond. You will get 100% value for
-                      your current diamond at the prevailing price list; you
-                      only need to pay the difference against bigger diamond.
+                      Any loose diamond purchased from Divine Solitaire&apos;s
+                      can be upgraded to a larger diamond. You will get 100%
+                      value for your current diamond at the prevailing price
+                      list; you only need to pay the difference against bigger
+                      diamond.
                     </p>
                     <p className="mb-2.5">
                       The consumer must upgrade by 50% to the existing value of
@@ -224,15 +229,16 @@ const OurPolicy = () => {
                   </div>
                   <div>
                     <p className="mb-2.5">
-                      Divine Solitaires Guarantees that every Divine Solitaires
-                      is Treatment Free Natural Diamonds coming from Legitimate
-                      Sources.
+                      Divine Solitaire&apos;s Guarantees that every Divine
+                      Solitaire&apos;s is Treatment Free Natural Diamonds coming
+                      from Legitimate Sources.
                     </p>
                     <p>
-                      Divine Solitaires goes beyond analyzing and guarantees
-                      absolute perfection on all the 123 parameters. Only the
-                      diamonds that score nothing less than perfect on each of
-                      these 123 parameters are passed as Divine Solitaires.
+                      Divine Solitaire&apos;s goes beyond analyzing and
+                      guarantees absolute perfection on all the 123 parameters.
+                      Only the diamonds that score nothing less than perfect on
+                      each of these 123 parameters are passed as Divine
+                      Solitaire&apos;s.
                     </p>
                   </div>
                 </div>

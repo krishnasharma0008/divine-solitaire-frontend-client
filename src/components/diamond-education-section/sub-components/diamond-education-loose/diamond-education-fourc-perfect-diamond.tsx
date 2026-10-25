@@ -58,9 +58,9 @@ const DiamondEducationFourCPerfectDiamond: React.FC<Props> = () => {
                   even with the excellent colour and clarity. An ideal cut is a
                   round shaped diamond or a princess cut diamond that is cut to
                   perfection and has excellent symmetry and excellent polish.
-                  Diamonds at Divine Solitaires are of Ex.Ex.Ex Plus cut which
-                  signifies that the solitaires possess excellent cut, excellent
-                  symmetry and excellent polish.
+                  Diamonds at Divine Solitaire&apos;s are of Ex.Ex.Ex Plus cut
+                  which signifies that the solitaires possess excellent cut,
+                  excellent symmetry and excellent polish.
                 </p>
                 <p className="mb-2.5">
                   If the selected cut is outside the set budget, one can
@@ -115,7 +115,7 @@ const DiamondEducationFourCPerfectDiamond: React.FC<Props> = () => {
                 <p className="mb-2.5">
                   Though not mentioned as one of the four C&apos;s, a
                   diamond&apos;s shape plays an integral part in the selection
-                  of any diamond engagement ring.Divine Solitaires offers
+                  of any diamond engagement ring. Divine Solitaire&apos;s offers
                   diamonds in four shapes: round, princess cut, oval and pear.
                 </p>
                 <p className="mb-2.5">

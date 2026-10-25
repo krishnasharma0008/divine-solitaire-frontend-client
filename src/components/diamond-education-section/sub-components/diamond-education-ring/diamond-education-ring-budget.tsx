@@ -36,11 +36,11 @@ const DiamondEducationRingBudget: React.FC<Props> = () => {
                     It is therefore essential to know everything about diamonds
                     so that you can precisely make your choices which will help
                     you keep the cost your diamond ring price minimal and
-                    affordable. Divine Solitaires provides you with an exquisite
-                    range of diamond rings to choose from and helps you stick to
-                    your engagement ring budget. Here are a few factors to
-                    consider while buying your diamond ring to make it
-                    cost-effective:
+                    affordable. Divine Solitaire&apos;s provides you with an
+                    exquisite range of diamond rings to choose from and helps
+                    you stick to your engagement ring budget. Here are a few
+                    factors to consider while buying your diamond ring to make
+                    it cost-effective:
                   </p>
                   <p className="mb-2.5 text-justify">
                     Cuts and Shapes :
@@ -120,15 +120,15 @@ const DiamondEducationRingBudget: React.FC<Props> = () => {
                   solitaire rings that you are purchasing are of premium
                   quality. No matter how strict your budget is, it is necessary
                   to get a quality-checked product to ensure it lasts and is
-                  worth its cost. Divine Solitaires provides you with quality
-                  assurance certificates which ensure that the diamond for you
-                  engagement rings or single diamond rin is responsibly sourced,
-                  quality assured and conflict free. Each diamond engagement
-                  ring by Divine Solitaires are also checked on 123 parameters
-                  and then given a quality check certification by Divine
-                  Solitaires which is far better than GIA, IGI or any other
-                  international lab certificate to ensure that consumers get the
-                  best diamonds for their rings.
+                  worth its cost. Divine Solitaire&apos;s provides you with
+                  quality assurance certificates which ensure that the diamond
+                  for you engagement rings or single diamond rin is responsibly
+                  sourced, quality assured and conflict free. Each diamond
+                  engagement ring by Divine Solitaire&apos;s are also checked on
+                  123 parameters and then given a quality check certification by
+                  Divine Solitaire&apos;s which is far better than GIA, IGI or
+                  any other international lab certificate to ensure that
+                  consumers get the best diamonds for their rings.
                 </p>
               </span>
             </div>

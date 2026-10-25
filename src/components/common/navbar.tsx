@@ -203,7 +203,7 @@ const Navbar: React.FC<Omit<Breadcrumbs, "breadcrumbs">> = ({ pageName }) => {
         <Link href="/">
           <Image
             src="/logo/Divine Logo-04.png"
-            alt="Divine Solitaires"
+            alt="Divine Solitaire's"
             width={220}
             height={90}
             priority

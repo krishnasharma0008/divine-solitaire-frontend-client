@@ -188,8 +188,8 @@ const VerifyTrackCertificate: React.FC = () => {
           />
         )}
         <div className="m-auto mt-16 pt-2 text-left text-xs sm:text-lg">
-          Divine Solitaires Stringently analyses as well as Guarantees every
-          diamond to score ‘The Best’ on all the 123 parameters.
+          Divine Solitaire&apos;s Stringently analyses as well as Guarantees
+          every diamond to score ‘The Best’ on all the 123 parameters.
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-4 lg:-mr-12">
