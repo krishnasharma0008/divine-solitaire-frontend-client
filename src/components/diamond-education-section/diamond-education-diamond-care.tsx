@@ -73,14 +73,14 @@ const DiamondEducationDiamondCare: React.FC<Props> = () => {
               jewellery separately.
             </p>
             <p className="mb-1.5 text-justify">
-              Divine Solitaires provides you with an extremely significant
+              Divine Solitaire&apos;s provides you with an extremely significant
               feature like no other. It helps you track your solitaire. With
-              Divine Solitaires, you can track your diamond’s journey and know
-              more about it. Not just that but you can also track the current
-              relevant pricing of your purchased solitaire. To track your
-              solitaire, all you have to do is download the Divine Solitaires
-              app, choose the track option and enter the UID code of your
-              diamond.
+              Divine Solitaire&apos;s, you can track your diamond’s journey and
+              know more about it. Not just that but you can also track the
+              current relevant pricing of your purchased solitaire. To track
+              your solitaire, all you have to do is download the Divine
+              Solitaire&apos;s app, choose the track option and enter the UID
+              code of your diamond.
             </p>
             <p className="mb-1.5 text-justify">
               Another way of caring for your expensive jewel is to get it
@@ -92,8 +92,9 @@ const DiamondEducationDiamondCare: React.FC<Props> = () => {
               covers. Be aware of the appraisal reports of your insurance
               policy. Also, find out if your jewellery is covered at the full
               replacement cost when you insure your diamond. Hence, it is
-              essential to insure your diamond. Divine Solitaires realizes this
-              necessity and provides you with a one-year free insurance policy.
+              essential to insure your diamond. Divine Solitaire&apos;s realizes
+              this necessity and provides you with a one-year free insurance
+              policy.
             </p>
           </span>
         </div>

@@ -44,7 +44,7 @@ const BuybackAtOtherStore: React.FC<BuybackAtOtherStoreProps> = ({
 
   const useClickOutside = (
     ref: React.RefObject<HTMLElement>,
-    callback: () => void
+    callback: () => void,
   ) => {
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
@@ -76,7 +76,7 @@ const BuybackAtOtherStore: React.FC<BuybackAtOtherStoreProps> = ({
 
     setCurrentStep(RESALE_STEPS.TWO);
     setProductAmt(
-      `buyback_at_other_store,${productDetails?.buyback_diffrent_store_price.toString()},${searchQuery},`
+      `buyback_at_other_store,${productDetails?.buyback_diffrent_store_price.toString()},${searchQuery},`,
     );
     setSaletype(SaleType.BUYBACK);
     hideLoader();
@@ -197,7 +197,7 @@ const BuybackAtOtherStore: React.FC<BuybackAtOtherStoreProps> = ({
         <>
           <SummaryAccordion
             title={{
-              main: "Divine Solitaires:",
+              main: "Divine Solitaire&apos;s:",
               details: productDetails.solitaire_details_1,
               smount: "",
               //currentPrice: productDetails.slt_total_current_price,
@@ -241,7 +241,7 @@ const BuybackAtOtherStore: React.FC<BuybackAtOtherStoreProps> = ({
               {`${formatByCurrency(
                 Math.round(productDetails.buyback_price),
                 productDetails.currency_locale,
-                productDetails.currency_code
+                productDetails.currency_code,
               )}`}
             </div>
           </div>
@@ -252,7 +252,7 @@ const BuybackAtOtherStore: React.FC<BuybackAtOtherStoreProps> = ({
               {`-${formatByCurrency(
                 productDetails.buyback_processing_charges,
                 productDetails.currency_locale,
-                productDetails.currency_code
+                productDetails.currency_code,
               )}`}
             </div>
           </div>
@@ -263,7 +263,7 @@ const BuybackAtOtherStore: React.FC<BuybackAtOtherStoreProps> = ({
               {`${formatByCurrency(
                 Math.round(productDetails.buyback_diffrent_store_price),
                 productDetails.currency_locale,
-                productDetails.currency_code
+                productDetails.currency_code,
               )}`}
             </div>
           </div>

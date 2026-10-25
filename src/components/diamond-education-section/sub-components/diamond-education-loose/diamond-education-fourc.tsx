@@ -40,9 +40,9 @@ const DiamondEducationFourC: React.FC<Props> = () => {
                 make sure that it refracts light to produce the required fire
                 and brilliance. The perfect symmetry can be acquired only with
                 immense expertise in diamond cutting, which is what Divine
-                Solitaires ensures! All the diamonds from Divine Solitaires are
-                Ex.Ex.Ex. Plus cut diamonds which refers to excellent cut,
-                excellent polish and excellent symmetry.
+                Solitaire&apos;s ensures! All the diamonds from Divine
+                Solitaire&apos;s are Ex.Ex.Ex. Plus cut diamonds which refers to
+                excellent cut, excellent polish and excellent symmetry.
               </p>
             </div>
           </div>
@@ -59,9 +59,9 @@ const DiamondEducationFourC: React.FC<Props> = () => {
                 Diamonds can be colourless or may have a slight yellow tint.
                 However, the diamonds with the least amount of colour are
                 preferred while shopping for diamonds. A diamond colour is
-                graded on a scale of D to Z, however Divine Solitaires provides
-                diamonds that are graded on a diamond color grade D to K and are
-                divided into five broad categories- colourless, nearly
+                graded on a scale of D to Z, however Divine Solitaire&apos;s
+                provides diamonds that are graded on a diamond color grade D to
+                K and are divided into five broad categories- colourless, nearly
                 colourless, faint, very light, and light. Diamonds that lie
                 between D-F on the colour scale display no colour and are the
                 clearest diamonds. D to F are the rarest and the most valuable
@@ -117,9 +117,9 @@ const DiamondEducationFourC: React.FC<Props> = () => {
                 these imperfections are present on or inside the diamond refers
                 to diamond clarity and ranges from FL (Flawless) to I
                 (Included). Diamonds that are devoid of such flaws are
-                considered to be of high quality. Divine Solitaires diamonds are
-                superior-quality stones on the range of IF (Internally Flawless)
-                to SI2 (Slightly Included 2).
+                considered to be of high quality. Divine Solitaire&apos;s
+                diamonds are superior-quality stones on the range of IF
+                (Internally Flawless) to SI2 (Slightly Included 2).
               </p>
             </div>
           </div>

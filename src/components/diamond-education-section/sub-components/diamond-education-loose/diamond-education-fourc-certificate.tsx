@@ -47,13 +47,14 @@ const DiamondEducationFourCCertificate: React.FC<Props> = () => {
                 Solitaires are graded and are pre-certified by the top
                 international laboratories such as GIA (Gemological Institute of
                 America) and IGI (International Gemological Institute). At
-                Divine Solitaires you can be assured to receive GIA
+                Divine Solitaire&apos;s you can be assured to receive GIA
                 certification for all diamonds that are 0.30 pointer and above.
-                Apart from this, we at Divine Solitaires issue our own Quality
-                Guarantee Certificate for each diamond purchased. Each solitaire
-                diamond at Divine Solitaires is graded through stringent Quality
-                Control (QC) measures and checked on 123 parameters, unlike most
-                international labs that grade diamonds on just 40 parameters.
+                Apart from this, we at Divine Solitaire&apos;s issue our own
+                Quality Guarantee Certificate for each diamond purchased. Each
+                solitaire diamond at Divine Solitaire&apos;s is graded through
+                stringent Quality Control (QC) measures and checked on 123
+                parameters, unlike most international labs that grade diamonds
+                on just 40 parameters.
               </p>
             </span>
           </div>

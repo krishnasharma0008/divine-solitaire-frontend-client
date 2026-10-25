@@ -45,11 +45,11 @@ const VerifyHeartArrow: React.FC = () => {
       <BorderBar className="border-y border-[#DCDCDC]" />
       <div className="font-montserrat text-left not-italic font-normal text-base text-gray-900 mt-7">
         The brilliance of a diamond is determined by its cut. With exquisite and
-        precise cuts, diamonds at Divine Solitaires are crafted with grace and
-        utmost care. The most exclusive and perfect diamond cut in the world
+        precise cuts, diamonds at Divine Solitaire&apos;s are crafted with grace
+        and utmost care. The most exclusive and perfect diamond cut in the world
         shows a hearts and arrows pattern within. The magnificent craftsmanship
-        at Divine Solitaires guarantees all the diamonds to be (Ex. Ex. Ex.)
-        Plus® quality which stands for excellent cut, excellent polish and
+        at Divine Solitaire&apos;s guarantees all the diamonds to be (Ex. Ex.
+        Ex.) Plus® quality which stands for excellent cut, excellent polish and
         excellent symmetry.
       </div>
     </div>

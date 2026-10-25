@@ -67,16 +67,17 @@ const Faqs = () => {
         >
           <div className="flex flex-col gap-4 justify-between w-full text-black">
             <div className="text-lg font-medium flex justify-between">
-              1. What is unique about Divine Solitaires diamonds?
+              1. What is unique about Divine Solitaire&apos;s diamonds?
               <span>{open === 1 ? <MinusIcon /> : <PlusIcon />}</span>
             </div>
           </div>
         </AccordionHeader>
         <AccordionBody className="px-4 mt-5 py-3">
           Our diamonds are available in ‘Round Brilliant’ and ‘Fancy’ cuts
-          Divine Solitaires are defined by their exquisite (Ex.Ex.Ex.)Plus
-          Craftsmanship. <br />- The Divine Solitaires ‘Round Brilliant’ cut
-          boasts of 57 facets – all cut to reflect perfect symmetry and angles.
+          Divine Solitaire&apos;s are defined by their exquisite (Ex.Ex.Ex.)Plus
+          Craftsmanship. <br />- The Divine Solitaire&apos;s ‘Round Brilliant’
+          cut boasts of 57 facets – all cut to reflect perfect symmetry and
+          angles.
         </AccordionBody>
       </Accordion>
 
@@ -112,16 +113,16 @@ const Faqs = () => {
           <div className="flex flex-col gap-4 justify-between w-full text-black">
             <div className="text-lg font-medium flex justify-between">
               3. What are the different sizes, colours and clarity ranges of
-              diamonds available with Divine Solitaires?
+              diamonds available with Divine Solitaire&apos;s?
               <span>{open === 3 ? <MinusIcon /> : <PlusIcon />}</span>
             </div>
           </div>
         </AccordionHeader>
         <AccordionBody className="px-4 mt-5 pb-3">
-          Divine Solitaires Diamonds are available in a wide range of sizes –
-          from 0.10 to 2.99 carat and above; colours – from D to K and clarity
-          ranges – from IF to S12. Please do peruse our catalogue to choose your
-          dream Divine Solitaire.
+          Divine Solitaire&apos;s Diamonds are available in a wide range of
+          sizes – from 0.10 to 2.99 carat and above; colours – from D to K and
+          clarity ranges – from IF to S12. Please do peruse our catalogue to
+          choose your dream Divine Solitaire.
         </AccordionBody>
       </Accordion>
 

@@ -31,9 +31,9 @@ const DiamondEducationRingTypes: React.FC<Props> = () => {
               Personifying sheer magnificence and adding charm to your
               personality, diamonds leave everyone awestruck. The hardest rock
               symbolizes the everlasting bond as the gem lasts almost forever.
-              Divine Solitaires offers a varied range, right from engagement
-              rings to wedding rings to choose from that are made just for you
-              and fit your diamond ring budget as well.
+              Divine Solitaire&apos;s offers a varied range, right from
+              engagement rings to wedding rings to choose from that are made
+              just for you and fit your diamond ring budget as well.
             </p>
           </div>
         </div>

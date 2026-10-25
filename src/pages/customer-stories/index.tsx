@@ -195,12 +195,13 @@ const CustomerStories = () => {
                   </Typography>
                   <Typography className="text-[#777]">
                     I always thought that men just wear gold and platinum rings
-                    until I happened to browse through Divine Solitaires’ online
-                    store. I spent some time looking at the various solitaire
-                    ring designs before I finally thought of getting one. I did
-                    a little reading on diamond quality and pricing after which
-                    I designed a ring for myself online. When I finally got it,
-                    I was really pleased at the look and the quality.
+                    until I happened to browse through Divine Solitaire&apos;s’
+                    online store. I spent some time looking at the various
+                    solitaire ring designs before I finally thought of getting
+                    one. I did a little reading on diamond quality and pricing
+                    after which I designed a ring for myself online. When I
+                    finally got it, I was really pleased at the look and the
+                    quality.
                   </Typography>
                 </CardBody>
                 <CardFooter className="pt-0">
