@@ -13,9 +13,12 @@ import {
   PlusIcon,
   BreadcrumbArrowRightIcon,
 } from "@/components/icons";
+import useIsOutsideIndia from "@/hooks/use-is-outside-india";
 
 const Faqs = () => {
   const [open, setOpen] = useState(0);
+
+  const isOutsideIndia = useIsOutsideIndia();
 
   const handleOpen = (value: number) => setOpen(open === value ? 0 : value);
 
@@ -276,8 +279,9 @@ const Faqs = () => {
         </AccordionHeader>
         <AccordionBody className="px-4 mt-5 pb-3">
           - The consumer should be registered on Divine Solitaires
-          website/application. - The consumer must upgrade by 35% to the
-          existing value of his/her DS product or INR 20,000 whichever is
+          website/application. - The consumer must upgrade by{" "}
+          {isOutsideIndia ? "50% " : "35% "} to the existing value of his/her DS
+          product or {isOutsideIndia ? "INR 35,000" : "INR 20,000"} whichever is
           higher.
         </AccordionBody>
       </Accordion>
@@ -340,7 +344,8 @@ const Faqs = () => {
           previous stone, whichever is higher.
           <br />
           You can upgrade your diamond any time at 100% of the prevailing rate.
-          The value of the upgraded stone should be 35% or 20,000 more than the
+          The value of the upgraded stone should be{" "}
+          {isOutsideIndia ? "50% or 35,000" : "35% or 20,000"} more than the
           previous stone, whichever is higher.Any Divine Solitaires affiliated
           jeweller across all our stores will upgrade your diamond as per the
           prevailing prices in the Nationwide Standard and Transparent Price
