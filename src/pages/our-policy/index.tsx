@@ -198,7 +198,7 @@ const OurPolicy = () => {
                     </p>
                   </div>
                 </div>
-                <div className="policy-content mb-[60px] mb-xs-3">
+                {/* <div className="policy-content mb-[60px] mb-xs-3">
                   <div className="pageHeadingStyle text-center mb-[30px] mb-xs-20">
                     <h3 className="tracking-wider text-3xl leading-5 font-serif font-normal font-regular">
                       Upgrade
@@ -220,7 +220,7 @@ const OurPolicy = () => {
                       grading document.
                     </p>
                   </div>
-                </div>
+                </div> */}
                 <div className="policy-content">
                   <div className="pageHeadingStyle text-center mb-[30px] mb-xs-20">
                     <h3 className="tracking-wider text-3xl leading-5 font-serif font-normal font-regular">
