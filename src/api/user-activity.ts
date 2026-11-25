@@ -12,10 +12,6 @@ export interface UserActivityPayload {
   country: string;
 }
 
-// Sirf logged-in users ke liye: /api/sec/activity (token se user pehchana jata hai).
-// validateStatus: () => true  ->  koi bhi status "success" maana jata hai, isliye
-// web-service ka interceptor yahan token delete ya error throw nahi karta.
-// Analytics ki wajah se user kabhi logout nahi hoga.
 export const saveUserActivity = (
   payload: UserActivityPayload,
   token: string
