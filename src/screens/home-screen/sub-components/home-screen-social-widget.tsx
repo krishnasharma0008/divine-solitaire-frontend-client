@@ -57,7 +57,8 @@ const HomeScreenSocialWidget: React.FC = () => {
               <h5 className="font-20">Share the Love!</h5>
               <a
                 className="btn home-about__btn icon icon--inline icon--arrow-right-dark"
-                href="https://www.instagram.com/divinesolitaires/"
+                //href="https://www.instagram.com/divinesolitaires/"
+                href="https://www.instagram.com/divinesolitairesindia/"
                 target="_blank"
               >
                 Follow us on instagram
